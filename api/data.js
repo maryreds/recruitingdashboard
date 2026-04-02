@@ -321,8 +321,11 @@ function processData(submittals, jobs) {
     };
   });
 
-  const coreRecruiters = allRecruiters.filter(r => r.isCore).sort((a, b) => b.submittals - a.submittals);
-  const extRecruiters = allRecruiters.filter(r => !r.isCore).sort((a, b) => b.submittals - a.submittals);
+  // Top Submitters = top 4 by submittal count; rest go to "More Team Members"
+  const sorted_by_subs = [...allRecruiters].sort((a, b) => b.submittals - a.submittals);
+  const TOP_COUNT = 4;
+  const coreRecruiters = sorted_by_subs.slice(0, TOP_COUNT);
+  const extRecruiters = sorted_by_subs.slice(TOP_COUNT);
 
   // Totals
   const totalSubs = allRecruiters.reduce((s, r) => s + r.submittals, 0);
@@ -411,6 +414,21 @@ function processData(submittals, jobs) {
     r.interviewDetails.map(d => ({ recruiter: r.name, ...d }))
   );
 
+  // Activity feed (latest events across all recruiters)
+  const activityFeed = allRecruiters
+    .flatMap(r => r.timeline.map(t => ({ recruiter: r.name, ...t })))
+    .filter(t => t.date)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 15)
+    .map(t => ({
+      recruiter: t.recruiter,
+      candidate: t.candidate,
+      role: t.role,
+      client: t.client,
+      status: t.status,
+      date: t.date,
+    }));
+
   // Top companies
   const companyCount = {};
   for (const s of dedupSubs) {
@@ -474,6 +492,7 @@ function processData(submittals, jobs) {
     rejections: allRejections,
     interviews: allInterviews,
     topCompanies,
+    activityFeed,
   };
 }
 
