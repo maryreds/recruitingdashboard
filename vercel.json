@@ -6,6 +6,15 @@
   "functions": {
     "api/data.js": {
       "maxDuration": 30
+    },
+    "api/enhance-cv.js": {
+      "maxDuration": 60
+    },
+    "api/cover-letter.js": {
+      "maxDuration": 60
+    },
+    "api/export-docx.js": {
+      "maxDuration": 30
     }
   },
   "headers": [

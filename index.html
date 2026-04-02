@@ -7,6 +7,14 @@
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png"/>
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
   <title>JSM Recruiting Intelligence Center | JSM Consulting</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZFJ1MNDSK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VZFJ1MNDSK');
+  </script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Baskerville:wght@400;700&family=Manrope:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -77,21 +85,27 @@
         <span class="material-symbols-outlined text-base">calendar_today</span>
         <span id="date-range-label">March 19 &ndash; April 2, 2026</span>
       </span>
-      <button class="relative p-2 rounded-full hover:bg-surface-container-high transition-colors">
-        <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
-        <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-secondary rounded-full"></span>
-      </button>
+      <div class="relative" id="notif-wrapper">
+        <button id="notif-bell" class="relative p-2 rounded-full hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+          <span id="notif-dot" class="absolute top-1.5 right-1.5 w-2 h-2 bg-secondary rounded-full"></span>
+        </button>
+        <div id="notif-dropdown" class="hidden absolute right-0 top-12 w-96 max-h-[480px] bg-white rounded-2xl shadow-2xl border border-outline-variant/30 overflow-hidden z-[100]">
+          <div class="px-5 py-4 border-b border-outline-variant/20 flex items-center justify-between">
+            <h3 class="text-sm font-bold text-on-surface">Latest Activity</h3>
+            <span class="text-[10px] font-medium text-on-surface-variant bg-surface-container rounded-full px-2 py-0.5">Live from JobDiva</span>
+          </div>
+          <div id="notif-list" class="overflow-y-auto max-h-[400px] divide-y divide-outline-variant/15">
+            <div class="px-5 py-6 text-center text-sm text-on-surface-variant">Loading activity...</div>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
   <!-- Sidebar -->
   <aside class="hidden xl:flex fixed top-0 left-0 bottom-0 w-72 bg-white border-r border-outline-variant/20 z-40 flex-col pt-24 pb-6 px-6">
-    <div class="mb-10">
-      <div class="flex items-center gap-3 mb-1">
-        <span class="text-sm font-semibold text-primary">JSM Consulting</span>
-      </div>
-    </div>
-    <nav class="flex-1 flex flex-col gap-1">
+    <nav class="flex-1 flex flex-col gap-1 pt-2">
       <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-primary-fixed/60 text-primary font-medium text-sm">
         <span class="material-symbols-outlined text-xl">dashboard</span>
         Dashboard
@@ -104,9 +118,10 @@
         <span class="material-symbols-outlined text-xl">analytics</span>
         Analytics
       </a>
-      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant/50 cursor-default text-sm" onclick="return false">
         <span class="material-symbols-outlined text-xl">strategy</span>
         Team Strategy
+        <span class="ml-auto text-[10px] font-semibold uppercase tracking-wider bg-surface-container-high text-on-surface-variant rounded-full px-2 py-0.5">Soon</span>
       </a>
 
       <div class="mt-6 mb-2 px-4">
@@ -164,7 +179,7 @@
           <div class="flex items-center justify-between mb-6">
             <div>
               <h2 class="font-headline font-bold text-lg text-primary">Top Submitters</h2>
-              <p class="text-sm font-semibold text-secondary mt-0.5">23 Total Submittals</p>
+              <p class="text-sm font-semibold text-secondary mt-0.5">Total Submittals</p>
             </div>
             <span class="material-symbols-outlined text-on-surface-variant">group</span>
           </div>
@@ -412,7 +427,7 @@
     <section class="mb-16">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Standout Observations -->
-        <div class="bg-white rounded-3xl p-7 border-l-4 border-primary">
+        <div class="bg-white rounded-3xl p-4 sm:p-7 border-l-4 border-primary">
           <div class="flex items-center gap-2 mb-5">
             <span class="material-symbols-outlined text-primary">visibility</span>
             <h2 class="font-headline font-bold text-lg text-primary">Standout Observations</h2>
@@ -438,7 +453,7 @@
         </div>
 
         <!-- Red Flags -->
-        <div class="bg-white rounded-3xl p-7 border-l-4 border-secondary">
+        <div class="bg-white rounded-3xl p-4 sm:p-7 border-l-4 border-secondary">
           <div class="flex items-center gap-2 mb-5">
             <span class="material-symbols-outlined text-secondary">flag</span>
             <h2 class="font-headline font-bold text-lg text-secondary">Red Flags</h2>
@@ -467,13 +482,13 @@
 
     <!-- Rejection Details -->
     <section class="mb-16">
-      <div class="bg-white rounded-3xl p-7 border border-outline-variant/20">
+      <div class="bg-white rounded-3xl p-4 sm:p-7 border border-outline-variant/20">
         <div class="flex items-center gap-2 mb-6">
           <span class="material-symbols-outlined text-error">block</span>
           <h2 class="font-headline font-bold text-lg text-on-surface">Rejection Details</h2>
         </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm">
+        <div class="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+          <table class="w-full text-sm min-w-[600px]">
             <thead>
               <tr class="text-left text-xs text-on-surface-variant uppercase tracking-wider border-b border-outline-variant/30">
                 <th class="pb-3 pr-4">Recruiter</th>
@@ -553,7 +568,7 @@
     <!-- Top Companies -->
     <section class="mb-16">
       <h2 class="font-headline font-bold text-lg text-primary mb-5">Top Companies</h2>
-      <div class="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1">
+      <div class="flex flex-wrap sm:flex-nowrap gap-3 sm:overflow-x-auto pb-2 -mx-1 px-1">
         <div class="shrink-0 bg-white rounded-full px-5 py-2.5 border border-outline-variant/30 flex items-center gap-2">
           <span class="text-sm font-semibold text-primary">HonorVet Technologies</span>
           <span class="bg-primary-fixed text-primary text-xs font-bold px-2 py-0.5 rounded-full">9</span>
@@ -634,6 +649,66 @@
     <span id="refresh-status">Loading live data...</span>
   </div>
 
+  <!-- Notification Bell Script -->
+  <script>
+  (function() {
+    const bell = document.getElementById('notif-bell');
+    const dropdown = document.getElementById('notif-dropdown');
+    const wrapper = document.getElementById('notif-wrapper');
+
+    bell.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('hidden');
+    });
+    document.addEventListener('click', (e) => {
+      if (!wrapper.contains(e.target)) dropdown.classList.add('hidden');
+    });
+
+    function timeAgo(dateStr) {
+      const now = new Date();
+      const d = new Date(dateStr);
+      const diff = Math.floor((now - d) / 1000);
+      if (diff < 60) return 'Just now';
+      if (diff < 3600) return Math.floor(diff / 60) + 'm ago';
+      if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
+      if (diff < 172800) return 'Yesterday';
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }
+
+    const statusConfig = {
+      submitted: { icon: 'send', color: 'text-primary', bg: 'bg-primary-fixed', verb: 'submitted' },
+      interview: { icon: 'event', color: 'text-green-700', bg: 'bg-green-100', verb: 'interview scheduled for' },
+      hired: { icon: 'celebration', color: 'text-green-800', bg: 'bg-green-100', verb: 'hired' },
+      rejected: { icon: 'close', color: 'text-error', bg: 'bg-red-50', verb: 'rejected' },
+    };
+
+    window.renderNotifications = function(feed) {
+      const list = document.getElementById('notif-list');
+      if (!feed || !feed.length) {
+        list.innerHTML = '<div class="px-5 py-6 text-center text-sm text-on-surface-variant">No recent activity</div>';
+        return;
+      }
+      list.innerHTML = feed.map(item => {
+        const cfg = statusConfig[item.status] || statusConfig.submitted;
+        const time = timeAgo(item.date);
+        return `<div class="px-5 py-3.5 hover:bg-surface-container-low/50 transition-colors">
+          <div class="flex items-start gap-3">
+            <div class="mt-0.5 w-8 h-8 rounded-full ${cfg.bg} flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-base ${cfg.color}">${cfg.icon}</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm text-on-surface leading-snug"><span class="font-semibold">${item.recruiter.split(' ')[0]}</span> ${cfg.verb} <span class="font-medium">${item.candidate || 'a candidate'}</span></p>
+              <p class="text-xs text-on-surface-variant mt-0.5 truncate">${item.role} &mdash; ${item.client}</p>
+            </div>
+            <span class="text-[10px] text-on-surface-variant whitespace-nowrap mt-1">${time}</span>
+          </div>
+        </div>`;
+      }).join('');
+      document.getElementById('notif-dot').style.display = feed.length ? '' : 'none';
+    };
+  })();
+  </script>
+
   <!-- Auto-Refresh Script -->
   <script>
   (function() {
@@ -672,7 +747,7 @@
       // Hero subtitle with submittal count and period
       const heroSub = document.getElementById('hero-subtitle');
       if (heroSub) {
-        heroSub.textContent = `${data.totals.submittals} Total Submittals in the Last ${data.meta.lookbackDays} Days`;
+        heroSub.textContent = `${data.totals.submittals} total submittals in the last ${data.meta.lookbackDays} days`;
       }
 
       // Date range in header
@@ -683,7 +758,7 @@
 
       // Core team total
       const coreTotal = document.querySelector('.text-secondary.font-semibold');
-      if (coreTotal) coreTotal.textContent = data.coreTeam.totalSubmittals + ' Total Submittals';
+      if (coreTotal) coreTotal.textContent = data.totals.submittals + ' total submittals';
 
       // Core team recruiter list
       const coreContainer = document.querySelector('.bg-surface-container-low.rounded-3xl .space-y-4');
@@ -704,7 +779,7 @@
 
       // Extended team
       const extTotal = document.querySelector('.bg-surface-container.rounded-3xl .text-on-surface-variant.font-medium');
-      if (extTotal) extTotal.textContent = data.extendedTeam.totalSubmittals + ' Total Submittals';
+      if (extTotal) extTotal.textContent = data.extendedTeam.totalSubmittals + ' total submittals';
       const extGrid = document.querySelector('.bg-surface-container.rounded-3xl .grid-cols-2');
       if (extGrid && data.extendedTeam.recruiters.length > 0) {
         extGrid.innerHTML = data.extendedTeam.recruiters.map(r => `
@@ -846,6 +921,7 @@
         }
         const data = await resp.json();
         renderDashboard(data);
+        if (data.activityFeed && window.renderNotifications) window.renderNotifications(data.activityFeed);
         const time = new Date(data.meta.lastUpdated).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
         updateStatus(`Live \u2022 Updated ${time} \u2022 Next refresh in 15m`);
       } catch (err) {

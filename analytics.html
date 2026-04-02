@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png"/>
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
   <title>Analytics — JSM Consulting Talent Report</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZFJ1MNDSK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VZFJ1MNDSK');
+  </script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300..700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -59,7 +70,7 @@
   <header class="fixed top-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-xl z-50 border-b border-surface-container-high">
     <div class="h-full flex items-center justify-between px-6 lg:px-8 max-w-[1920px] mx-auto">
       <div class="flex items-center gap-8">
-        <a href="index.html" class="font-headline text-2xl font-extrabold text-primary tracking-tight">JSM</a>
+        <a href="index.html" class="flex items-center"><img src="img/jsm-logo.svg" alt="JSM Consulting" class="h-12"/></a>
         <nav class="hidden md:flex items-center gap-1">
           <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition">Dashboard</a>
           <a href="gallery.html" class="px-4 py-2 rounded-full text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition">Team Gallery</a>
@@ -81,18 +92,7 @@
 
   <!-- Sidebar -->
   <aside class="hidden lg:flex flex-col fixed top-20 left-0 bottom-0 w-72 bg-white border-r border-surface-container-high z-40">
-    <div class="p-6 border-b border-surface-container-high">
-      <div class="flex items-center gap-3">
-        <div class="h-10 w-10 rounded-xl bg-primary flex items-center justify-center">
-          <span class="text-white font-headline font-bold text-sm">JSM</span>
-        </div>
-        <div>
-          <p class="font-headline font-bold text-sm text-on-surface">JSM Consulting</p>
-          <p class="text-xs text-on-surface-variant">Recruiter Intelligence</p>
-        </div>
-      </div>
-    </div>
-    <nav class="flex-1 p-4 space-y-1">
+    <nav class="flex-1 p-4 pt-6 space-y-1">
       <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
         <span class="material-symbols-outlined text-[20px]">dashboard</span>Dashboard
       </a>
@@ -102,8 +102,17 @@
       <a href="analytics.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-primary bg-primary-fixed/30 transition">
         <span class="material-symbols-outlined text-[20px]">analytics</span>Analytics
       </a>
-      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant/50 cursor-default" onclick="return false">
         <span class="material-symbols-outlined text-[20px]">strategy</span>Team Strategy
+        <span class="ml-auto text-[10px] font-semibold uppercase tracking-wider bg-surface-container-high text-on-surface-variant rounded-full px-2 py-0.5">Soon</span>
+      </a>
+
+      <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-outline px-4 mt-6 mb-2">Tools</p>
+      <a href="cv-enhancer.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+        <span class="material-symbols-outlined text-[20px]">auto_fix_high</span>CV Enhancer
+      </a>
+      <a href="cover-letters.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+        <span class="material-symbols-outlined text-[20px]">description</span>Cover Letters
       </a>
     </nav>
   </aside>
@@ -128,27 +137,7 @@
       <p class="text-on-surface-variant text-sm max-w-xl">Where candidates drop off, who converts best, and why submissions get rejected.</p>
     </section>
 
-    <!-- ═══════ SECTION 1: PIPELINE FUNNEL ═══════ -->
-    <section class="mb-12">
-      <div class="flex items-center gap-3 mb-6">
-        <span class="material-symbols-outlined text-primary text-2xl">filter_alt</span>
-        <h2 class="font-headline text-xl font-extrabold text-on-surface">Pipeline Funnel</h2>
-      </div>
-
-      <div class="bg-white rounded-3xl border border-surface-container-high p-8">
-        <!-- Funnel Visualization -->
-        <div id="funnel-visual" class="flex flex-col items-center gap-0 mb-8">
-          <!-- Filled by JS -->
-        </div>
-
-        <!-- Drop-off Callouts -->
-        <div id="funnel-callouts" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <!-- Filled by JS -->
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════ SECTION 2: TEAM COMPARISON ═══════ -->
+    <!-- ═══════ SECTION 1: TEAM COMPARISON ═══════ -->
     <section class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <span class="material-symbols-outlined text-primary text-2xl">leaderboard</span>
@@ -166,6 +155,26 @@
 
       <div class="bg-white rounded-3xl border border-surface-container-high p-8">
         <div id="team-chart" class="space-y-4">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ SECTION 2: PIPELINE FUNNEL ═══════ -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="material-symbols-outlined text-primary text-2xl">filter_alt</span>
+        <h2 class="font-headline text-xl font-extrabold text-on-surface">Pipeline Funnel</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-surface-container-high p-8">
+        <!-- Funnel Visualization -->
+        <div id="funnel-visual" class="flex flex-col items-center gap-0 mb-8">
+          <!-- Filled by JS -->
+        </div>
+
+        <!-- Drop-off Callouts -->
+        <div id="funnel-callouts" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <!-- Filled by JS -->
         </div>
       </div>
@@ -231,7 +240,20 @@
       </div>
     </section>
 
-    <!-- ═══════ SECTION 4: KEY TAKEAWAYS ═══════ -->
+    <!-- ═══════ SECTION 4: CLIENT HEALTH SCORES ═══════ -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="material-symbols-outlined text-primary text-2xl">monitoring</span>
+        <h2 class="font-headline text-xl font-extrabold text-on-surface">Client Health Scores</h2>
+      </div>
+      <p class="text-sm text-on-surface-variant mb-6">Composite score based on fill rate, rejection rate, and response time. Higher is better.</p>
+
+      <div id="client-health-cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Filled by JS -->
+      </div>
+    </section>
+
+    <!-- ═══════ SECTION 5: KEY TAKEAWAYS ═══════ -->
     <section class="mb-16">
       <div class="bg-primary rounded-3xl p-8 text-white">
         <div class="flex items-center gap-3 mb-5">
@@ -555,6 +577,96 @@
     list.innerHTML = takeaways.map(t => `<li class="flex items-start gap-1">${t}</li>`).join('');
   }
 
+  // ── Client Health Scores ──
+  function renderClientHealth(topCompanies, rejections, recruiters) {
+    const container = document.getElementById('client-health-cards');
+    if (!container || !topCompanies || topCompanies.length === 0) return;
+
+    // Count rejections per client
+    const rejectByClient = {};
+    rejections.forEach(r => {
+      const c = r.client || 'Unknown';
+      rejectByClient[c] = (rejectByClient[c] || 0) + 1;
+    });
+
+    // Count interviews per client
+    const interviewByClient = {};
+    recruiters.forEach(r => {
+      (r.interviewDetails || []).forEach(iv => {
+        const c = iv.client || 'Unknown';
+        interviewByClient[c] = (interviewByClient[c] || 0) + 1;
+      });
+    });
+
+    // Compute avg TTS per client
+    const ttsByClient = {};
+    recruiters.forEach(r => {
+      (r.clients || []).forEach(cl => {
+        // Approximate: use recruiter avgTTS weighted by submittals to that client
+        if (r.avgTTS !== null && r.avgTTS !== undefined) {
+          if (!ttsByClient[cl.name]) ttsByClient[cl.name] = [];
+          for (let i = 0; i < cl.count; i++) ttsByClient[cl.name].push(r.avgTTS);
+        }
+      });
+    });
+
+    const scored = topCompanies.map(c => {
+      const subs = c.count;
+      const rejects = rejectByClient[c.name] || 0;
+      const interviews = interviewByClient[c.name] || 0;
+      const rejectRate = subs > 0 ? rejects / subs : 0;
+      const interviewRate = subs > 0 ? interviews / subs : 0;
+      const ttsArr = ttsByClient[c.name] || [];
+      const avgTTS = ttsArr.length > 0 ? ttsArr.reduce((a, b) => a + b, 0) / ttsArr.length : null;
+
+      // Score: 40% interview conversion + 30% low rejection + 30% speed
+      const convScore = Math.min(interviewRate * 2, 1) * 40; // 50%+ conversion = max
+      const rejectScore = (1 - rejectRate) * 30;
+      const speedScore = avgTTS !== null ? Math.max(0, (1 - avgTTS / 10)) * 30 : 15; // neutral if no data
+      const total = Math.round(convScore + rejectScore + speedScore);
+
+      return {
+        name: c.name, subs, rejects, interviews, rejectRate, interviewRate, avgTTS, score: total
+      };
+    }).sort((a, b) => b.score - a.score);
+
+    container.innerHTML = scored.map(c => {
+      const color = c.score >= 70 ? 'text-green-600' : c.score >= 45 ? 'text-amber-500' : 'text-error';
+      const bg = c.score >= 70 ? 'bg-green-50' : c.score >= 45 ? 'bg-amber-50' : 'bg-red-50';
+      const ringColor = c.score >= 70 ? 'border-green-400' : c.score >= 45 ? 'border-amber-400' : 'border-red-400';
+      const label = c.score >= 70 ? 'Healthy' : c.score >= 45 ? 'Monitor' : 'At Risk';
+      const labelBg = c.score >= 70 ? 'bg-green-100 text-green-700' : c.score >= 45 ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700';
+
+      return `
+        <div class="bg-white rounded-2xl border border-surface-container-high p-5">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex-1 min-w-0">
+              <h3 class="font-semibold text-on-surface text-sm truncate">${c.name}</h3>
+              <span class="text-[10px] font-semibold uppercase ${labelBg} rounded-full px-2 py-0.5 mt-1 inline-block">${label}</span>
+            </div>
+            <div class="w-12 h-12 rounded-full border-[3px] ${ringColor} ${bg} flex items-center justify-center flex-shrink-0 ml-3">
+              <span class="text-sm font-bold ${color}">${c.score}</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-2 text-center">
+            <div class="${bg} rounded-lg py-2 px-1">
+              <p class="text-lg font-bold ${color}">${c.subs}</p>
+              <p class="text-[10px] text-on-surface-variant">Submittals</p>
+            </div>
+            <div class="${bg} rounded-lg py-2 px-1">
+              <p class="text-lg font-bold ${c.interviews > 0 ? 'text-green-600' : 'text-on-surface-variant'}">${c.interviews}</p>
+              <p class="text-[10px] text-on-surface-variant">Interviews</p>
+            </div>
+            <div class="${bg} rounded-lg py-2 px-1">
+              <p class="text-lg font-bold ${c.rejects > 0 ? 'text-error' : 'text-on-surface-variant'}">${c.rejects}</p>
+              <p class="text-[10px] text-on-surface-variant">Rejections</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
   // ── Load Data ──
   async function loadAnalytics() {
     try {
@@ -571,6 +683,7 @@
       renderFunnel(allData.totals);
       renderTeamChart('submittals');
       renderRejections(allData.rejections, allRecruiters);
+      renderClientHealth(allData.topCompanies, allData.rejections, allRecruiters);
       renderTakeaways(allData.totals, allRecruiters, allData.rejections);
 
       document.getElementById('loading').style.display = 'none';

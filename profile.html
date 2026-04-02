@@ -7,6 +7,14 @@
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png"/>
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
   <title>Recruiter Profile — JSM Consulting</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZFJ1MNDSK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VZFJ1MNDSK');
+  </script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Inter:wght@300..700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -38,7 +46,7 @@
   <!-- Header -->
   <header class="fixed top-0 inset-x-0 z-50 h-20 bg-white/80 backdrop-blur-xl border-b border-surface-container-high flex items-center px-4 sm:px-6 lg:px-8">
     <div class="flex items-center gap-3">
-      <a href="index.html" class="text-2xl font-headline font-extrabold text-primary tracking-tight">JSM</a>
+      <a href="index.html" class="flex items-center"><img src="img/jsm-logo.svg" alt="JSM Consulting" class="h-12"/></a>
     </div>
     <nav class="hidden md:flex items-center gap-1 ml-8">
       <a href="index.html" class="px-4 py-2 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">Dashboard</a>
@@ -56,18 +64,7 @@
 
   <!-- Sidebar -->
   <aside class="fixed top-20 left-0 bottom-0 w-72 bg-white border-r border-surface-container-high hidden lg:flex flex-col z-40">
-    <div class="p-6 border-b border-surface-container-high">
-      <div class="flex items-center gap-3">
-        <div class="h-10 w-10 rounded-xl bg-primary flex items-center justify-center">
-          <span class="text-on-primary font-headline font-bold text-sm">JSM</span>
-        </div>
-        <div>
-          <p class="font-headline font-bold text-sm text-on-surface">JSM Consulting</p>
-          <p class="text-xs text-on-surface-variant">Recruiter Intelligence</p>
-        </div>
-      </div>
-    </div>
-    <nav class="flex-1 p-4 space-y-1">
+    <nav class="flex-1 p-4 pt-6 space-y-1">
       <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">
         <span class="material-symbols-outlined text-[20px]">dashboard</span>Dashboard
       </a>
@@ -77,8 +74,9 @@
       <a href="analytics.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">
         <span class="material-symbols-outlined text-[20px]">analytics</span>Analytics
       </a>
-      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">
+      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-on-surface-variant/50 cursor-default" onclick="return false">
         <span class="material-symbols-outlined text-[20px]">strategy</span>Team Strategy
+        <span class="ml-auto text-[10px] font-semibold uppercase tracking-wider bg-surface-container-high text-on-surface-variant rounded-full px-2 py-0.5">Soon</span>
       </a>
 
       <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-outline px-4 mt-6 mb-2">Tools</p>
@@ -162,10 +160,15 @@
 
     const LINKEDIN = {
       'Rahul Kanojiya': 'https://www.linkedin.com/in/rahul-kanojiya-55821b113/',
-      'Shaily Juneja': 'https://www.linkedin.com/in/shaily-juneja-659290100',
-      'Santoshi Hegde': 'https://in.linkedin.com/in/santoshi-hegde-5389a44',
+      'Shaily Juneja': 'https://www.linkedin.com/in/shaily-sharma-ba00a596/',
+      'Santoshi Hegde': 'https://www.linkedin.com/in/santoshi-hegde-b4091411/',
       'Vishal Khatri': 'https://www.linkedin.com/in/vishal-khatri-92756984/',
       'Treesa Tijo': 'https://www.linkedin.com/in/treesatijo',
+      'Monoshree Pramanik': 'https://www.linkedin.com/in/monoshree-pramanik-3599261b/',
+      'Rutuja Pande': 'https://www.linkedin.com/in/rutuja-pande-181546159/',
+      'Sahithya Mogalapu': 'https://www.linkedin.com/in/sahithya-mogalapu-2b21a030a/',
+      'Akash Nair': 'https://www.linkedin.com/in/akash-nair-09609930b/',
+      'Shubham Kenjale': 'https://www.linkedin.com/in/shubham-kenjale-17919510a/',
       'Vivek Shenoy': 'https://www.linkedin.com/in/vivek-s-6b186232/',
       'Shreerang Tarte': 'https://www.linkedin.com/in/shreerang-tarte-2632652/',
     };

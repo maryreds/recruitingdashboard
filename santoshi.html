@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png"/>
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
   <title>Santoshi Hegde — JSM Consulting Talent Report</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZFJ1MNDSK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VZFJ1MNDSK');
+  </script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Manrope:wght@200..800&family=Inter:wght@300..700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -76,12 +87,7 @@
 
   <!-- ============ SIDEBAR ============ -->
   <aside class="hidden lg:flex flex-col fixed top-20 left-0 bottom-0 w-72 bg-white border-r border-surface-container-high z-40">
-    <div class="p-6 border-b border-surface-container-high">
-      <div class="flex items-center gap-3">
-        <a href="index.html"><img src="img/jsm-logo.svg" alt="JSM Consulting" class="h-10"/></a>
-      </div>
-    </div>
-    <nav class="flex-1 p-4 space-y-1">
+    <nav class="flex-1 p-4 pt-6 space-y-1">
       <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
         <span class="material-symbols-outlined text-[20px]">dashboard</span>Dashboard
       </a>
@@ -91,8 +97,17 @@
       <a href="analytics.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
         <span class="material-symbols-outlined text-[20px]">analytics</span>Analytics
       </a>
-      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant/50 cursor-default" onclick="return false">
         <span class="material-symbols-outlined text-[20px]">strategy</span>Team Strategy
+        <span class="ml-auto text-[10px] font-semibold uppercase tracking-wider bg-surface-container-high text-on-surface-variant rounded-full px-2 py-0.5">Soon</span>
+      </a>
+
+      <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-outline px-4 mt-6 mb-2">Tools</p>
+      <a href="cv-enhancer.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+        <span class="material-symbols-outlined text-[20px]">auto_fix_high</span>CV Enhancer
+      </a>
+      <a href="cover-letters.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+        <span class="material-symbols-outlined text-[20px]">description</span>Cover Letters
       </a>
     </nav>
   </aside>
@@ -118,7 +133,7 @@
             <span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary text-white text-[11px] font-bold tracking-wider uppercase">Top Performer</span>
           </div>
           <p class="text-on-surface-variant text-sm sm:text-base mb-4">Senior Recruiter &middot; IT &amp; Government Sector Specialist</p>
-          <a href="https://in.linkedin.com/in/santoshi-hegde-5389a44" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline transition">
+          <a href="https://www.linkedin.com/in/santoshi-hegde-b4091411/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline transition">
             <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 11.27h-3v-5.6c0-3.37-4-3.12-4 0v5.6h-3v-10h3v1.76c1.4-2.59 7-2.78 7 2.48v5.76z"/></svg>
             View LinkedIn Profile
           </a>
