@@ -105,6 +105,18 @@
         <span class="material-symbols-outlined text-xl">strategy</span>
         Team Strategy
       </a>
+
+      <div class="mt-6 mb-2 px-4">
+        <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-outline">Tools</p>
+      </div>
+      <a href="cv-enhancer.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+        <span class="material-symbols-outlined text-xl">auto_fix_high</span>
+        CV Enhancer
+      </a>
+      <a href="cover-letters.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+        <span class="material-symbols-outlined text-xl">description</span>
+        Cover Letters
+      </a>
     </nav>
     <button class="mt-auto w-full bg-primary text-on-primary rounded-2xl py-3 text-sm font-semibold hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
       <span class="material-symbols-outlined text-lg">add</span>
@@ -113,14 +125,14 @@
   </aside>
 
   <!-- Main Content -->
-  <main class="xl:pl-72 pt-28 pb-32 px-4 sm:px-6 lg:px-10 max-w-[1400px]">
+  <main class="xl:pl-80 pt-28 pb-32 px-4 sm:px-6 lg:px-10 max-w-[1400px]">
 
     <!-- Hero Section -->
     <section class="mb-16">
       <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
         <div>
-          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-4">Strategic Intelligence</p>
-          <h1 class="font-headline text-[2.5rem] sm:text-[3.5rem] font-extrabold text-primary leading-[1.1] mb-5">JSM Recruiting<br/>Intelligence Center</h1>
+          <p id="hero-subtitle" class="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-4">Loading...</p>
+          <h1 class="font-headline text-[2.5rem] sm:text-[3.5rem] font-extrabold text-primary leading-[1.1] mb-5">JSM Recruiting<br/>Dashboard</h1>
           <div class="h-1 w-24 bg-secondary rounded-full"></div>
         </div>
         <div class="flex gap-6 sm:gap-10">
@@ -652,6 +664,12 @@
         statEls[0].textContent = data.totals.submittals;
         statEls[1].textContent = data.totals.interviews;
         statEls[2].textContent = data.totals.hires;
+      }
+
+      // Hero subtitle with submittal count and period
+      const heroSub = document.getElementById('hero-subtitle');
+      if (heroSub) {
+        heroSub.textContent = `${data.totals.submittals} Total Submittals in the Last ${data.meta.lookbackDays} Days`;
       }
 
       // Date range in header
