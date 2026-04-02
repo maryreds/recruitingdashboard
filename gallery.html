@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recruiter Gallery — JSM Consulting Talent Architect Report</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Inter:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#001e52",
+            "primary-container": "#00327d",
+            "primary-fixed": "#dae2ff",
+            "primary-fixed-dim": "#b1c5ff",
+            "secondary": "#b6171e",
+            "secondary-container": "#da3433",
+            "secondary-fixed": "#ffdad6",
+            "tertiary": "#411100",
+            "tertiary-container": "#651f00",
+            "tertiary-fixed": "#ffdbcf",
+            "surface": "#f7f9fb",
+            "surface-container": "#eceef0",
+            "surface-container-low": "#f2f4f6",
+            "surface-container-high": "#e6e8ea",
+            "surface-container-highest": "#e0e3e5",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-surface-variant": "#434651",
+            "outline": "#747782",
+            "outline-variant": "#c4c6d3",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#7d9eee",
+            "error": "#ba1a1a",
+            "background": "#f7f9fb"
+          },
+          fontFamily: {
+            "headline": ["Manrope", "sans-serif"],
+            "body": ["Inter", "sans-serif"],
+            "label": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .text-gradient { background: linear-gradient(to right, #001e52, #00327d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .primary-gradient { background: linear-gradient(135deg, #001e52 0%, #00327d 100%); }
+
+    .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0, 30, 82, 0.12); }
+
+    .btn-profile { transition: all 0.3s ease; }
+    .btn-profile:hover { transform: scale(1.04); box-shadow: 0 4px 20px rgba(0, 30, 82, 0.2); }
+
+    /* Hide scrollbar */
+    .sidebar-scroll::-webkit-scrollbar { display: none; }
+    .sidebar-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-xl z-50 border-b border-outline-variant/30">
+    <div class="flex items-center justify-between h-full px-8">
+      <div class="flex items-center gap-10">
+        <a href="index.html" class="text-2xl font-extrabold text-primary tracking-tight font-headline">JSM</a>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-on-surface-variant">
+          <a href="index.html" class="hover:text-primary transition-colors">Dashboard</a>
+          <a href="gallery.html" class="text-primary font-bold border-b-2 border-primary pb-0.5">Team Gallery</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="hidden sm:flex items-center bg-surface-container-low rounded-full px-4 py-2 gap-2">
+          <span class="material-symbols-outlined text-outline text-xl">search</span>
+          <input type="text" placeholder="Search recruiters..." class="bg-transparent border-none outline-none text-sm w-40 placeholder:text-outline"/>
+        </div>
+        <button class="p-2 rounded-full hover:bg-surface-container transition-colors">
+          <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+        </button>
+        <button class="p-2 rounded-full hover:bg-surface-container transition-colors">
+          <span class="material-symbols-outlined text-on-surface-variant">settings</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="hidden lg:flex flex-col w-72 fixed left-0 top-20 bottom-0 bg-white border-r border-outline-variant/20 z-40 sidebar-scroll overflow-y-auto">
+    <div class="p-8">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="w-10 h-10 primary-gradient rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold text-sm font-headline">JSM</span>
+        </div>
+        <div>
+          <p class="font-bold text-sm text-primary font-headline">JSM Consulting</p>
+          <p class="text-xs text-outline">Recruiter Intelligence</p>
+        </div>
+      </div>
+    </div>
+
+    <nav class="px-4 flex-1">
+      <p class="text-xs font-semibold text-outline uppercase tracking-wider px-4 mb-3">Navigation</p>
+      <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors mb-1">
+        <span class="material-symbols-outlined text-xl">dashboard</span>
+        <span class="text-sm font-medium">Dashboard</span>
+      </a>
+      <a href="gallery.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary-fixed text-primary font-semibold mb-1">
+        <span class="material-symbols-outlined text-xl">groups</span>
+        <span class="text-sm">Team Gallery</span>
+      </a>
+      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors mb-1">
+        <span class="material-symbols-outlined text-xl">analytics</span>
+        <span class="text-sm font-medium">Analytics</span>
+      </a>
+      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors mb-1">
+        <span class="material-symbols-outlined text-xl">strategy</span>
+        <span class="text-sm font-medium">Team Strategy</span>
+      </a>
+    </nav>
+
+    <div class="p-6">
+      <button class="w-full primary-gradient text-white py-3 px-4 rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-lg">summarize</span>
+        Generate Report
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="lg:ml-72 pt-28 px-6 sm:px-10 lg:px-16 pb-24">
+
+    <!-- Page Header -->
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+      <div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-on-surface leading-tight font-headline">
+          Recruiter <span class="text-gradient">Gallery</span>
+        </h1>
+        <p class="text-on-surface-variant text-lg mt-4 max-w-xl leading-relaxed">
+          Meet the JSM Consulting recruiting team. Performance metrics from March 19 &ndash; April 2, 2026.
+        </p>
+      </div>
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <button class="flex items-center gap-2 px-5 py-2.5 bg-surface-container-low border border-outline-variant rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container transition-colors">
+          <span class="material-symbols-outlined text-lg">filter_list</span>
+          Filter by Team
+        </button>
+        <a href="index.html" class="flex items-center gap-2 px-5 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-lg">dashboard</span>
+          View Dashboard
+        </a>
+      </div>
+    </div>
+
+    <!-- Core Team Section -->
+    <section class="mb-20">
+      <div class="flex items-center gap-4 mb-10">
+        <h2 class="text-3xl font-bold text-on-surface font-headline">Core Team</h2>
+        <div class="h-px flex-1 bg-outline-variant/40"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+
+        <!-- Rahul Kanojiya -->
+        <div class="card-hover bg-surface-container-low rounded-[2rem] p-8 flex flex-col items-center text-center relative">
+          <span class="absolute top-6 right-6 text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full">Team Lead</span>
+          <div class="w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48 rounded-full bg-primary-container flex items-center justify-center ring-4 ring-white shadow-xl mb-6">
+            <span class="text-white text-3xl sm:text-4xl lg:text-5xl font-bold font-headline">RK</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface font-headline">Rahul Kanojiya</h3>
+          <p class="text-on-surface-variant text-sm mt-1 mb-5">Team Lead, Recruiting &amp; BD</p>
+          <div class="flex items-center justify-center gap-4 text-xs font-medium text-on-surface-variant mb-6">
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">11 Submittals</span>
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">5 Jobs</span>
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">6 Days Active</span>
+          </div>
+          <div class="flex items-center gap-3 mt-auto">
+            <button class="btn-profile px-6 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold">View Profile</button>
+            <a href="https://www.linkedin.com/in/rahul-kanojiya-55821b113/" target="_blank" class="p-2 rounded-full hover:bg-surface-container transition-colors" title="LinkedIn">
+              <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Shaily Juneja -->
+        <div class="card-hover bg-surface-container-low rounded-[2rem] p-8 flex flex-col items-center text-center relative">
+          <span class="absolute top-6 right-6 text-xs font-bold uppercase tracking-wider bg-secondary text-white px-3 py-1 rounded-full">Fastest</span>
+          <div class="w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48 rounded-full bg-gradient-to-br from-secondary to-secondary-container flex items-center justify-center ring-4 ring-white shadow-xl mb-6">
+            <span class="text-white text-3xl sm:text-4xl lg:text-5xl font-bold font-headline">SJ</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface font-headline">Shaily Juneja</h3>
+          <p class="text-on-surface-variant text-sm mt-1 mb-5">Senior IT Recruiter</p>
+          <div class="flex items-center justify-center gap-4 text-xs font-medium text-on-surface-variant mb-6 flex-wrap">
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">5 Submittals</span>
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">0.0d Speed</span>
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">HonorVet Focus</span>
+          </div>
+          <div class="flex items-center gap-3 mt-auto">
+            <button class="btn-profile px-6 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold">View Profile</button>
+            <a href="https://www.linkedin.com/in/shaily-juneja-659290100" target="_blank" class="p-2 rounded-full hover:bg-surface-container transition-colors" title="LinkedIn">
+              <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Sahithya Mogalapu -->
+        <div class="card-hover bg-surface-container-low rounded-[2rem] p-8 flex flex-col items-center text-center">
+          <div class="w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center ring-4 ring-white shadow-xl mb-6">
+            <span class="text-white text-3xl sm:text-4xl lg:text-5xl font-bold font-headline">SM</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface font-headline">Sahithya Mogalapu</h3>
+          <p class="text-on-surface-variant text-sm mt-1 mb-5">IT Recruiter</p>
+          <div class="flex items-center justify-center gap-4 text-xs font-medium text-on-surface-variant mb-6 flex-wrap">
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">4 Submittals</span>
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">$73/hr Avg</span>
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">2.8d Speed</span>
+          </div>
+          <button class="btn-profile px-6 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold mt-auto">View Profile</button>
+        </div>
+
+        <!-- Akash Nair -->
+        <div class="card-hover bg-surface-container-low rounded-[2rem] p-8 flex flex-col items-center text-center">
+          <div class="w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center ring-4 ring-white shadow-xl mb-6">
+            <span class="text-white text-3xl sm:text-4xl lg:text-5xl font-bold font-headline">AN</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface font-headline">Akash Nair</h3>
+          <p class="text-on-surface-variant text-sm mt-1 mb-5">HR Recruiter</p>
+          <div class="flex items-center justify-center gap-4 text-xs font-medium text-on-surface-variant mb-6 flex-wrap">
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">3 Submittals</span>
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">$85/hr Avg</span>
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">5.3d Speed</span>
+          </div>
+          <button class="btn-profile px-6 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold mt-auto">View Profile</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Extended Team Section -->
+    <section class="mb-20">
+      <div class="flex items-center gap-4 mb-10">
+        <h2 class="text-3xl font-bold text-on-surface font-headline">Extended Team</h2>
+        <div class="h-px flex-1 bg-outline-variant/40"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Santoshi Hegde — TOP PERFORMER -->
+        <a href="santoshi.html" class="card-hover primary-gradient rounded-[2rem] p-8 flex flex-col items-center text-center relative group cursor-pointer">
+          <span class="absolute top-6 right-6 text-xs font-bold uppercase tracking-wider bg-white text-primary px-3 py-1 rounded-full shadow-lg">Top Performer</span>
+          <div class="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-white/20 backdrop-blur flex items-center justify-center ring-4 ring-white/30 shadow-xl mb-5">
+            <span class="text-white text-3xl sm:text-4xl font-bold font-headline">SH</span>
+          </div>
+          <h3 class="text-xl font-bold text-white font-headline">Santoshi Hegde</h3>
+          <p class="text-primary-fixed-dim text-sm mt-1 mb-5">Senior Recruiter</p>
+          <div class="flex items-center justify-center gap-3 text-xs font-medium text-white/80 mb-6 flex-wrap">
+            <span class="bg-white/15 backdrop-blur px-3 py-1.5 rounded-full">12 Submittals</span>
+            <span class="bg-white/15 backdrop-blur px-3 py-1.5 rounded-full">2 Interviews</span>
+            <span class="bg-white/15 backdrop-blur px-3 py-1.5 rounded-full">16.7% Conversion</span>
+          </div>
+          <div class="flex items-center gap-3 mt-auto">
+            <span class="btn-profile px-6 py-2.5 bg-white text-primary rounded-xl text-sm font-semibold group-hover:shadow-lg transition-all">View Profile</span>
+            <span onclick="event.preventDefault(); event.stopPropagation(); window.open('https://in.linkedin.com/in/santoshi-hegde-5389a44', '_blank')" class="p-2 rounded-full hover:bg-white/20 transition-colors" title="LinkedIn">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Vishal Khatri -->
+        <div class="card-hover bg-surface-container-low rounded-[2rem] p-8 flex flex-col items-center text-center">
+          <div class="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center ring-4 ring-white shadow-xl mb-5">
+            <span class="text-white text-3xl sm:text-4xl font-bold font-headline">VK</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface font-headline">Vishal Khatri</h3>
+          <p class="text-on-surface-variant text-sm mt-1 mb-5">Senior Recruiter</p>
+          <div class="flex items-center justify-center gap-3 text-xs font-medium text-on-surface-variant mb-6 flex-wrap">
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">9 Submittals</span>
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">0 Interviews</span>
+          </div>
+          <div class="flex items-center gap-3 mt-auto">
+            <button class="btn-profile px-6 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold">View Profile</button>
+            <a href="https://www.linkedin.com/in/vishal-khatri-92756984/" target="_blank" class="p-2 rounded-full hover:bg-surface-container transition-colors" title="LinkedIn">
+              <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Shubham Kenjale -->
+        <div class="card-hover bg-surface-container-low rounded-[2rem] p-8 flex flex-col items-center text-center">
+          <div class="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center ring-4 ring-white shadow-xl mb-5">
+            <span class="text-white text-3xl sm:text-4xl font-bold font-headline">SK</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface font-headline">Shubham Kenjale</h3>
+          <p class="text-on-surface-variant text-sm mt-1 mb-5">IT Recruiter</p>
+          <div class="flex items-center justify-center gap-3 text-xs font-medium text-on-surface-variant mb-6">
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">3 Submittals</span>
+          </div>
+          <button class="btn-profile px-6 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold mt-auto">View Profile</button>
+        </div>
+
+        <!-- Mona P -->
+        <div class="card-hover bg-surface-container-low rounded-[2rem] p-8 flex flex-col items-center text-center">
+          <div class="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center ring-4 ring-white shadow-xl mb-5">
+            <span class="text-white text-3xl sm:text-4xl font-bold font-headline">MP</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface font-headline">Mona P</h3>
+          <p class="text-on-surface-variant text-sm mt-1 mb-5">Recruiter</p>
+          <div class="flex items-center justify-center gap-3 text-xs font-medium text-on-surface-variant mb-6 flex-wrap">
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">2 Submittals</span>
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">NYS DOT Focus</span>
+          </div>
+          <button class="btn-profile px-6 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold mt-auto">View Profile</button>
+        </div>
+
+        <!-- Rutuja Pande -->
+        <div class="card-hover bg-surface-container-low rounded-[2rem] p-8 flex flex-col items-center text-center">
+          <div class="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center ring-4 ring-white shadow-xl mb-5">
+            <span class="text-white text-3xl sm:text-4xl font-bold font-headline">RP</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface font-headline">Rutuja Pande</h3>
+          <p class="text-on-surface-variant text-sm mt-1 mb-5">Senior IT Recruiter</p>
+          <div class="flex items-center justify-center gap-3 text-xs font-medium text-on-surface-variant mb-6">
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">2 Submittals</span>
+          </div>
+          <button class="btn-profile px-6 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold mt-auto">View Profile</button>
+        </div>
+
+        <!-- Treesa Tijo -->
+        <div class="card-hover bg-surface-container-low rounded-[2rem] p-8 flex flex-col items-center text-center">
+          <div class="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center ring-4 ring-white shadow-xl mb-5">
+            <span class="text-white text-3xl sm:text-4xl font-bold font-headline">TT</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface font-headline">Treesa Tijo</h3>
+          <p class="text-on-surface-variant text-sm mt-1 mb-5">Recruiter</p>
+          <div class="flex items-center justify-center gap-3 text-xs font-medium text-on-surface-variant mb-6">
+            <span class="bg-surface-container px-3 py-1.5 rounded-full">1 Submittal</span>
+          </div>
+          <div class="flex items-center gap-3 mt-auto">
+            <button class="btn-profile px-6 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold">View Profile</button>
+            <a href="https://www.linkedin.com/in/treesatijo" target="_blank" class="p-2 rounded-full hover:bg-surface-container transition-colors" title="LinkedIn">
+              <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Leadership & Sales Section -->
+    <section class="mb-20">
+      <div class="flex items-center gap-4 mb-10">
+        <h2 class="text-3xl font-bold text-on-surface font-headline">Leadership &amp; Sales</h2>
+        <div class="h-px flex-1 bg-outline-variant/40"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Vivek Shenoy -->
+        <div class="card-hover bg-surface-container-low rounded-[2rem] p-8 flex items-center gap-6">
+          <div class="w-20 h-20 rounded-full bg-gradient-to-br from-tertiary to-tertiary-container flex items-center justify-center ring-4 ring-white shadow-xl flex-shrink-0">
+            <span class="text-white text-2xl font-bold font-headline">VS</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-lg font-bold text-on-surface font-headline">Vivek Shenoy</h3>
+            <p class="text-on-surface-variant text-sm">Sr. VP Operations</p>
+            <p class="text-outline text-xs mt-2">0 submittals &mdash; Sales/Management role</p>
+          </div>
+          <a href="https://www.linkedin.com/in/vivek-s-6b186232/" target="_blank" class="p-2 rounded-full hover:bg-surface-container transition-colors flex-shrink-0" title="LinkedIn">
+            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+
+        <!-- Shreerang Tarte -->
+        <div class="card-hover bg-surface-container-low rounded-[2rem] p-8 flex items-center gap-6">
+          <div class="w-20 h-20 rounded-full bg-gradient-to-br from-tertiary to-tertiary-container flex items-center justify-center ring-4 ring-white shadow-xl flex-shrink-0">
+            <span class="text-white text-2xl font-bold font-headline">ST</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-lg font-bold text-on-surface font-headline">Shreerang Tarte</h3>
+            <p class="text-on-surface-variant text-sm">Head HR &amp; Strategy</p>
+            <p class="text-outline text-xs mt-2">0 submittals &mdash; Strategic leadership role</p>
+          </div>
+          <a href="https://www.linkedin.com/in/shreerang-tarte-2632652/" target="_blank" class="p-2 rounded-full hover:bg-surface-container transition-colors flex-shrink-0" title="LinkedIn">
+            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom CTA Section -->
+    <section class="mb-16">
+      <div class="bg-primary-container rounded-[2rem] p-12 sm:p-16 text-center">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-headline mb-4">Ready to review the full report?</h2>
+        <p class="text-primary-fixed-dim text-lg mb-8 max-w-lg mx-auto">Dive into the complete performance dashboard with detailed analytics, trends, and team comparisons.</p>
+        <a href="index.html" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary rounded-xl text-base font-bold hover:shadow-xl hover:scale-105 transition-all">
+          <span class="material-symbols-outlined">dashboard</span>
+          View Performance Dashboard
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-outline-variant/30 pt-10 pb-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <span class="text-lg font-extrabold text-primary font-headline">JSM Consulting</span>
+          <span class="text-outline text-sm">&copy; 2026</span>
+        </div>
+        <div class="flex items-center gap-6 text-sm text-on-surface-variant">
+          <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+          <a href="#" class="hover:text-primary transition-colors">Terms</a>
+          <a href="#" class="hover:text-primary transition-colors">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Mobile Bottom Nav -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-outline-variant/30 z-50">
+    <div class="flex items-center justify-around h-16">
+      <a href="index.html" class="flex flex-col items-center gap-1 text-on-surface-variant">
+        <span class="material-symbols-outlined text-xl">dashboard</span>
+        <span class="text-[10px] font-medium">Dashboard</span>
+      </a>
+      <a href="gallery.html" class="flex flex-col items-center gap-1 text-primary">
+        <span class="material-symbols-outlined text-xl">groups</span>
+        <span class="text-[10px] font-semibold">Gallery</span>
+      </a>
+      <a href="#" class="flex flex-col items-center gap-1 text-on-surface-variant">
+        <span class="material-symbols-outlined text-xl">analytics</span>
+        <span class="text-[10px] font-medium">Analytics</span>
+      </a>
+      <a href="#" class="flex flex-col items-center gap-1 text-on-surface-variant">
+        <span class="material-symbols-outlined text-xl">settings</span>
+        <span class="text-[10px] font-medium">Settings</span>
+      </a>
+    </div>
+  </nav>
+
+<!-- Auto-Refresh Script -->
+<script>
+(function() {
+  const REFRESH_INTERVAL = 15 * 60 * 1000;
+  async function refreshGallery() {
+    try {
+      const resp = await fetch('/api/data');
+      if (!resp.ok) return;
+      const data = await resp.json();
+      // Update core team stats
+      const coreCards = document.querySelectorAll('[data-team="core"] .stat-subs');
+      data.coreTeam.recruiters.forEach((r, i) => {
+        if (coreCards[i]) coreCards[i].textContent = r.submittals;
+      });
+      // Update extended team stats
+      const extCards = document.querySelectorAll('[data-team="extended"] .stat-subs');
+      data.extendedTeam.recruiters.forEach((r, i) => {
+        if (extCards[i]) extCards[i].textContent = r.submittals;
+      });
+      console.log('[Gallery] Data refreshed at', new Date().toLocaleTimeString());
+    } catch (e) { console.error('Gallery refresh failed:', e); }
+  }
+  refreshGallery();
+  setInterval(refreshGallery, REFRESH_INTERVAL);
+})();
+</script>
+</body>
+</html>

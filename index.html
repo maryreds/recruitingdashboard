@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Talent Architect Report | JSM Consulting</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#001e52",
+            "primary-container": "#00327d",
+            "primary-fixed": "#dae2ff",
+            "primary-fixed-dim": "#b1c5ff",
+            "secondary": "#b6171e",
+            "secondary-container": "#da3433",
+            "secondary-fixed": "#ffdad6",
+            "secondary-fixed-dim": "#ffb3ac",
+            "tertiary": "#411100",
+            "tertiary-container": "#651f00",
+            "tertiary-fixed": "#ffdbcf",
+            "surface": "#f7f9fb",
+            "surface-container": "#eceef0",
+            "surface-container-low": "#f2f4f6",
+            "surface-container-high": "#e6e8ea",
+            "surface-container-highest": "#e0e3e5",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-surface-variant": "#434651",
+            "outline": "#747782",
+            "outline-variant": "#c4c6d3",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#7d9eee",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-secondary-container": "#fffbff",
+            "on-tertiary-container": "#eb845c",
+            "background": "#f7f9fb",
+            "inverse-surface": "#2d3133"
+          },
+          fontFamily: {
+            "headline": ["Manrope", "sans-serif"],
+            "body": ["Inter", "sans-serif"],
+            "label": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+    .font-headline { font-family: 'Manrope', sans-serif; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+
+  <!-- Fixed Header -->
+  <header class="fixed top-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-xl border-b border-outline-variant/30 z-50 flex items-center justify-between px-6 xl:px-10">
+    <a href="index.html" class="text-2xl font-extrabold text-primary font-headline tracking-tight">JSM</a>
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="index.html" class="text-sm font-semibold text-primary border-b-2 border-secondary pb-1">Dashboard</a>
+      <a href="gallery.html" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Team Gallery</a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <span class="hidden sm:inline-flex items-center gap-2 text-xs font-medium text-on-surface-variant bg-surface-container-high rounded-full px-4 py-2">
+        <span class="material-symbols-outlined text-base">calendar_today</span>
+        March 19 &ndash; April 2, 2026
+      </span>
+      <button class="relative p-2 rounded-full hover:bg-surface-container-high transition-colors">
+        <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-secondary rounded-full"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="hidden xl:flex fixed top-0 left-0 bottom-0 w-72 bg-white border-r border-outline-variant/20 z-40 flex-col pt-24 pb-6 px-6">
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-1">
+        <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+          <span class="text-white font-headline font-bold text-sm">JSM</span>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-primary font-headline">JSM Consulting</p>
+          <p class="text-xs text-on-surface-variant">Recruiter Intelligence</p>
+        </div>
+      </div>
+    </div>
+    <nav class="flex-1 flex flex-col gap-1">
+      <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-primary-fixed/60 text-primary font-medium text-sm">
+        <span class="material-symbols-outlined text-xl">dashboard</span>
+        Dashboard
+      </a>
+      <a href="gallery.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+        <span class="material-symbols-outlined text-xl">groups</span>
+        Team Gallery
+      </a>
+      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+        <span class="material-symbols-outlined text-xl">analytics</span>
+        Analytics
+      </a>
+      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+        <span class="material-symbols-outlined text-xl">strategy</span>
+        Team Strategy
+      </a>
+    </nav>
+    <button class="mt-auto w-full bg-primary text-on-primary rounded-2xl py-3 text-sm font-semibold hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+      <span class="material-symbols-outlined text-lg">add</span>
+      New Report
+    </button>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="xl:pl-72 pt-28 pb-32 px-4 sm:px-6 lg:px-10 max-w-[1400px]">
+
+    <!-- Hero Section -->
+    <section class="mb-16">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
+        <div>
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-4">Strategic Intelligence</p>
+          <h1 class="font-headline text-[2.5rem] sm:text-[3.5rem] font-extrabold text-primary leading-[1.1] mb-5">The Talent<br/>Architect Report</h1>
+          <div class="h-1 w-24 bg-secondary rounded-full"></div>
+        </div>
+        <div class="flex gap-6 sm:gap-10">
+          <div class="text-center">
+            <p class="text-5xl sm:text-6xl font-extrabold text-primary font-headline">52</p>
+            <p class="text-sm text-on-surface-variant mt-1">Submittals</p>
+          </div>
+          <div class="text-center">
+            <p class="text-5xl sm:text-6xl font-extrabold text-secondary font-headline">2</p>
+            <p class="text-sm text-on-surface-variant mt-1">Interviews</p>
+          </div>
+          <div class="text-center">
+            <p class="text-5xl sm:text-6xl font-extrabold text-slate-300 font-headline">0</p>
+            <p class="text-sm text-on-surface-variant mt-1">Hires</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Breakdown -->
+    <section class="mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+
+        <!-- JSM Core Team -->
+        <div class="bg-surface-container-low rounded-3xl p-7">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h2 class="font-headline font-bold text-lg text-primary">JSM Core Team</h2>
+              <p class="text-sm font-semibold text-secondary mt-0.5">23 Total Submittals</p>
+            </div>
+            <span class="material-symbols-outlined text-on-surface-variant">group</span>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-xs font-semibold text-on-primary-container">RK</div>
+              <div class="flex-1">
+                <p class="text-sm font-medium text-on-surface">Rahul Kanojiya</p>
+                <p class="text-xs text-on-surface-variant">11 Submittals</p>
+              </div>
+              <span class="text-lg font-bold text-primary font-headline">11</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-primary-fixed-dim/40 flex items-center justify-center text-xs font-semibold text-primary">SJ</div>
+              <div class="flex-1">
+                <p class="text-sm font-medium text-on-surface">Shaily Juneja</p>
+                <p class="text-xs text-on-surface-variant">5 Submittals</p>
+              </div>
+              <span class="text-lg font-bold text-primary font-headline">5</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-primary-fixed/60 flex items-center justify-center text-xs font-semibold text-primary">SM</div>
+              <div class="flex-1">
+                <p class="text-sm font-medium text-on-surface">Sahithya Mogalapu</p>
+                <p class="text-xs text-on-surface-variant">4 Submittals</p>
+              </div>
+              <span class="text-lg font-bold text-primary font-headline">4</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-outline-variant/30 flex items-center justify-center text-xs font-semibold text-on-surface-variant">AN</div>
+              <div class="flex-1">
+                <p class="text-sm font-medium text-on-surface">Akash Nair</p>
+                <p class="text-xs text-on-surface-variant">3 Submittals</p>
+              </div>
+              <span class="text-lg font-bold text-primary font-headline">3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Extended Team -->
+        <div class="bg-surface-container rounded-3xl p-7">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h2 class="font-headline font-bold text-lg text-primary">Extended Team</h2>
+              <p class="text-sm font-medium text-on-surface-variant mt-0.5">29 Total Submittals</p>
+            </div>
+            <span class="material-symbols-outlined text-on-surface-variant">diversity_3</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-white rounded-2xl p-4 text-center">
+              <p class="text-2xl font-bold text-primary font-headline">12</p>
+              <p class="text-xs text-on-surface-variant mt-1">Santoshi Hegde</p>
+            </div>
+            <div class="bg-white rounded-2xl p-4 text-center">
+              <p class="text-2xl font-bold text-primary font-headline">9</p>
+              <p class="text-xs text-on-surface-variant mt-1">Vishal Khatri</p>
+            </div>
+            <div class="bg-white rounded-2xl p-4 text-center">
+              <p class="text-2xl font-bold text-primary font-headline">3</p>
+              <p class="text-xs text-on-surface-variant mt-1">Shubham Kenjale</p>
+            </div>
+            <div class="bg-white rounded-2xl p-4 text-center">
+              <p class="text-2xl font-bold text-primary font-headline">2</p>
+              <p class="text-xs text-on-surface-variant mt-1">Mona P</p>
+            </div>
+            <div class="bg-white rounded-2xl p-4 text-center">
+              <p class="text-2xl font-bold text-primary font-headline">2</p>
+              <p class="text-xs text-on-surface-variant mt-1">Rutuja Pande</p>
+            </div>
+            <div class="bg-white rounded-2xl p-4 text-center">
+              <p class="text-2xl font-bold text-primary font-headline">1</p>
+              <p class="text-xs text-on-surface-variant mt-1">Treesa Tijo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Performer -->
+        <div class="bg-primary rounded-3xl p-7 shadow-2xl text-white md:col-span-2 xl:col-span-1">
+          <div class="flex items-center gap-2 mb-6">
+            <span class="w-3 h-3 bg-secondary rounded-full pulse-dot"></span>
+            <p class="text-xs font-semibold tracking-[0.15em] uppercase text-primary-fixed-dim">Top Performer</p>
+          </div>
+          <h3 class="font-headline text-4xl font-bold mb-2">Santoshi Hegde</h3>
+          <p class="text-sm text-primary-fixed-dim mb-8">Only recruiter to secure interviews this period</p>
+          <div class="grid grid-cols-3 gap-4 mb-8">
+            <div class="bg-white/10 rounded-2xl p-4 text-center">
+              <p class="text-2xl font-bold font-headline">12</p>
+              <p class="text-xs text-primary-fixed-dim mt-1">Submittals</p>
+            </div>
+            <div class="bg-white/10 rounded-2xl p-4 text-center">
+              <p class="text-2xl font-bold font-headline">2</p>
+              <p class="text-xs text-primary-fixed-dim mt-1">Interviews</p>
+            </div>
+            <div class="bg-white/10 rounded-2xl p-4 text-center">
+              <p class="text-2xl font-bold font-headline">16.7%</p>
+              <p class="text-xs text-primary-fixed-dim mt-1">Conversion</p>
+            </div>
+          </div>
+          <a href="santoshi.html" class="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-primary-fixed transition-colors">
+            View Full Profile
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quality & Speed Section -->
+    <section class="mb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- Time-to-Submittal -->
+        <div class="bg-surface-container-lowest rounded-3xl p-7 border border-outline-variant/20">
+          <div class="flex items-center gap-3 mb-7">
+            <span class="material-symbols-outlined text-primary text-2xl">speed</span>
+            <div>
+              <h2 class="font-headline font-bold text-lg text-primary">Time-to-Submittal</h2>
+              <p class="text-xs text-on-surface-variant">Average days from job open to candidate submission</p>
+            </div>
+          </div>
+          <div class="space-y-5">
+            <!-- Shaily -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <p class="text-sm font-medium text-on-surface">Shaily Juneja</p>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-secondary bg-secondary-fixed px-2 py-0.5 rounded-full">SAME-DAY</span>
+                  <span class="text-sm font-bold text-primary">0.0 DAYS</span>
+                </div>
+              </div>
+              <div class="h-2.5 bg-surface-container-high rounded-full overflow-hidden">
+                <div class="h-full bg-secondary rounded-full" style="width: 2%"></div>
+              </div>
+            </div>
+            <!-- Sahithya -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <p class="text-sm font-medium text-on-surface">Sahithya Mogalapu</p>
+                <span class="text-sm font-bold text-primary">2.8 DAYS</span>
+              </div>
+              <div class="h-2.5 bg-surface-container-high rounded-full overflow-hidden">
+                <div class="h-full bg-primary-container rounded-full" style="width: 35%"></div>
+              </div>
+            </div>
+            <!-- Rahul -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <p class="text-sm font-medium text-on-surface">Rahul Kanojiya</p>
+                <span class="text-sm font-bold text-primary">4.6 DAYS</span>
+              </div>
+              <div class="h-2.5 bg-surface-container-high rounded-full overflow-hidden">
+                <div class="h-full bg-primary-container rounded-full" style="width: 57%"></div>
+              </div>
+            </div>
+            <!-- Akash -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <p class="text-sm font-medium text-on-surface">Akash Nair</p>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-base text-error">warning</span>
+                  <span class="text-sm font-bold text-primary">5.3 DAYS</span>
+                </div>
+              </div>
+              <div class="h-2.5 bg-surface-container-high rounded-full overflow-hidden">
+                <div class="h-full bg-primary-container rounded-full" style="width: 66%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm text-on-surface-variant">info</span>
+            <p class="text-xs text-on-surface-variant">Team average: <span class="font-semibold text-primary">3.4 days</span></p>
+          </div>
+        </div>
+
+        <!-- Daily Activity Heatmap -->
+        <div class="bg-surface-container-low rounded-3xl p-7">
+          <div class="flex items-center gap-3 mb-7">
+            <span class="material-symbols-outlined text-primary text-2xl">grid_view</span>
+            <h2 class="font-headline font-bold text-lg text-primary">Daily Activity Pulse</h2>
+          </div>
+          <div class="space-y-3">
+            <!-- Day Headers -->
+            <div class="grid grid-cols-8 gap-2 text-xs font-medium text-on-surface-variant">
+              <div></div>
+              <div class="text-center">MON</div>
+              <div class="text-center">TUE</div>
+              <div class="text-center">WED</div>
+              <div class="text-center">THU</div>
+              <div class="text-center">FRI</div>
+              <div class="text-center">SAT</div>
+              <div class="text-center">SUN</div>
+            </div>
+            <!-- Week 1: Mar 16-22 -->
+            <div class="grid grid-cols-8 gap-2 items-center">
+              <span class="text-xs text-on-surface-variant">Mar 16</span>
+              <div class="aspect-square rounded-lg bg-surface-container-highest" title="Mon: 0"></div>
+              <div class="aspect-square rounded-lg bg-surface-container-highest" title="Tue: 0"></div>
+              <div class="aspect-square rounded-lg bg-surface-container-highest" title="Wed: 0"></div>
+              <div class="aspect-square rounded-lg bg-primary-container/60" title="Thu: 3"></div>
+              <div class="aspect-square rounded-lg bg-primary-container/20" title="Fri: 1"></div>
+              <div class="aspect-square rounded-lg bg-surface-container-highest" title="Sat: 0"></div>
+              <div class="aspect-square rounded-lg bg-surface-container-highest" title="Sun: 0"></div>
+            </div>
+            <!-- Week 2: Mar 23-29 -->
+            <div class="grid grid-cols-8 gap-2 items-center">
+              <span class="text-xs text-on-surface-variant">Mar 23</span>
+              <div class="aspect-square rounded-lg bg-secondary/80" title="Mon: 6"></div>
+              <div class="aspect-square rounded-lg bg-primary-container/20" title="Tue: 1"></div>
+              <div class="aspect-square rounded-lg bg-primary-container/40" title="Wed: 2"></div>
+              <div class="aspect-square rounded-lg bg-primary-container/40" title="Thu: 2"></div>
+              <div class="aspect-square rounded-lg bg-primary-container/40" title="Fri: 2"></div>
+              <div class="aspect-square rounded-lg bg-surface-container-highest" title="Sat: 0"></div>
+              <div class="aspect-square rounded-lg bg-surface-container-highest" title="Sun: 0"></div>
+            </div>
+            <!-- Week 3: Mar 30-Apr 5 -->
+            <div class="grid grid-cols-8 gap-2 items-center">
+              <span class="text-xs text-on-surface-variant">Mar 30</span>
+              <div class="aspect-square rounded-lg bg-primary-container/40" title="Mon: 2"></div>
+              <div class="aspect-square rounded-lg bg-primary-container/40" title="Tue: 2"></div>
+              <div class="aspect-square rounded-lg bg-primary-container/40" title="Wed: 2"></div>
+              <div class="aspect-square rounded-lg bg-surface-container-highest" title="Thu: 0"></div>
+              <div class="aspect-square rounded-lg bg-surface-container-highest" title="Fri: 0"></div>
+              <div class="aspect-square rounded-lg bg-surface-container-highest" title="Sat: 0"></div>
+              <div class="aspect-square rounded-lg bg-surface-container-highest" title="Sun: 0"></div>
+            </div>
+          </div>
+          <div class="mt-5 p-3 bg-white rounded-2xl">
+            <p class="text-xs text-on-surface-variant">
+              <span class="font-semibold text-secondary">Peak:</span> Monday March 23 &mdash; 6 submittals (Rahul: 4, Shaily: 2)
+            </p>
+          </div>
+          <div class="mt-4 flex items-center gap-2 text-xs text-on-surface-variant">
+            <span>Less</span>
+            <div class="w-4 h-4 rounded bg-surface-container-highest"></div>
+            <div class="w-4 h-4 rounded bg-primary-container/20"></div>
+            <div class="w-4 h-4 rounded bg-primary-container/40"></div>
+            <div class="w-4 h-4 rounded bg-primary-container/60"></div>
+            <div class="w-4 h-4 rounded bg-secondary/80"></div>
+            <span>More</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Observations & Red Flags -->
+    <section class="mb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Standout Observations -->
+        <div class="bg-white rounded-3xl p-7 border-l-4 border-primary">
+          <div class="flex items-center gap-2 mb-5">
+            <span class="material-symbols-outlined text-primary">visibility</span>
+            <h2 class="font-headline font-bold text-lg text-primary">Standout Observations</h2>
+          </div>
+          <ul class="space-y-4 text-sm text-on-surface leading-relaxed">
+            <li class="flex gap-3">
+              <span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">stars</span>
+              <span>Santoshi Hegde is the only recruiter who secured interviews (2 of 2 total), accounting for 23% of all submittals.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">bolt</span>
+              <span>Shaily's same-day response time (0.0 days avg) sets the benchmark for team agility.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">explore</span>
+              <span>Rahul leads the core team with 11 submittals across 5 different companies, showing broad coverage.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">trending_up</span>
+              <span>Sahithya targets higher-value roles (avg $73/hr bill rate).</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Red Flags -->
+        <div class="bg-white rounded-3xl p-7 border-l-4 border-secondary">
+          <div class="flex items-center gap-2 mb-5">
+            <span class="material-symbols-outlined text-secondary">flag</span>
+            <h2 class="font-headline font-bold text-lg text-secondary">Red Flags</h2>
+          </div>
+          <ul class="space-y-4 text-sm text-on-surface leading-relaxed">
+            <li class="flex gap-3">
+              <span class="material-symbols-outlined text-secondary text-lg mt-0.5 shrink-0">error</span>
+              <span>Zero interview conversion for the entire JSM core team (23 submittals, 0 interviews).</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="material-symbols-outlined text-secondary text-lg mt-0.5 shrink-0">person_off</span>
+              <span>Vivek Shenoy and Shreerang Tarte show 0 submittal activity in 14 days.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="material-symbols-outlined text-secondary text-lg mt-0.5 shrink-0">trending_down</span>
+              <span>Overall 3.8% interview rate (2/52) suggests candidate-job matching needs improvement.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="material-symbols-outlined text-secondary text-lg mt-0.5 shrink-0">description</span>
+              <span>4 rejections cited: "client resume screening", "education level", "resume not a match" &mdash; review submission quality filters.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rejection Details -->
+    <section class="mb-16">
+      <div class="bg-white rounded-3xl p-7 border border-outline-variant/20">
+        <div class="flex items-center gap-2 mb-6">
+          <span class="material-symbols-outlined text-error">block</span>
+          <h2 class="font-headline font-bold text-lg text-on-surface">Rejection Details</h2>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="text-left text-xs text-on-surface-variant uppercase tracking-wider border-b border-outline-variant/30">
+                <th class="pb-3 pr-4">Recruiter</th>
+                <th class="pb-3 pr-4">Candidate</th>
+                <th class="pb-3 pr-4">Role / Client</th>
+                <th class="pb-3">Reason</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant/20">
+              <tr>
+                <td class="py-3 pr-4 font-medium">Shaily Juneja</td>
+                <td class="py-3 pr-4">Isha K</td>
+                <td class="py-3 pr-4 text-on-surface-variant">Senior Project Manager @ HonorVet Technologies</td>
+                <td class="py-3"><span class="bg-error-container text-error text-xs px-2 py-1 rounded-full">Rejected by client in initial resume screening</span></td>
+              </tr>
+              <tr>
+                <td class="py-3 pr-4 font-medium">Rahul Kanojiya</td>
+                <td class="py-3 pr-4">Rajeev Rathore</td>
+                <td class="py-3 pr-4 text-on-surface-variant">System Analyst @ NYC DYCD</td>
+                <td class="py-3"><span class="bg-error-container text-error text-xs px-2 py-1 rounded-full">Education level not sufficient</span></td>
+              </tr>
+              <tr>
+                <td class="py-3 pr-4 font-medium">Rahul Kanojiya</td>
+                <td class="py-3 pr-4">Saiteja Reddy Venna</td>
+                <td class="py-3 pr-4 text-on-surface-variant">System Analyst @ NYC DYCD</td>
+                <td class="py-3"><span class="bg-error-container text-error text-xs px-2 py-1 rounded-full">Resume not a match</span></td>
+              </tr>
+              <tr>
+                <td class="py-3 pr-4 font-medium">Santoshi Hegde</td>
+                <td class="py-3 pr-4 text-on-surface-variant">&mdash;</td>
+                <td class="py-3 pr-4 text-on-surface-variant">NYS ITS / OMH area</td>
+                <td class="py-3"><span class="bg-error-container text-error text-xs px-2 py-1 rounded-full">1 rejection</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interview Pipeline -->
+    <section class="mb-16">
+      <div class="bg-surface-container-low rounded-3xl p-7">
+        <div class="flex items-center gap-2 mb-6">
+          <span class="material-symbols-outlined text-primary text-2xl">event</span>
+          <h2 class="font-headline font-bold text-lg text-primary">Interview Pipeline</h2>
+          <span class="ml-2 text-xs font-semibold bg-primary-fixed text-primary px-3 py-1 rounded-full">2 Active</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-white rounded-2xl p-5 border border-outline-variant/20">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold bg-primary-fixed text-primary px-3 py-1 rounded-full">April 1, 2026</span>
+              <span class="material-symbols-outlined text-on-surface-variant">videocam</span>
+            </div>
+            <h3 class="font-semibold text-on-surface mb-1">Vamsi Krishna Ravi</h3>
+            <p class="text-sm text-on-surface-variant mb-3">IT Specialist (Midlevel) @ NYS OMH</p>
+            <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-sm">person</span>
+              Sourced by <span class="font-semibold text-primary">Santoshi Hegde</span>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl p-5 border border-outline-variant/20">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold bg-primary-fixed text-primary px-3 py-1 rounded-full">March 31, 2026</span>
+              <span class="material-symbols-outlined text-on-surface-variant">videocam</span>
+            </div>
+            <h3 class="font-semibold text-on-surface mb-1">Harini Pogaku</h3>
+            <p class="text-sm text-on-surface-variant mb-3">IT Specialist (Junior) @ HBITS</p>
+            <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-sm">person</span>
+              Sourced by <span class="font-semibold text-primary">Santoshi Hegde</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Top Companies -->
+    <section class="mb-16">
+      <h2 class="font-headline font-bold text-lg text-primary mb-5">Top Companies</h2>
+      <div class="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1">
+        <div class="shrink-0 bg-white rounded-full px-5 py-2.5 border border-outline-variant/30 flex items-center gap-2">
+          <span class="text-sm font-semibold text-primary">HonorVet Technologies</span>
+          <span class="bg-primary-fixed text-primary text-xs font-bold px-2 py-0.5 rounded-full">9</span>
+        </div>
+        <div class="shrink-0 bg-white rounded-full px-5 py-2.5 border border-outline-variant/30 flex items-center gap-2">
+          <span class="text-sm font-semibold text-primary">NYS ITS</span>
+          <span class="bg-primary-fixed text-primary text-xs font-bold px-2 py-0.5 rounded-full">4</span>
+        </div>
+        <div class="shrink-0 bg-white rounded-full px-5 py-2.5 border border-outline-variant/30 flex items-center gap-2">
+          <span class="text-sm font-semibold text-primary">Knowledge Services Technology</span>
+          <span class="bg-primary-fixed text-primary text-xs font-bold px-2 py-0.5 rounded-full">2</span>
+        </div>
+        <div class="shrink-0 bg-white rounded-full px-5 py-2.5 border border-outline-variant/30 flex items-center gap-2">
+          <span class="text-sm font-semibold text-primary">NYC DYCD</span>
+          <span class="bg-primary-fixed text-primary text-xs font-bold px-2 py-0.5 rounded-full">2</span>
+        </div>
+        <div class="shrink-0 bg-white rounded-full px-5 py-2.5 border border-outline-variant/30 flex items-center gap-2">
+          <span class="text-sm font-semibold text-primary">NYS DOL</span>
+          <span class="bg-primary-fixed text-primary text-xs font-bold px-2 py-0.5 rounded-full">2</span>
+        </div>
+        <div class="shrink-0 bg-white rounded-full px-5 py-2.5 border border-outline-variant/30 flex items-center gap-2">
+          <span class="text-sm font-semibold text-primary">State of Georgia</span>
+          <span class="bg-primary-fixed text-primary text-xs font-bold px-2 py-0.5 rounded-full">2</span>
+        </div>
+        <div class="shrink-0 bg-surface-container-high rounded-full px-5 py-2.5 flex items-center gap-2">
+          <span class="text-sm text-on-surface-variant">Others</span>
+          <span class="bg-outline-variant/30 text-on-surface-variant text-xs font-bold px-2 py-0.5 rounded-full">1 each</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Talent Chips -->
+    <section class="mb-8">
+      <h2 class="font-headline font-bold text-lg text-primary mb-5">Team at a Glance</h2>
+      <div class="flex flex-wrap gap-3">
+        <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-outline-variant/20">
+          <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          <span class="text-sm font-medium text-on-surface">Rahul Kanojiya</span>
+          <span class="text-xs text-on-surface-variant">Multi-client coverage</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-outline-variant/20">
+          <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          <span class="text-sm font-medium text-on-surface">Shaily Juneja</span>
+          <span class="text-xs text-on-surface-variant">Speed leader</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-outline-variant/20">
+          <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          <span class="text-sm font-medium text-on-surface">Sahithya Mogalapu</span>
+          <span class="text-xs text-on-surface-variant">High-value roles</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-outline-variant/20">
+          <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          <span class="text-sm font-medium text-on-surface">Akash Nair</span>
+          <span class="text-xs text-on-surface-variant">Core team</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-outline-variant/20">
+          <span class="w-2 h-2 rounded-full bg-red-500"></span>
+          <span class="text-sm font-medium text-on-surface">Vivek Shenoy</span>
+          <span class="text-xs text-on-surface-variant">Inactive</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-outline-variant/20">
+          <span class="w-2 h-2 rounded-full bg-red-500"></span>
+          <span class="text-sm font-medium text-on-surface">Shreerang Tarte</span>
+          <span class="text-xs text-on-surface-variant">Inactive</span>
+        </div>
+        <a href="gallery.html" class="flex items-center gap-2 bg-primary-fixed rounded-full px-4 py-2 border border-primary-fixed-dim/30 hover:bg-primary-fixed-dim/40 transition-colors">
+          <span class="material-symbols-outlined text-primary text-lg">groups</span>
+          <span class="text-sm font-semibold text-primary">Team Gallery</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Last Refreshed Indicator -->
+  <div id="refresh-bar" class="fixed bottom-0 md:bottom-auto md:top-20 right-0 left-0 md:left-auto md:right-4 md:w-auto z-[60] md:z-30 bg-surface-container/90 backdrop-blur-sm md:rounded-full px-4 py-1.5 flex items-center justify-center md:justify-end gap-2 text-xs text-on-surface-variant border-t md:border border-outline-variant/20 md:mt-2 md:shadow-sm transition-opacity">
+    <span class="material-symbols-outlined text-sm">sync</span>
+    <span id="refresh-status">Loading live data...</span>
+  </div>
+
+  <!-- Auto-Refresh Script -->
+  <script>
+  (function() {
+    const REFRESH_INTERVAL = 15 * 60 * 1000; // 15 minutes
+    const API_URL = '/api/data';
+    let refreshTimer = null;
+
+    function updateStatus(msg, isError) {
+      const el = document.getElementById('refresh-status');
+      if (el) el.textContent = msg;
+      const bar = document.getElementById('refresh-bar');
+      if (bar && isError) bar.classList.add('text-error');
+      else if (bar) bar.classList.remove('text-error');
+    }
+
+    function intensityClass(count) {
+      if (count === 0) return 'bg-surface-container-highest';
+      if (count === 1) return 'bg-primary-container/20';
+      if (count === 2) return 'bg-primary-container/40';
+      if (count <= 3) return 'bg-primary-container/60';
+      if (count <= 5) return 'bg-primary-container/80';
+      return 'bg-secondary/80';
+    }
+
+    function renderDashboard(data) {
+      // Hero stats
+      const heroStats = document.querySelectorAll('section.mb-16:first-of-type .text-5xl, section.mb-16:first-of-type .text-6xl');
+      // More reliable: update by finding the stat containers
+      const statEls = document.querySelectorAll('main > section:first-child .font-headline.font-extrabold:not(h1)');
+      if (statEls.length >= 3) {
+        statEls[0].textContent = data.totals.submittals;
+        statEls[1].textContent = data.totals.interviews;
+        statEls[2].textContent = data.totals.hires;
+      }
+
+      // Date range in header
+      const dateEl = document.querySelector('header .rounded-full span:last-child');
+      if (dateEl && data.meta.dateRangeShort) {
+        dateEl.textContent = data.meta.dateRangeShort;
+      }
+
+      // Core team total
+      const coreTotal = document.querySelector('.text-secondary.font-semibold');
+      if (coreTotal) coreTotal.textContent = data.coreTeam.totalSubmittals + ' Total Submittals';
+
+      // Core team recruiter list
+      const coreContainer = document.querySelector('.bg-surface-container-low.rounded-3xl .space-y-4');
+      if (coreContainer && data.coreTeam.recruiters.length > 0) {
+        coreContainer.innerHTML = data.coreTeam.recruiters.map((r, i) => {
+          const bgColors = ['bg-primary-container', 'bg-primary-fixed-dim/40', 'bg-primary-fixed/60', 'bg-outline-variant/30'];
+          const textColors = ['text-on-primary-container', 'text-primary', 'text-primary', 'text-on-surface-variant'];
+          return `<div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full ${bgColors[i] || bgColors[3]} flex items-center justify-center text-xs font-semibold ${textColors[i] || textColors[3]}">${r.initials}</div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-on-surface">${r.name}</p>
+              <p class="text-xs text-on-surface-variant">${r.submittals} Submittals</p>
+            </div>
+            <span class="text-lg font-bold text-primary font-headline">${r.submittals}</span>
+          </div>`;
+        }).join('');
+      }
+
+      // Extended team
+      const extTotal = document.querySelector('.bg-surface-container.rounded-3xl .text-on-surface-variant.font-medium');
+      if (extTotal) extTotal.textContent = data.extendedTeam.totalSubmittals + ' Total Submittals';
+      const extGrid = document.querySelector('.bg-surface-container.rounded-3xl .grid-cols-2');
+      if (extGrid && data.extendedTeam.recruiters.length > 0) {
+        extGrid.innerHTML = data.extendedTeam.recruiters.map(r => `
+          <div class="bg-white rounded-2xl p-4 text-center">
+            <p class="text-2xl font-bold text-primary font-headline">${r.submittals}</p>
+            <p class="text-xs text-on-surface-variant mt-1">${r.name}</p>
+          </div>`).join('');
+      }
+
+      // Top performer
+      if (data.topPerformer) {
+        const tpName = document.querySelector('.bg-primary.rounded-3xl .font-headline.text-4xl');
+        if (tpName) tpName.textContent = data.topPerformer.name;
+        const tpReason = document.querySelector('.bg-primary.rounded-3xl .text-primary-fixed-dim.text-sm');
+        if (tpReason) tpReason.textContent = data.topPerformer.reason;
+        const tpStats = document.querySelectorAll('.bg-primary.rounded-3xl .bg-white\\/10 .text-2xl');
+        if (tpStats.length >= 3) {
+          tpStats[0].textContent = data.topPerformer.submittals;
+          tpStats[1].textContent = data.topPerformer.interviews;
+          tpStats[2].textContent = data.topPerformer.conversion + '%';
+        }
+      }
+
+      // Time-to-submittal
+      const ttsContainer = document.querySelector('[class*="speed"]')?.closest('.rounded-3xl')?.querySelector('.space-y-5');
+      if (ttsContainer && data.ttsRanking.length > 0) {
+        ttsContainer.innerHTML = data.ttsRanking.map(r => `<div>
+          <div class="flex items-center justify-between mb-1.5">
+            <p class="text-sm font-medium text-on-surface">${r.name}</p>
+            <div class="flex items-center gap-2">
+              ${r.label ? `<span class="text-xs font-bold text-secondary bg-secondary-fixed px-2 py-0.5 rounded-full">${r.label}</span>` : ''}
+              ${r.warning ? '<span class="material-symbols-outlined text-base text-error">warning</span>' : ''}
+              <span class="text-sm font-bold text-primary">${r.avgDays} DAYS</span>
+            </div>
+          </div>
+          <div class="h-2.5 bg-surface-container-high rounded-full overflow-hidden">
+            <div class="h-full ${r.label ? 'bg-secondary' : 'bg-primary-container'} rounded-full" style="width: ${r.barWidth}%"></div>
+          </div>
+        </div>`).join('');
+      }
+
+      // TTS average
+      const ttsAvg = document.querySelector('.border-t.border-outline-variant\\/20 .font-semibold.text-primary');
+      if (ttsAvg && data.avgTTSOverall !== null) {
+        ttsAvg.textContent = data.avgTTSOverall + ' days';
+      }
+
+      // Heatmap
+      const heatmapContainer = document.querySelector('[class*="grid_view"]')?.closest('.rounded-3xl');
+      if (heatmapContainer && data.dailyActivity.length > 0) {
+        const weekRows = data.dailyActivity.map(w => {
+          const cells = w.days.map((c, i) => {
+            const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+            return `<div class="aspect-square rounded-lg ${intensityClass(c)}" title="${dayNames[i]}: ${c}"></div>`;
+          }).join('');
+          return `<div class="grid grid-cols-8 gap-2 items-center">
+            <span class="text-xs text-on-surface-variant">${w.label}</span>${cells}</div>`;
+        }).join('');
+
+        const spaceY = heatmapContainer.querySelector('.space-y-3');
+        if (spaceY) {
+          const header = spaceY.children[0];
+          spaceY.innerHTML = '';
+          spaceY.appendChild(header);
+          spaceY.insertAdjacentHTML('beforeend', weekRows);
+        }
+
+        // Peak day
+        if (data.peakDay) {
+          const peakEl = heatmapContainer.querySelector('.bg-white.rounded-2xl p');
+          if (peakEl) {
+            peakEl.innerHTML = `<span class="font-semibold text-secondary">Peak:</span> ${data.peakDay.date} &mdash; ${data.peakDay.count} submittals (${data.peakDay.detail})`;
+          }
+        }
+      }
+
+      // Rejections table
+      const tbody = document.querySelector('table tbody');
+      if (tbody && data.rejections.length > 0) {
+        tbody.innerHTML = data.rejections.map(r => `<tr>
+          <td class="py-3 pr-4 font-medium">${r.recruiter}</td>
+          <td class="py-3 pr-4">${r.candidate || '&mdash;'}</td>
+          <td class="py-3 pr-4 text-on-surface-variant">${r.role} @ ${r.client}</td>
+          <td class="py-3"><span class="bg-error-container text-error text-xs px-2 py-1 rounded-full">${r.reason}</span></td>
+        </tr>`).join('');
+      }
+
+      // Interview pipeline
+      const interviewGrid = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.gap-4');
+      if (interviewGrid && data.interviews.length > 0) {
+        interviewGrid.innerHTML = data.interviews.map(iv => {
+          const d = iv.date ? new Date(iv.date) : null;
+          const dateStr = d ? d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'TBD';
+          return `<div class="bg-white rounded-2xl p-5 border border-outline-variant/20">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold bg-primary-fixed text-primary px-3 py-1 rounded-full">${dateStr}</span>
+              <span class="material-symbols-outlined text-on-surface-variant">videocam</span>
+            </div>
+            <h3 class="font-semibold text-on-surface mb-1">${iv.candidate}</h3>
+            <p class="text-sm text-on-surface-variant mb-3">${iv.role} @ ${iv.client}</p>
+            <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-sm">person</span>
+              Sourced by <span class="font-semibold text-primary">${iv.recruiter}</span>
+            </div>
+          </div>`;
+        }).join('');
+        // Update active count badge
+        const badge = interviewGrid.closest('section')?.querySelector('.rounded-full.bg-primary-fixed');
+        if (badge) badge.textContent = data.interviews.length + ' Active';
+      }
+
+      // Top companies
+      const compSection = document.querySelector('h2.font-headline')?.closest('section');
+      // Find the companies scrolling container
+      const compContainer = document.querySelector('.overflow-x-auto.pb-2');
+      if (compContainer && data.topCompanies.length > 0) {
+        compContainer.innerHTML = data.topCompanies.map(c => `
+          <div class="shrink-0 bg-white rounded-full px-5 py-2.5 border border-outline-variant/30 flex items-center gap-2">
+            <span class="text-sm font-semibold text-primary">${c.name}</span>
+            <span class="bg-primary-fixed text-primary text-xs font-bold px-2 py-0.5 rounded-full">${c.count}</span>
+          </div>`).join('');
+      }
+
+      // Update observations with live data
+      const interviewRate = data.totals.interviewRate;
+      const redFlagItems = document.querySelectorAll('.border-l-4.border-secondary li span:last-child');
+      if (redFlagItems.length >= 3) {
+        redFlagItems[2].textContent = `Overall ${interviewRate}% interview rate (${data.totals.interviews}/${data.totals.submittals}) suggests candidate-job matching needs improvement.`;
+      }
+    }
+
+    async function refreshData() {
+      try {
+        updateStatus('Refreshing...');
+        const resp = await fetch(API_URL);
+        if (!resp.ok) {
+          const err = await resp.json().catch(() => ({ error: 'API error' }));
+          throw new Error(err.error || `HTTP ${resp.status}`);
+        }
+        const data = await resp.json();
+        renderDashboard(data);
+        const time = new Date(data.meta.lastUpdated).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        updateStatus(`Live \u2022 Updated ${time} \u2022 Next refresh in 15m`);
+      } catch (err) {
+        console.error('Refresh failed:', err);
+        updateStatus('Live data unavailable \u2022 Showing cached snapshot', true);
+      }
+    }
+
+    // Initial load + auto-refresh
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        refreshData();
+        refreshTimer = setInterval(refreshData, REFRESH_INTERVAL);
+      });
+    } else {
+      refreshData();
+      refreshTimer = setInterval(refreshData, REFRESH_INTERVAL);
+    }
+  })();
+  </script>
+
+  <!-- Mobile Bottom Nav -->
+  <nav class="md:hidden fixed bottom-8 left-0 right-0 bg-white border-t border-outline-variant/30 z-50 flex items-center justify-around py-2">
+    <a href="index.html" class="flex flex-col items-center gap-0.5 text-primary">
+      <span class="material-symbols-outlined text-2xl">dashboard</span>
+      <span class="text-[10px] font-medium">Dashboard</span>
+    </a>
+    <a href="gallery.html" class="flex flex-col items-center gap-0.5 text-on-surface-variant">
+      <span class="material-symbols-outlined text-2xl">groups</span>
+      <span class="text-[10px] font-medium">Gallery</span>
+    </a>
+    <a href="#" class="flex flex-col items-center gap-0.5 text-on-surface-variant">
+      <span class="material-symbols-outlined text-2xl">analytics</span>
+      <span class="text-[10px] font-medium">Analytics</span>
+    </a>
+    <a href="#" class="flex flex-col items-center gap-0.5 text-on-surface-variant">
+      <span class="material-symbols-outlined text-2xl">settings</span>
+      <span class="text-[10px] font-medium">Settings</span>
+    </a>
+  </nav>
+
+</body>
+</html>
