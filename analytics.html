@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analytics — JSM Consulting Talent Report</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300..700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    ::-webkit-scrollbar { height: 6px; width: 6px; }
+    ::-webkit-scrollbar-thumb { background: #c4c7cf; border-radius: 99px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    .funnel-step { transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#001e52",
+            "primary-container": "#00327d",
+            "primary-fixed": "#dae2ff",
+            "primary-fixed-dim": "#b1c5ff",
+            "secondary": "#b6171e",
+            "secondary-container": "#da3433",
+            "secondary-fixed": "#ffdad6",
+            "secondary-fixed-dim": "#ffb3ac",
+            "surface": "#f7f9fb",
+            "surface-container": "#eceef0",
+            "surface-container-low": "#f2f4f6",
+            "surface-container-high": "#e6e8ea",
+            "surface-container-highest": "#e0e3e5",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-surface-variant": "#434651",
+            "outline": "#747782",
+            "outline-variant": "#c4c6d3",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#7d9eee",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "background": "#f7f9fb",
+          },
+          fontFamily: {
+            headline: ["Libre Baskerville", "Georgia", "serif"],
+            body: ["Inter", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background font-body text-on-surface min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-xl z-50 border-b border-surface-container-high">
+    <div class="h-full flex items-center justify-between px-6 lg:px-8 max-w-[1920px] mx-auto">
+      <div class="flex items-center gap-8">
+        <a href="index.html" class="font-headline text-2xl font-extrabold text-primary tracking-tight">JSM</a>
+        <nav class="hidden md:flex items-center gap-1">
+          <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition">Dashboard</a>
+          <a href="gallery.html" class="px-4 py-2 rounded-full text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition">Team Gallery</a>
+          <a href="analytics.html" class="px-4 py-2 rounded-full text-sm font-medium text-primary bg-primary-fixed/40 transition">Analytics</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="header-date" class="hidden sm:inline-flex items-center gap-2 text-xs font-medium text-on-surface-variant bg-surface-container-high rounded-full px-4 py-2">
+          <span class="material-symbols-outlined text-base">calendar_today</span>
+          <span id="date-range-label">Loading...</span>
+        </span>
+        <button class="relative p-2 rounded-full hover:bg-surface-container-high transition">
+          <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+          <span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-secondary"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="hidden lg:flex flex-col fixed top-20 left-0 bottom-0 w-72 bg-white border-r border-surface-container-high z-40">
+    <div class="p-6 border-b border-surface-container-high">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-primary flex items-center justify-center">
+          <span class="text-white font-headline font-bold text-sm">JSM</span>
+        </div>
+        <div>
+          <p class="font-headline font-bold text-sm text-on-surface">JSM Consulting</p>
+          <p class="text-xs text-on-surface-variant">Recruiter Intelligence</p>
+        </div>
+      </div>
+    </div>
+    <nav class="flex-1 p-4 space-y-1">
+      <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+        <span class="material-symbols-outlined text-[20px]">dashboard</span>Dashboard
+      </a>
+      <a href="gallery.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+        <span class="material-symbols-outlined text-[20px]">group</span>Team Gallery
+      </a>
+      <a href="analytics.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-primary bg-primary-fixed/30 transition">
+        <span class="material-symbols-outlined text-[20px]">analytics</span>Analytics
+      </a>
+      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+        <span class="material-symbols-outlined text-[20px]">strategy</span>Team Strategy
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Loading -->
+  <div id="loading" class="lg:ml-72 pt-28 px-4 sm:px-6 lg:px-8 pb-28 lg:pb-20">
+    <div class="flex items-center justify-center py-32">
+      <div class="text-center">
+        <span class="material-symbols-outlined text-4xl text-primary animate-spin">progress_activity</span>
+        <p class="text-on-surface-variant mt-4">Loading analytics...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main id="main-content" class="lg:ml-72 pt-28 px-4 sm:px-6 lg:px-8 pb-28 lg:pb-20 max-w-[1400px]" style="display:none">
+
+    <!-- Page Header -->
+    <section class="mb-12">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-3">Actionable Intelligence</p>
+      <h1 class="font-headline text-[2rem] sm:text-[2.75rem] font-extrabold text-primary leading-[1.1] mb-4">Pipeline Analytics</h1>
+      <p class="text-on-surface-variant text-sm max-w-xl">Where candidates drop off, who converts best, and why submissions get rejected.</p>
+    </section>
+
+    <!-- ═══════ SECTION 1: PIPELINE FUNNEL ═══════ -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="material-symbols-outlined text-primary text-2xl">filter_alt</span>
+        <h2 class="font-headline text-xl font-extrabold text-on-surface">Pipeline Funnel</h2>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-surface-container-high p-8">
+        <!-- Funnel Visualization -->
+        <div id="funnel-visual" class="flex flex-col items-center gap-0 mb-8">
+          <!-- Filled by JS -->
+        </div>
+
+        <!-- Drop-off Callouts -->
+        <div id="funnel-callouts" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ SECTION 2: TEAM COMPARISON ═══════ -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="material-symbols-outlined text-primary text-2xl">leaderboard</span>
+        <h2 class="font-headline text-xl font-extrabold text-on-surface">Team Comparison</h2>
+      </div>
+
+      <!-- Dimension Tabs -->
+      <div class="flex gap-2 mb-6 overflow-x-auto pb-1">
+        <button data-dim="submittals" class="dim-tab px-4 py-2 rounded-full text-sm font-medium bg-primary text-white transition">Submittals</button>
+        <button data-dim="interviews" class="dim-tab px-4 py-2 rounded-full text-sm font-medium bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition">Interviews</button>
+        <button data-dim="conversion" class="dim-tab px-4 py-2 rounded-full text-sm font-medium bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition">Conversion %</button>
+        <button data-dim="speed" class="dim-tab px-4 py-2 rounded-full text-sm font-medium bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition">Speed (TTS)</button>
+        <button data-dim="clients" class="dim-tab px-4 py-2 rounded-full text-sm font-medium bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition">Client Reach</button>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-surface-container-high p-8">
+        <div id="team-chart" class="space-y-4">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ SECTION 3: REJECTION ANALYSIS ═══════ -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="material-symbols-outlined text-secondary text-2xl">report</span>
+        <h2 class="font-headline text-xl font-extrabold text-on-surface">Rejection Analysis</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- By Reason -->
+        <div class="bg-white rounded-3xl border border-surface-container-high p-6">
+          <h3 class="font-headline font-bold text-on-surface mb-1">By Reason</h3>
+          <p class="text-xs text-on-surface-variant mb-5">Why submissions are being rejected</p>
+          <div id="reject-by-reason" class="space-y-3">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+
+        <!-- By Client -->
+        <div class="bg-white rounded-3xl border border-surface-container-high p-6">
+          <h3 class="font-headline font-bold text-on-surface mb-1">By Client</h3>
+          <p class="text-xs text-on-surface-variant mb-5">Which clients reject the most</p>
+          <div id="reject-by-client" class="space-y-3">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+
+        <!-- By Recruiter -->
+        <div class="bg-white rounded-3xl border border-surface-container-high p-6">
+          <h3 class="font-headline font-bold text-on-surface mb-1">By Recruiter</h3>
+          <p class="text-xs text-on-surface-variant mb-5">Rejection distribution across team</p>
+          <div id="reject-by-recruiter" class="space-y-3">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Rejection Detail Table -->
+      <div class="bg-white rounded-3xl border border-surface-container-high p-6 mt-6">
+        <h3 class="font-headline font-bold text-on-surface mb-5">Rejection Log</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="text-left text-xs text-on-surface-variant uppercase tracking-wider border-b border-surface-container-high">
+                <th class="py-3 pr-4">Recruiter</th>
+                <th class="py-3 pr-4">Candidate</th>
+                <th class="py-3 pr-4">Role &amp; Client</th>
+                <th class="py-3">Reason</th>
+              </tr>
+            </thead>
+            <tbody id="rejection-table-body">
+              <!-- Filled by JS -->
+            </tbody>
+          </table>
+        </div>
+        <p id="no-rejections" class="text-center text-on-surface-variant py-8 text-sm" style="display:none">No rejections recorded in this period.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ SECTION 4: KEY TAKEAWAYS ═══════ -->
+    <section class="mb-16">
+      <div class="bg-primary rounded-3xl p-8 text-white">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+          <h2 class="font-headline text-xl font-extrabold">Key Takeaways</h2>
+        </div>
+        <ul id="takeaways-list" class="space-y-3 text-sm text-primary-fixed leading-relaxed">
+          <!-- Filled by JS -->
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Mobile Bottom Nav -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-surface-container-high z-50">
+    <div class="grid grid-cols-4 h-16">
+      <a href="index.html" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
+        <span class="material-symbols-outlined text-[22px]">dashboard</span>
+        <span class="text-[10px] font-medium">Dashboard</span>
+      </a>
+      <a href="gallery.html" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
+        <span class="material-symbols-outlined text-[22px]">group</span>
+        <span class="text-[10px] font-medium">Gallery</span>
+      </a>
+      <a href="analytics.html" class="flex flex-col items-center justify-center gap-0.5 text-primary">
+        <span class="material-symbols-outlined text-[22px]">analytics</span>
+        <span class="text-[10px] font-bold">Analytics</span>
+      </a>
+      <a href="#" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
+        <span class="material-symbols-outlined text-[22px]">settings</span>
+        <span class="text-[10px] font-medium">Settings</span>
+      </a>
+    </div>
+  </nav>
+
+<script>
+(function() {
+  let allData = null;
+  let allRecruiters = [];
+
+  // ── Funnel ──
+  function renderFunnel(totals) {
+    const container = document.getElementById('funnel-visual');
+    const callouts = document.getElementById('funnel-callouts');
+
+    const steps = [
+      { label: 'Submittals', value: totals.submittals, icon: 'description', color: 'bg-primary' },
+      { label: 'Interviews', value: totals.interviews, icon: 'groups', color: 'bg-secondary' },
+      { label: 'Hires', value: totals.hires, icon: 'check_circle', color: 'bg-green-600' },
+    ];
+
+    const maxWidth = 100;
+    const maxVal = Math.max(steps[0].value, 1);
+
+    container.innerHTML = steps.map((step, i) => {
+      const widthPct = Math.max(15, (step.value / maxVal) * maxWidth);
+      const dropoff = i > 0 ? steps[i - 1].value - step.value : 0;
+      const dropPct = i > 0 && steps[i - 1].value > 0 ? ((dropoff / steps[i - 1].value) * 100).toFixed(0) : 0;
+
+      return `
+        <div class="w-full flex flex-col items-center">
+          ${i > 0 ? `
+            <div class="flex items-center gap-2 py-2 text-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-base text-error">south</span>
+              <span class="font-semibold text-error">${dropPct}% drop-off</span>
+              <span>(${dropoff} lost)</span>
+            </div>
+          ` : ''}
+          <div class="funnel-step ${step.color} rounded-2xl py-5 px-6 flex items-center justify-between text-white shadow-sm" style="width:${widthPct}%; min-width: 200px;">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-2xl">${step.icon}</span>
+              <span class="font-semibold text-sm">${step.label}</span>
+            </div>
+            <span class="text-3xl font-headline font-extrabold">${step.value}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Callout cards
+    const subToInt = totals.submittals > 0 ? ((totals.interviews / totals.submittals) * 100).toFixed(1) : 0;
+    const intToHire = totals.interviews > 0 ? ((totals.hires / totals.interviews) * 100).toFixed(1) : 0;
+
+    callouts.innerHTML = `
+      <div class="bg-surface-container-low rounded-2xl p-5">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="material-symbols-outlined text-primary text-lg">conversion_path</span>
+          <p class="text-sm font-semibold text-on-surface">Submittal &rarr; Interview</p>
+        </div>
+        <p class="text-3xl font-headline font-extrabold text-primary">${subToInt}%</p>
+        <p class="text-xs text-on-surface-variant mt-1">${totals.interviews} of ${totals.submittals} submissions advanced</p>
+      </div>
+      <div class="bg-surface-container-low rounded-2xl p-5">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="material-symbols-outlined text-primary text-lg">handshake</span>
+          <p class="text-sm font-semibold text-on-surface">Interview &rarr; Hire</p>
+        </div>
+        <p class="text-3xl font-headline font-extrabold ${totals.hires > 0 ? 'text-green-600' : 'text-error'}">${intToHire}%</p>
+        <p class="text-xs text-on-surface-variant mt-1">${totals.hires} of ${totals.interviews} interviews converted</p>
+      </div>
+    `;
+  }
+
+  // ── Team Comparison ──
+  function renderTeamChart(dimension) {
+    const container = document.getElementById('team-chart');
+    let sorted, getValue, getLabel, suffix, isBad;
+
+    switch (dimension) {
+      case 'submittals':
+        sorted = [...allRecruiters].filter(r => r.submittals > 0).sort((a, b) => b.submittals - a.submittals);
+        getValue = r => r.submittals;
+        suffix = '';
+        getLabel = r => `${r.submittals} submittals`;
+        break;
+      case 'interviews':
+        sorted = [...allRecruiters].filter(r => r.submittals > 0).sort((a, b) => b.interviews - a.interviews);
+        getValue = r => r.interviews;
+        suffix = '';
+        getLabel = r => `${r.interviews} interview${r.interviews !== 1 ? 's' : ''}`;
+        break;
+      case 'conversion':
+        sorted = [...allRecruiters].filter(r => r.submittals > 0).sort((a, b) => b.interviewConversion - a.interviewConversion);
+        getValue = r => r.interviewConversion;
+        suffix = '%';
+        getLabel = r => `${r.interviewConversion}% conversion`;
+        break;
+      case 'speed':
+        sorted = [...allRecruiters].filter(r => r.avgTTS !== null).sort((a, b) => a.avgTTS - b.avgTTS);
+        getValue = r => r.avgTTS;
+        suffix = 'd';
+        getLabel = r => `${r.avgTTS} days avg`;
+        isBad = true; // lower is better
+        break;
+      case 'clients':
+        sorted = [...allRecruiters].filter(r => r.submittals > 0).sort((a, b) => b.uniqueCompanies - a.uniqueCompanies);
+        getValue = r => r.uniqueCompanies;
+        suffix = '';
+        getLabel = r => `${r.uniqueCompanies} client${r.uniqueCompanies !== 1 ? 's' : ''}`;
+        break;
+    }
+
+    if (sorted.length === 0) {
+      container.innerHTML = '<p class="text-center text-on-surface-variant py-8 text-sm">No data available for this dimension.</p>';
+      return;
+    }
+
+    const maxVal = Math.max(...sorted.map(getValue), 1);
+
+    container.innerHTML = sorted.map((r, i) => {
+      const val = getValue(r);
+      const pct = dimension === 'speed'
+        ? Math.max(8, (1 - val / (Math.max(...sorted.map(getValue)) + 1)) * 100)
+        : Math.max(8, (val / maxVal) * 100);
+      const isTop = i === 0;
+      const barColor = isTop ? 'bg-primary' : (i === 1 ? 'bg-primary-container' : 'bg-primary-fixed-dim');
+      const textColor = isTop ? 'text-white' : (i === 1 ? 'text-white' : 'text-primary');
+
+      return `
+        <div class="group">
+          <div class="flex items-center gap-4">
+            <div class="w-32 sm:w-40 flex-shrink-0 flex items-center gap-2">
+              <a href="profile.html?name=${encodeURIComponent(r.name)}" class="text-sm font-medium text-on-surface hover:text-primary transition truncate">${r.name}</a>
+              ${isTop ? '<span class="material-symbols-outlined text-secondary text-base flex-shrink-0">emoji_events</span>' : ''}
+            </div>
+            <div class="flex-1 h-9 bg-surface-container-low rounded-xl overflow-hidden">
+              <div class="${barColor} h-full rounded-xl flex items-center justify-end px-3 transition-all duration-500" style="width:${pct}%">
+                <span class="${textColor} text-xs font-bold whitespace-nowrap">${val}${suffix}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Tab switching
+  document.querySelectorAll('.dim-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.dim-tab').forEach(t => {
+        t.className = 'dim-tab px-4 py-2 rounded-full text-sm font-medium bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition';
+      });
+      tab.className = 'dim-tab px-4 py-2 rounded-full text-sm font-medium bg-primary text-white transition';
+      renderTeamChart(tab.dataset.dim);
+    });
+  });
+
+  // ── Rejection Analysis ──
+  function renderRejections(rejections, recruiters) {
+    // By Reason
+    const reasonMap = {};
+    rejections.forEach(r => {
+      const reason = r.reason || 'Not specified';
+      reasonMap[reason] = (reasonMap[reason] || 0) + 1;
+    });
+    const reasons = Object.entries(reasonMap).sort(([, a], [, b]) => b - a);
+    const maxReason = Math.max(...reasons.map(([, c]) => c), 1);
+
+    document.getElementById('reject-by-reason').innerHTML = reasons.length > 0
+      ? reasons.map(([reason, count]) => `
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-sm text-on-surface font-medium">${reason}</span>
+            <span class="text-sm font-bold text-error">${count}</span>
+          </div>
+          <div class="h-2 bg-surface-container-low rounded-full overflow-hidden">
+            <div class="h-full bg-error/70 rounded-full" style="width:${(count / maxReason) * 100}%"></div>
+          </div>
+        </div>
+      `).join('')
+      : '<p class="text-sm text-on-surface-variant text-center py-4">No rejections</p>';
+
+    // By Client
+    const clientMap = {};
+    rejections.forEach(r => {
+      const client = r.client || 'Unknown';
+      clientMap[client] = (clientMap[client] || 0) + 1;
+    });
+    const clients = Object.entries(clientMap).sort(([, a], [, b]) => b - a);
+    const maxClient = Math.max(...clients.map(([, c]) => c), 1);
+
+    document.getElementById('reject-by-client').innerHTML = clients.length > 0
+      ? clients.map(([client, count]) => `
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-sm text-on-surface font-medium">${client}</span>
+            <span class="text-sm font-bold text-error">${count}</span>
+          </div>
+          <div class="h-2 bg-surface-container-low rounded-full overflow-hidden">
+            <div class="h-full bg-secondary/60 rounded-full" style="width:${(count / maxClient) * 100}%"></div>
+          </div>
+        </div>
+      `).join('')
+      : '<p class="text-sm text-on-surface-variant text-center py-4">No rejections</p>';
+
+    // By Recruiter
+    const recruiterRejects = recruiters
+      .filter(r => r.rejections > 0)
+      .sort((a, b) => b.rejections - a.rejections);
+    const maxRecruiterReject = Math.max(...recruiterRejects.map(r => r.rejections), 1);
+
+    document.getElementById('reject-by-recruiter').innerHTML = recruiterRejects.length > 0
+      ? recruiterRejects.map(r => {
+        const rejectRate = r.submittals > 0 ? ((r.rejections / r.submittals) * 100).toFixed(0) : 0;
+        return `
+          <div>
+            <div class="flex justify-between mb-1">
+              <a href="profile.html?name=${encodeURIComponent(r.name)}" class="text-sm text-on-surface font-medium hover:text-primary transition">${r.name}</a>
+              <span class="text-sm font-bold text-error">${r.rejections} <span class="font-normal text-on-surface-variant">(${rejectRate}%)</span></span>
+            </div>
+            <div class="h-2 bg-surface-container-low rounded-full overflow-hidden">
+              <div class="h-full bg-outline/60 rounded-full" style="width:${(r.rejections / maxRecruiterReject) * 100}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('')
+      : '<p class="text-sm text-on-surface-variant text-center py-4">No rejections</p>';
+
+    // Table
+    const tbody = document.getElementById('rejection-table-body');
+    const noRejects = document.getElementById('no-rejections');
+    if (rejections.length === 0) {
+      tbody.closest('table').style.display = 'none';
+      noRejects.style.display = 'block';
+    } else {
+      tbody.innerHTML = rejections.map(r => `
+        <tr class="border-b border-surface-container-high/50">
+          <td class="py-3 pr-4 font-medium">${r.recruiter}</td>
+          <td class="py-3 pr-4">${r.candidate || '&mdash;'}</td>
+          <td class="py-3 pr-4 text-on-surface-variant">${r.role || ''} @ ${r.client || ''}</td>
+          <td class="py-3"><span class="bg-error-container text-error text-xs px-2.5 py-1 rounded-full font-medium">${r.reason || 'Not specified'}</span></td>
+        </tr>
+      `).join('');
+    }
+  }
+
+  // ── Takeaways ──
+  function renderTakeaways(totals, recruiters, rejections) {
+    const list = document.getElementById('takeaways-list');
+    const takeaways = [];
+
+    // Conversion insight
+    const convRate = totals.submittals > 0 ? ((totals.interviews / totals.submittals) * 100).toFixed(1) : 0;
+    if (convRate < 10) {
+      takeaways.push(`<span class="material-symbols-outlined text-base align-middle mr-1">warning</span> Only <strong>${convRate}%</strong> of submittals convert to interviews. Industry benchmark is 15-25%. Candidate-job matching needs improvement.`);
+    } else {
+      takeaways.push(`<span class="material-symbols-outlined text-base align-middle mr-1">check_circle</span> <strong>${convRate}%</strong> submittal-to-interview conversion rate is ${convRate >= 15 ? 'solid' : 'approaching benchmark'}.`);
+    }
+
+    // Top performer
+    const withInterviews = recruiters.filter(r => r.interviews > 0).sort((a, b) => b.interviews - a.interviews);
+    if (withInterviews.length > 0) {
+      const top = withInterviews[0];
+      takeaways.push(`<span class="material-symbols-outlined text-base align-middle mr-1">star</span> <strong>${top.name}</strong> is the only recruiter converting submittals to interviews (${top.interviews} of ${top.submittals}). Study their sourcing approach for the team.`);
+    }
+
+    // Concentration risk
+    const totalSubs = recruiters.reduce((s, r) => s + r.submittals, 0);
+    const topContributor = [...recruiters].sort((a, b) => b.submittals - a.submittals)[0];
+    if (topContributor && totalSubs > 0) {
+      const pct = ((topContributor.submittals / totalSubs) * 100).toFixed(0);
+      if (pct > 30) {
+        takeaways.push(`<span class="material-symbols-outlined text-base align-middle mr-1">balance</span> <strong>${topContributor.name}</strong> accounts for ${pct}% of all submittals. Distribute workload more evenly to reduce single-point dependency.`);
+      }
+    }
+
+    // Rejection patterns
+    if (rejections.length > 0) {
+      const reasons = {};
+      rejections.forEach(r => { reasons[r.reason || 'Not specified'] = (reasons[r.reason || 'Not specified'] || 0) + 1; });
+      const topReason = Object.entries(reasons).sort(([, a], [, b]) => b - a)[0];
+      takeaways.push(`<span class="material-symbols-outlined text-base align-middle mr-1">feedback</span> Top rejection reason: <strong>"${topReason[0]}"</strong> (${topReason[1]} occurrence${topReason[1] > 1 ? 's' : ''}). Address this pattern to reduce waste.`);
+    }
+
+    // Hires
+    if (totals.hires === 0) {
+      takeaways.push(`<span class="material-symbols-outlined text-base align-middle mr-1">priority_high</span> <strong>Zero hires</strong> this period. The full pipeline (submittal &rarr; interview &rarr; offer &rarr; hire) needs end-to-end attention.`);
+    }
+
+    list.innerHTML = takeaways.map(t => `<li class="flex items-start gap-1">${t}</li>`).join('');
+  }
+
+  // ── Load Data ──
+  async function loadAnalytics() {
+    try {
+      const resp = await fetch('/api/data');
+      if (!resp.ok) throw new Error('API error');
+      allData = await resp.json();
+      allRecruiters = [...allData.coreTeam.recruiters, ...allData.extendedTeam.recruiters];
+
+      // Date range
+      if (allData.meta.dateRangeShort) {
+        document.getElementById('date-range-label').textContent = allData.meta.dateRangeShort;
+      }
+
+      renderFunnel(allData.totals);
+      renderTeamChart('submittals');
+      renderRejections(allData.rejections, allRecruiters);
+      renderTakeaways(allData.totals, allRecruiters, allData.rejections);
+
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+    } catch (err) {
+      console.error('Analytics load failed:', err);
+      document.getElementById('loading').innerHTML = `
+        <div class="flex items-center justify-center py-32">
+          <div class="text-center">
+            <span class="material-symbols-outlined text-4xl text-error">cloud_off</span>
+            <p class="text-on-surface-variant mt-4">Could not load analytics data.</p>
+            <a href="index.html" class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-primary hover:underline">
+              <span class="material-symbols-outlined text-[18px]">arrow_back</span>Back to Dashboard
+            </a>
+          </div>
+        </div>`;
+    }
+  }
+
+  loadAnalytics();
+  setInterval(loadAnalytics, 15 * 60 * 1000);
+})();
+</script>
+</body>
+</html>

@@ -3,673 +3,550 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Recruiter Profile — JSM Consulting Talent Report</title>
+  <title>Recruiter Profile — JSM Consulting</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Manrope:wght@200..800&family=Inter:wght@300..700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Inter:wght@300..700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-  <style>
-    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-    ::-webkit-scrollbar { height: 6px; }
-    ::-webkit-scrollbar-thumb { background: #c4c7cf; border-radius: 99px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-  </style>
+  <style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}</style>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            "primary": "#001e52",
-            "primary-container": "#00327d",
-            "primary-fixed": "#dae2ff",
-            "primary-fixed-dim": "#b1c5ff",
-            "secondary": "#b6171e",
-            "secondary-container": "#da3433",
-            "secondary-fixed": "#ffdad6",
-            "surface": "#f7f9fb",
-            "surface-container": "#eceef0",
-            "surface-container-low": "#f2f4f6",
-            "surface-container-high": "#e6e8ea",
-            "surface-container-highest": "#e0e3e5",
-            "surface-container-lowest": "#ffffff",
-            "on-surface": "#191c1e",
-            "on-surface-variant": "#434651",
-            "outline": "#747782",
-            "on-primary": "#ffffff",
-            "on-secondary": "#ffffff",
-            "on-primary-container": "#7d9eee",
-            "error": "#ba1a1a",
-            "background": "#f7f9fb",
+            "primary":"#001e52","primary-container":"#00327d","primary-fixed":"#dae2ff","primary-fixed-dim":"#b1c5ff",
+            "secondary":"#b6171e","secondary-container":"#da3433","secondary-fixed":"#ffdad6",
+            "surface":"#f7f9fb","surface-container":"#eceef0","surface-container-low":"#f2f4f6",
+            "surface-container-high":"#e6e8ea","surface-container-highest":"#e0e3e5","surface-container-lowest":"#ffffff",
+            "on-surface":"#191c1e","on-surface-variant":"#434651","outline":"#747782",
+            "on-primary":"#ffffff","on-secondary":"#ffffff","on-primary-container":"#7d9eee",
+            "error":"#ba1a1a","background":"#f7f9fb"
           },
           fontFamily: {
-            headline: ["Libre Baskerville", "Georgia", "serif"],
-            body: ["Inter", "sans-serif"],
-          },
-        },
-      },
+            headline: ["Manrope","sans-serif"],
+            body: ["Inter","sans-serif"]
+          }
+        }
+      }
     };
   </script>
 </head>
 <body class="bg-background font-body text-on-surface min-h-screen">
 
-  <!-- ============ HEADER ============ -->
-  <header class="fixed top-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-xl z-50 border-b border-surface-container-high">
-    <div class="h-full flex items-center justify-between px-6 lg:px-8 max-w-[1920px] mx-auto">
-      <div class="flex items-center gap-8">
-        <a href="index.html" class="font-headline text-2xl font-extrabold text-primary tracking-tight">JSM</a>
-        <nav class="hidden md:flex items-center gap-1">
-          <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition">Dashboard</a>
-          <a href="gallery.html" class="px-4 py-2 rounded-full text-sm font-medium text-primary bg-primary-fixed/40 transition">Team Gallery</a>
-        </nav>
-      </div>
-      <div class="flex items-center gap-3">
-        <a href="gallery.html" class="flex items-center gap-1.5 text-sm font-medium text-on-surface-variant hover:text-primary transition">
-          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
-          <span class="hidden sm:inline">Back</span>
-        </a>
-        <button class="relative p-2 rounded-full hover:bg-surface-container-high transition">
-          <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
-          <span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-secondary"></span>
-        </button>
-      </div>
+  <!-- Header -->
+  <header class="fixed top-0 inset-x-0 z-50 h-20 bg-white/80 backdrop-blur-xl border-b border-surface-container-high flex items-center px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="text-2xl font-headline font-extrabold text-primary tracking-tight">JSM</a>
+    </div>
+    <nav class="hidden md:flex items-center gap-1 ml-8">
+      <a href="index.html" class="px-4 py-2 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">Dashboard</a>
+      <a href="gallery.html" class="px-4 py-2 rounded-xl text-sm font-medium bg-primary-fixed text-primary transition-colors">Team Gallery</a>
+    </nav>
+    <div class="ml-auto flex items-center gap-2">
+      <a href="gallery.html" class="p-2 rounded-xl hover:bg-surface-container-low transition-colors" title="Back to Gallery">
+        <span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+      </a>
+      <button class="p-2 rounded-xl hover:bg-surface-container-low transition-colors relative">
+        <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+      </button>
     </div>
   </header>
 
-  <!-- ============ SIDEBAR ============ -->
-  <aside class="hidden lg:flex flex-col fixed top-20 left-0 bottom-0 w-72 bg-white border-r border-surface-container-high z-40">
+  <!-- Sidebar -->
+  <aside class="fixed top-20 left-0 bottom-0 w-72 bg-white border-r border-surface-container-high hidden lg:flex flex-col z-40">
     <div class="p-6 border-b border-surface-container-high">
       <div class="flex items-center gap-3">
         <div class="h-10 w-10 rounded-xl bg-primary flex items-center justify-center">
-          <span class="text-white font-headline font-bold text-sm">JSM</span>
+          <span class="text-on-primary font-headline font-bold text-sm">JSM</span>
         </div>
         <div>
-          <p class="font-headline font-bold text-sm text-on-surface">JSM Recruiter</p>
-          <p class="text-xs text-on-surface-variant">Talent Intelligence</p>
+          <p class="font-headline font-bold text-sm text-on-surface">JSM Consulting</p>
+          <p class="text-xs text-on-surface-variant">Recruiter Intelligence</p>
         </div>
       </div>
     </div>
     <nav class="flex-1 p-4 space-y-1">
-      <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+      <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">
         <span class="material-symbols-outlined text-[20px]">dashboard</span>Dashboard
       </a>
-      <a href="gallery.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-primary bg-primary-fixed/30 transition">
-        <span class="material-symbols-outlined text-[20px]">group</span>Team Gallery
+      <a href="gallery.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium bg-primary-fixed text-primary transition-colors">
+        <span class="material-symbols-outlined text-[20px]">groups</span>Team Gallery
       </a>
-      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+      <a href="analytics.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">
         <span class="material-symbols-outlined text-[20px]">analytics</span>Analytics
       </a>
-      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">
         <span class="material-symbols-outlined text-[20px]">strategy</span>Team Strategy
       </a>
     </nav>
   </aside>
 
-  <!-- ============ LOADING STATE ============ -->
-  <div id="loading" class="lg:ml-72 pt-28 px-4 sm:px-6 lg:px-8 pb-28 lg:pb-20 max-w-[1280px]">
-    <div class="flex items-center justify-center py-32">
-      <div class="text-center">
-        <span class="material-symbols-outlined text-4xl text-primary animate-spin">progress_activity</span>
-        <p class="text-on-surface-variant mt-4">Loading profile...</p>
+  <!-- Main Content -->
+  <main class="lg:ml-72 pt-28 px-4 sm:px-6 lg:px-8 pb-28">
+    <div id="profile-content">
+      <!-- Loading Skeleton -->
+      <div class="animate-pulse space-y-8">
+        <div class="rounded-3xl bg-surface-container-low p-8">
+          <div class="flex flex-col sm:flex-row items-center gap-6">
+            <div class="h-32 w-32 rounded-full bg-surface-container-high"></div>
+            <div class="space-y-3 flex-1 text-center sm:text-left">
+              <div class="h-8 w-64 bg-surface-container-high rounded-xl mx-auto sm:mx-0"></div>
+              <div class="h-4 w-48 bg-surface-container-high rounded-lg mx-auto sm:mx-0"></div>
+              <div class="h-4 w-36 bg-surface-container-high rounded-lg mx-auto sm:mx-0"></div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
+            <div class="h-20 bg-surface-container-high rounded-2xl"></div>
+            <div class="h-20 bg-surface-container-high rounded-2xl"></div>
+            <div class="h-20 bg-surface-container-high rounded-2xl"></div>
+            <div class="h-20 bg-surface-container-high rounded-2xl"></div>
+          </div>
+        </div>
+        <div class="h-40 bg-surface-container-low rounded-3xl"></div>
+        <div class="grid grid-cols-12 gap-6">
+          <div class="col-span-12 lg:col-span-5 h-72 bg-surface-container-low rounded-3xl"></div>
+          <div class="col-span-12 lg:col-span-7 h-72 bg-surface-container-low rounded-3xl"></div>
+        </div>
+        <div class="h-48 bg-surface-container-low rounded-3xl"></div>
+        <div class="h-48 bg-surface-container-low rounded-3xl"></div>
       </div>
     </div>
-  </div>
-
-  <!-- ============ MAIN CONTENT (hidden until data loads) ============ -->
-  <main id="main-content" class="lg:ml-72 pt-28 px-4 sm:px-6 lg:px-8 pb-28 lg:pb-20 max-w-[1280px]" style="display:none">
-
-    <!-- Profile Header -->
-    <section class="relative rounded-3xl bg-gradient-to-br from-primary-fixed via-white to-surface-container-low p-8 sm:p-10 mb-10 overflow-hidden">
-      <div class="absolute top-0 right-0 w-72 h-72 bg-primary-fixed-dim/20 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl"></div>
-      <div class="relative flex flex-col sm:flex-row items-start sm:items-center gap-6">
-        <!-- Avatar -->
-        <div class="relative flex-shrink-0">
-          <div id="avatar-container" class="h-32 w-32 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
-            <!-- Filled by JS -->
-          </div>
-          <span class="absolute bottom-2 right-2 h-5 w-5 rounded-full bg-green-500 border-[3px] border-white"></span>
-        </div>
-        <!-- Info -->
-        <div class="flex-1 min-w-0">
-          <div class="flex flex-wrap items-center gap-3 mb-2">
-            <h1 id="profile-name" class="font-headline text-3xl sm:text-4xl font-extrabold text-primary leading-tight"></h1>
-            <span id="profile-badge" class="hidden items-center px-3 py-1 rounded-full text-white text-[11px] font-bold tracking-wider uppercase"></span>
-          </div>
-          <p id="profile-title" class="text-on-surface-variant text-sm sm:text-base mb-4"></p>
-          <a id="profile-linkedin" href="#" target="_blank" rel="noopener noreferrer" class="hidden items-center gap-1.5 text-sm font-medium text-primary hover:underline transition">
-            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 11.27h-3v-5.6c0-3.37-4-3.12-4 0v5.6h-3v-10h3v1.76c1.4-2.59 7-2.78 7 2.48v5.76z"/></svg>
-            View LinkedIn Profile
-          </a>
-        </div>
-      </div>
-      <!-- Stat Pills -->
-      <div class="relative mt-8 grid grid-cols-2 sm:grid-cols-4 gap-px bg-surface-container-high rounded-2xl overflow-hidden shadow-sm">
-        <div class="bg-white p-5 text-center">
-          <p id="stat-submittals" class="text-2xl font-headline font-extrabold text-primary">-</p>
-          <p class="text-xs text-on-surface-variant font-medium mt-1">Submittals</p>
-        </div>
-        <div class="bg-white p-5 text-center">
-          <p id="stat-interviews" class="text-2xl font-headline font-extrabold text-primary">-</p>
-          <p class="text-xs text-on-surface-variant font-medium mt-1">Interviews</p>
-        </div>
-        <div class="bg-white p-5 text-center">
-          <p id="stat-conversion" class="text-2xl font-headline font-extrabold text-primary">-</p>
-          <p class="text-xs text-on-surface-variant font-medium mt-1">Conversion</p>
-        </div>
-        <div class="bg-white p-5 text-center">
-          <p id="stat-rejections" class="text-2xl font-headline font-extrabold text-secondary">-</p>
-          <p class="text-xs text-on-surface-variant font-medium mt-1">Rejections</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Bento Grid -->
-    <div class="grid grid-cols-12 gap-6">
-
-      <!-- Section 1: Client Coverage & Focus -->
-      <section id="clients-section" class="col-span-12">
-        <h2 class="font-headline text-xl font-extrabold text-on-surface mb-5">Client Coverage &amp; Focus</h2>
-        <div id="clients-container" class="flex gap-5 overflow-x-auto pb-3 -mx-1 px-1">
-          <!-- Filled by JS -->
-        </div>
-      </section>
-
-      <!-- Section 2: Candidate Quality Breakdown -->
-      <section class="col-span-12 lg:col-span-5">
-        <div class="bg-white rounded-2xl border border-surface-container-high p-6 h-full">
-          <h2 class="font-headline text-lg font-extrabold text-on-surface mb-6">Candidate Quality Breakdown</h2>
-          <div class="flex justify-center mb-6">
-            <div class="relative">
-              <svg id="donut-chart" width="180" height="180" viewBox="0 0 180 180">
-                <circle cx="90" cy="90" r="70" fill="none" stroke="#e0e3e5" stroke-width="20"/>
-              </svg>
-              <div class="absolute inset-0 flex flex-col items-center justify-center">
-                <span id="donut-center" class="text-3xl font-headline font-extrabold text-primary">-</span>
-                <span class="text-[11px] text-on-surface-variant font-medium">Pipeline</span>
-              </div>
-            </div>
-          </div>
-          <div id="donut-legend" class="flex flex-wrap justify-center gap-x-5 gap-y-2 mb-5">
-            <!-- Filled by JS -->
-          </div>
-          <div id="rejection-drivers" class="border-t border-surface-container-high pt-4" style="display:none">
-            <p class="text-xs text-on-surface-variant font-medium mb-2">Rejection Drivers</p>
-            <div id="rejection-tags" class="flex flex-wrap gap-2"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 3: Activity Timeline -->
-      <section class="col-span-12 lg:col-span-7">
-        <div class="bg-white rounded-2xl border border-surface-container-high p-6 h-full">
-          <div class="flex items-center justify-between mb-6">
-            <h2 class="font-headline text-lg font-extrabold text-on-surface">Activity Timeline</h2>
-            <span class="px-3 py-1 rounded-full bg-surface-container-low text-[11px] font-bold text-on-surface-variant tracking-wide">Last 14 Days</span>
-          </div>
-          <div id="timeline-container" class="space-y-6 max-h-[480px] overflow-y-auto pr-2">
-            <!-- Filled by JS -->
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 4: Performance Insights -->
-      <section class="col-span-12">
-        <h2 class="font-headline text-xl font-extrabold text-on-surface mb-5">Performance Insights</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-white rounded-2xl border border-surface-container-high p-6 border-l-4 border-l-primary">
-            <div class="flex items-center gap-2 mb-4">
-              <span class="material-symbols-outlined text-primary text-[22px]">trending_up</span>
-              <h3 class="font-headline font-bold text-on-surface">Strengths</h3>
-            </div>
-            <ul id="strengths-list" class="space-y-3 text-sm text-on-surface-variant leading-relaxed">
-              <!-- Filled by JS -->
-            </ul>
-          </div>
-          <div class="bg-white rounded-2xl border border-surface-container-high p-6 border-l-4 border-l-outline">
-            <div class="flex items-center gap-2 mb-4">
-              <span class="material-symbols-outlined text-outline text-[22px]">lightbulb</span>
-              <h3 class="font-headline font-bold text-on-surface">Areas for Growth</h3>
-            </div>
-            <ul id="growth-list" class="space-y-3 text-sm text-on-surface-variant leading-relaxed">
-              <!-- Filled by JS -->
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 5: Key Metrics Comparison -->
-      <section class="col-span-12">
-        <div class="bg-white rounded-2xl border border-surface-container-high p-6">
-          <h2 class="font-headline text-lg font-extrabold text-on-surface mb-6">Key Metrics Comparison</h2>
-          <div id="comparison-container" class="space-y-6">
-            <!-- Filled by JS -->
-          </div>
-          <div class="flex items-center gap-5 mt-5 pt-4 border-t border-surface-container-high">
-            <div class="flex items-center gap-2">
-              <span class="h-3 w-8 rounded-full bg-primary"></span>
-              <span id="legend-name" class="text-xs text-on-surface-variant font-medium"></span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="h-3 w-8 rounded-full bg-outline/50"></span>
-              <span class="text-xs text-on-surface-variant font-medium">Team Average</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </div>
-
-    <!-- Back to Gallery -->
-    <div class="mt-10">
-      <a href="gallery.html" class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline transition">
-        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
-        Back to Team Gallery
-      </a>
-    </div>
-
   </main>
 
-  <!-- ============ MOBILE BOTTOM NAV ============ -->
-  <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-surface-container-high z-50">
-    <div class="grid grid-cols-4 h-16">
-      <a href="index.html" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
+  <!-- Mobile Bottom Nav -->
+  <nav class="md:hidden fixed bottom-0 inset-x-0 bg-white border-t border-surface-container-high z-50">
+    <div class="flex items-center justify-around h-16">
+      <a href="index.html" class="flex flex-col items-center gap-0.5 text-on-surface-variant">
         <span class="material-symbols-outlined text-[22px]">dashboard</span>
         <span class="text-[10px] font-medium">Dashboard</span>
       </a>
-      <a href="gallery.html" class="flex flex-col items-center justify-center gap-0.5 text-primary">
-        <span class="material-symbols-outlined text-[22px]">group</span>
-        <span class="text-[10px] font-bold">Gallery</span>
+      <a href="gallery.html" class="flex flex-col items-center gap-0.5 text-primary">
+        <span class="material-symbols-outlined text-[22px]">groups</span>
+        <span class="text-[10px] font-medium">Gallery</span>
       </a>
-      <a href="#" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
+      <a href="analytics.html" class="flex flex-col items-center gap-0.5 text-on-surface-variant">
         <span class="material-symbols-outlined text-[22px]">analytics</span>
         <span class="text-[10px] font-medium">Analytics</span>
       </a>
-      <a href="#" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
+      <a href="#" class="flex flex-col items-center gap-0.5 text-on-surface-variant">
         <span class="material-symbols-outlined text-[22px]">settings</span>
         <span class="text-[10px] font-medium">Settings</span>
       </a>
     </div>
   </nav>
 
-<script>
-(function() {
-  const REFRESH_INTERVAL = 15 * 60 * 1000;
-  const params = new URLSearchParams(window.location.search);
-  const recruiterName = params.get('name');
+  <script>
+    const PHOTOS = {
+      'Rahul Kanojiya': 'img/rahul.png',
+      'Shaily Juneja': 'img/shaily.png',
+      'Sahithya Mogalapu': 'img/sahithya.png',
+      'Akash Nair': 'img/akash.png',
+      'Santoshi Hegde': 'img/santoshi.png',
+      'Vishal Khatri': 'img/vishal.png',
+      'Shubham Kenjale': 'img/shubham.png',
+      'Rutuja Pande': 'img/rutuja.png',
+      'Treesa Tijo': 'img/treesa.png',
+      'Vivek Shenoy': 'img/vivek.png',
+      'Shreerang Tarte': 'img/shreerang.png',
+    };
 
-  if (!recruiterName) {
-    window.location.href = 'gallery.html';
-    return;
-  }
+    const LINKEDIN = {
+      'Rahul Kanojiya': 'https://www.linkedin.com/in/rahul-kanojiya-55821b113/',
+      'Shaily Juneja': 'https://www.linkedin.com/in/shaily-juneja-659290100',
+      'Santoshi Hegde': 'https://in.linkedin.com/in/santoshi-hegde-5389a44',
+      'Vishal Khatri': 'https://www.linkedin.com/in/vishal-khatri-92756984/',
+      'Treesa Tijo': 'https://www.linkedin.com/in/treesatijo',
+      'Vivek Shenoy': 'https://www.linkedin.com/in/vivek-s-6b186232/',
+      'Shreerang Tarte': 'https://www.linkedin.com/in/shreerang-tarte-2632652/',
+    };
 
-  document.title = `${recruiterName} — JSM Consulting Talent Report`;
-
-  // LinkedIn URLs (known team members)
-  const linkedinMap = {
-    'Rahul Kanojiya': 'https://www.linkedin.com/in/rahul-kanojiya-55821b113/',
-    'Shaily Juneja': 'https://www.linkedin.com/in/shaily-juneja-659290100',
-    'Santoshi Hegde': 'https://in.linkedin.com/in/santoshi-hegde-5389a44',
-    'Vishal Khatri': 'https://www.linkedin.com/in/vishal-khatri-92756984/',
-    'Treesa Tijo': 'https://www.linkedin.com/in/treesatijo',
-    'Vivek Shenoy': 'https://www.linkedin.com/in/vivek-s-6b186232/',
-    'Shreerang Tarte': 'https://www.linkedin.com/in/shreerang-tarte-2632652/',
-  };
-
-  // Role descriptions
-  const roleMap = {
-    'Rahul Kanojiya': 'Team Lead, Recruiting & BD',
-    'Shaily Juneja': 'Senior IT Recruiter',
-    'Sahithya Mogalapu': 'IT Recruiter',
-    'Akash Nair': 'HR Recruiter',
-    'Santoshi Hegde': 'Senior Recruiter · Extended Team · IT & Government Sector Specialist',
-    'Vishal Khatri': 'Senior Recruiter',
-    'Shubham Kenjale': 'IT Recruiter',
-    'Mona P': 'Recruiter',
-    'Rutuja Pande': 'Senior IT Recruiter',
-    'Treesa Tijo': 'Recruiter',
-    'Vivek Shenoy': 'Sr. VP Operations',
-    'Shreerang Tarte': 'Head HR & Strategy',
-  };
-
-  // Client icons
-  const clientIcons = {
-    'NYS ITS': 'apartment',
-    'NYS OMH': 'health_and_safety',
-    'NYS DOL': 'work',
-    'NYS DOT': 'directions_car',
-    'NYC DYCD': 'groups',
-    'HonorVet Technologies': 'military_tech',
-    'Knowledge Services Technology': 'school',
-    'State of Georgia': 'account_balance',
-    'HBITS': 'schedule',
-  };
-
-  function getClientIcon(name) {
-    return clientIcons[name] || 'business';
-  }
-
-  function slugify(name) {
-    return name.toLowerCase().split(' ')[0];
-  }
-
-  function renderProfile(recruiter, allRecruiters, totals) {
-    const loading = document.getElementById('loading');
-    const main = document.getElementById('main-content');
-
-    // Avatar
-    const avatarContainer = document.getElementById('avatar-container');
-    const imgSlug = slugify(recruiter.name);
-    avatarContainer.innerHTML = `<img src="img/${imgSlug}.png" alt="${recruiter.name}" class="w-full h-full object-cover object-top" onerror="this.parentElement.innerHTML='<div class=\\'w-full h-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center\\'><span class=\\'text-white text-4xl font-bold font-headline\\'>${recruiter.initials}</span></div>'"/>`;
-
-    // Name & badge
-    document.getElementById('profile-name').textContent = recruiter.name;
-    const badge = document.getElementById('profile-badge');
-
-    // Determine badge
-    const sortedByInterviews = [...allRecruiters].sort((a, b) => b.interviews - a.interviews || b.submittals - a.submittals);
-    const sortedBySubs = [...allRecruiters].sort((a, b) => b.submittals - a.submittals);
-    const fastestTTS = [...allRecruiters].filter(r => r.avgTTS !== null).sort((a, b) => a.avgTTS - b.avgTTS);
-
-    if (sortedByInterviews[0] && sortedByInterviews[0].name === recruiter.name && recruiter.interviews > 0) {
-      badge.textContent = 'Top Performer';
-      badge.className = 'inline-flex items-center px-3 py-1 rounded-full bg-secondary text-white text-[11px] font-bold tracking-wider uppercase';
-    } else if (sortedBySubs[0] && sortedBySubs[0].name === recruiter.name) {
-      badge.textContent = 'Most Active';
-      badge.className = 'inline-flex items-center px-3 py-1 rounded-full bg-primary text-white text-[11px] font-bold tracking-wider uppercase';
-    } else if (fastestTTS[0] && fastestTTS[0].name === recruiter.name && recruiter.avgTTS === 0) {
-      badge.textContent = 'Fastest';
-      badge.className = 'inline-flex items-center px-3 py-1 rounded-full bg-secondary text-white text-[11px] font-bold tracking-wider uppercase';
-    } else if (recruiter.isCore) {
-      badge.textContent = 'Core Team';
-      badge.className = 'inline-flex items-center px-3 py-1 rounded-full bg-primary-fixed text-primary text-[11px] font-bold tracking-wider uppercase';
-    } else {
-      badge.textContent = 'Extended Team';
-      badge.className = 'inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-[11px] font-bold tracking-wider uppercase';
-    }
-
-    // Title
-    document.getElementById('profile-title').textContent = roleMap[recruiter.name] || (recruiter.isCore ? 'Core Team Recruiter' : 'Extended Team Recruiter');
-
-    // LinkedIn
-    const linkedinEl = document.getElementById('profile-linkedin');
-    if (linkedinMap[recruiter.name]) {
-      linkedinEl.href = linkedinMap[recruiter.name];
-      linkedinEl.style.display = 'inline-flex';
-    }
-
-    // Stats
-    document.getElementById('stat-submittals').textContent = recruiter.submittals;
-    document.getElementById('stat-interviews').textContent = recruiter.interviews;
-    document.getElementById('stat-conversion').textContent = recruiter.interviewConversion + '%';
-    document.getElementById('stat-rejections').textContent = recruiter.rejections;
-
-    // Clients
-    const clientsContainer = document.getElementById('clients-container');
-    if (recruiter.clients && recruiter.clients.length > 0) {
-      const bgColors = ['bg-primary', 'bg-primary-container', 'bg-on-surface-variant'];
-      clientsContainer.innerHTML = recruiter.clients.map((c, i) => `
-        <div class="flex-shrink-0 w-72 bg-white rounded-2xl border border-surface-container-high p-6 hover:shadow-lg transition-shadow">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="h-11 w-11 rounded-xl ${bgColors[i] || bgColors[2]} flex items-center justify-center">
-              <span class="material-symbols-outlined text-white text-[20px]">${getClientIcon(c.name)}</span>
-            </div>
-            <div>
-              <p class="font-headline font-bold text-sm text-on-surface">${c.name}</p>
-              <span class="inline-block mt-0.5 px-2 py-0.5 rounded-full bg-primary-fixed text-primary text-[10px] font-bold tracking-wide uppercase">${i === 0 ? 'Primary Client' : 'Active Client'}</span>
-            </div>
-          </div>
-          <p class="text-xs text-on-surface-variant leading-relaxed">${c.count} submittal${c.count !== 1 ? 's' : ''} during this period</p>
-        </div>
-      `).join('');
-    } else {
-      document.getElementById('clients-section').style.display = 'none';
-    }
-
-    // Donut Chart
-    const total = recruiter.submittals + recruiter.rejections;
-    const submitted = recruiter.submittals - recruiter.interviews;
-    const circumference = 2 * Math.PI * 70; // ~439.82
-    document.getElementById('donut-center').textContent = recruiter.submittals;
-
-    const svg = document.getElementById('donut-chart');
-    // Clear existing arcs (keep background)
-    while (svg.children.length > 1) svg.removeChild(svg.lastChild);
-
-    if (total > 0) {
-      const segments = [];
-      if (submitted > 0) segments.push({ count: submitted, color: '#001e52', label: 'Submitted' });
-      if (recruiter.interviews > 0) segments.push({ count: recruiter.interviews, color: '#b6171e', label: 'Interviewed' });
-      if (recruiter.rejections > 0) segments.push({ count: recruiter.rejections, color: '#747782', label: 'Rejected' });
-
-      let offset = -circumference / 4;
-      segments.forEach(seg => {
-        const len = (seg.count / total) * circumference;
-        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        circle.setAttribute('cx', '90');
-        circle.setAttribute('cy', '90');
-        circle.setAttribute('r', '70');
-        circle.setAttribute('fill', 'none');
-        circle.setAttribute('stroke', seg.color);
-        circle.setAttribute('stroke-width', '20');
-        circle.setAttribute('stroke-dasharray', `${len} ${circumference - len}`);
-        circle.setAttribute('stroke-dashoffset', `${-offset}`);
-        circle.setAttribute('stroke-linecap', 'round');
-        svg.appendChild(circle);
-        offset += len;
-      });
-
-      // Legend
-      const legendEl = document.getElementById('donut-legend');
-      legendEl.innerHTML = segments.map(seg => `
-        <div class="flex items-center gap-2">
-          <span class="h-3 w-3 rounded-full" style="background:${seg.color}"></span>
-          <span class="text-xs text-on-surface-variant">${seg.count} ${seg.label}</span>
-        </div>
-      `).join('');
-    }
-
-    // Rejection drivers
-    if (recruiter.rejectionDetails && recruiter.rejectionDetails.length > 0) {
-      document.getElementById('rejection-drivers').style.display = 'block';
-      const reasonCounts = {};
-      recruiter.rejectionDetails.forEach(r => {
-        const reason = r.reason || 'Not specified';
-        reasonCounts[reason] = (reasonCounts[reason] || 0) + 1;
-      });
-      document.getElementById('rejection-tags').innerHTML = Object.entries(reasonCounts)
-        .map(([reason, count]) => `<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-low text-xs font-medium text-on-surface-variant">${reason} (${count})</span>`)
-        .join('');
-    }
-
-    // Timeline
-    const timelineContainer = document.getElementById('timeline-container');
-    if (recruiter.timeline && recruiter.timeline.length > 0) {
-      // Group by date
-      const grouped = {};
-      recruiter.timeline.forEach(entry => {
-        const d = entry.date ? new Date(entry.date) : null;
-        const key = d ? d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Unknown Date';
-        const sortKey = d ? d.toISOString() : '0000';
-        if (!grouped[key]) grouped[key] = { sortKey, entries: [] };
-        grouped[key].entries.push(entry);
-      });
-
-      const sortedDays = Object.entries(grouped).sort(([, a], [, b]) => b.sortKey.localeCompare(a.sortKey));
-
-      timelineContainer.innerHTML = sortedDays.map(([dateLabel, { entries }]) => `
-        <div>
-          <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-3">${dateLabel}</p>
-          <div class="ml-4 border-l-2 border-primary-fixed pl-5 space-y-4">
-            ${entries.map(e => {
-              let dotColor, badgeClass, badgeText;
-              if (e.status === 'interview') {
-                dotColor = 'bg-green-500'; badgeClass = 'bg-green-100 text-green-700'; badgeText = 'Interview';
-              } else if (e.status === 'rejected') {
-                dotColor = 'bg-outline'; badgeClass = 'bg-red-50 text-error'; badgeText = 'Rejected';
-              } else if (e.status === 'hired') {
-                dotColor = 'bg-secondary'; badgeClass = 'bg-secondary-fixed text-secondary'; badgeText = 'Hired';
-              } else {
-                dotColor = 'bg-primary'; badgeClass = 'bg-primary-fixed text-primary'; badgeText = 'Submitted';
-              }
-              const interviewNote = e.status === 'interview' && e.interviewDate
-                ? `<span class="text-[11px] text-on-surface-variant">Interview: ${new Date(e.interviewDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>`
-                : '';
-              return `<div class="relative">
-                <span class="absolute -left-[27px] top-1 h-3 w-3 rounded-full ${dotColor} ring-2 ring-white"></span>
-                <p class="text-sm font-semibold text-on-surface">${e.candidate || 'Unknown Candidate'}</p>
-                <p class="text-xs text-on-surface-variant mt-0.5">${e.role} @ ${e.client}</p>
-                <div class="flex items-center gap-2 mt-1.5">
-                  <span class="px-2 py-0.5 rounded-full ${badgeClass} text-[10px] font-bold uppercase tracking-wide">${badgeText}</span>
-                  ${interviewNote}
-                </div>
-              </div>`;
-            }).join('')}
-          </div>
-        </div>
-      `).join('');
-    } else {
-      timelineContainer.innerHTML = '<p class="text-sm text-on-surface-variant text-center py-8">No activity recorded in this period.</p>';
-    }
-
-    // Performance Insights (generated dynamically)
-    const strengthsList = document.getElementById('strengths-list');
-    const growthList = document.getElementById('growth-list');
-    const strengths = [];
-    const growth = [];
-
-    const avgSubs = allRecruiters.reduce((s, r) => s + r.submittals, 0) / allRecruiters.length;
-    const avgInts = allRecruiters.reduce((s, r) => s + r.interviews, 0) / allRecruiters.length;
-
-    if (recruiter.submittals > avgSubs) {
-      strengths.push(`Above-average volume (${recruiter.submittals} submittals vs ${avgSubs.toFixed(1)} team avg)`);
-    }
-    if (recruiter.interviews > 0) {
-      strengths.push(`Achieved ${recruiter.interviews} interview${recruiter.interviews > 1 ? 's' : ''} this period`);
-    }
-    if (recruiter.interviewConversion > 0) {
-      strengths.push(`${recruiter.interviewConversion}% submittal-to-interview conversion rate`);
-    }
-    if (recruiter.daysActive >= 3) {
-      strengths.push(`Consistent activity across ${recruiter.daysActive} active days`);
-    }
-    if (recruiter.clients && recruiter.clients.length >= 2) {
-      strengths.push(`Covers ${recruiter.clients.length} distinct clients`);
-    }
-    if (recruiter.avgTTS !== null && recruiter.avgTTS <= 1) {
-      strengths.push(`Exceptional speed — ${recruiter.avgTTS} day${recruiter.avgTTS === 0 ? '' : 's'} average time-to-submittal`);
-    }
-    if (recruiter.avgBillRate && recruiter.avgBillRate > 70) {
-      strengths.push(`Strong bill rate positioning ($${recruiter.avgBillRate}/hr average)`);
-    }
-    if (strengths.length === 0) {
-      strengths.push('Contributing to team pipeline');
-    }
-
-    if (recruiter.rejections > 0) {
-      growth.push(`${recruiter.rejections} rejection${recruiter.rejections > 1 ? 's' : ''} in the period — monitor client feedback patterns`);
-    }
-    if (recruiter.interviews === 0 && recruiter.submittals > 0) {
-      growth.push('No interviews yet — focus on candidate-job fit to improve conversion');
-    }
-    if (recruiter.hires === 0) {
-      growth.push('No hires yet — push candidates through to offer stage');
-    }
-    if (recruiter.avgTTS !== null && recruiter.avgTTS > 4) {
-      growth.push(`Time-to-submittal (${recruiter.avgTTS} days) above team benchmark — consider faster sourcing`);
-    }
-    if (recruiter.submittals < avgSubs && recruiter.submittals > 0) {
-      growth.push(`Below-average volume (${recruiter.submittals} vs ${avgSubs.toFixed(1)} team avg) — increase pipeline activity`);
-    }
-    if (recruiter.clients && recruiter.clients.length <= 1) {
-      growth.push('Consider expanding beyond current client focus for diversification');
-    }
-    if (growth.length === 0) {
-      growth.push('Continue current trajectory and maintain consistency');
-    }
-
-    strengthsList.innerHTML = strengths.map(s => `<li class="flex gap-2"><span class="text-green-600 mt-0.5 flex-shrink-0">&#10003;</span>${s}</li>`).join('');
-    growthList.innerHTML = growth.map(g => `<li class="flex gap-2"><span class="text-on-surface-variant mt-0.5 flex-shrink-0">&bull;</span>${g}</li>`).join('');
-
-    // Key Metrics Comparison
-    document.getElementById('legend-name').textContent = recruiter.name;
-    const maxSubs = Math.max(...allRecruiters.map(r => r.submittals), 1);
-    const maxInts = Math.max(...allRecruiters.map(r => r.interviews), 1);
-    const maxConv = Math.max(...allRecruiters.map(r => r.interviewConversion), 1);
-
-    const compContainer = document.getElementById('comparison-container');
-    const metrics = [
-      { label: 'Submittals', value: recruiter.submittals, avg: avgSubs, max: maxSubs },
-      { label: 'Interviews', value: recruiter.interviews, avg: avgInts, max: Math.max(maxInts, 1) },
-      { label: 'Conversion Rate', value: recruiter.interviewConversion, avg: +(allRecruiters.reduce((s, r) => s + r.interviewConversion, 0) / allRecruiters.length).toFixed(1), max: Math.max(maxConv, 1), suffix: '%' },
+    const INITIALS_COLORS = [
+      '#001e52','#00327d','#b6171e','#da3433','#0d6e3f','#7c4dff','#e65100','#00838f','#4a148c','#1b5e20','#bf360c'
     ];
 
-    compContainer.innerHTML = metrics.map(m => {
-      const valPct = Math.min(100, (m.value / m.max) * 100) || 0;
-      const avgPct = Math.min(100, (m.avg / m.max) * 100) || 0;
-      const suffix = m.suffix || '';
-      return `<div>
-        <div class="flex items-center justify-between mb-2">
-          <p class="text-sm font-medium text-on-surface">${m.label}</p>
-          <div class="flex items-center gap-4 text-xs text-on-surface-variant">
-            <span><span class="font-bold text-primary">${recruiter.name.split(' ')[0]}: ${m.value}${suffix}</span></span>
-            <span>Team Avg: ${m.avg}${suffix}</span>
-          </div>
-        </div>
-        <div class="space-y-1.5">
-          <div class="h-4 rounded-full bg-surface-container-low overflow-hidden">
-            <div class="h-full rounded-full bg-primary transition-all" style="width: ${valPct}%"></div>
-          </div>
-          <div class="h-4 rounded-full bg-surface-container-low overflow-hidden">
-            <div class="h-full rounded-full bg-outline/50 transition-all" style="width: ${avgPct}%"></div>
-          </div>
-        </div>
-      </div>`;
-    }).join('');
+    function getInitialsColor(name) {
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      return INITIALS_COLORS[Math.abs(hash) % INITIALS_COLORS.length];
+    }
 
-    // Show content
-    loading.style.display = 'none';
-    main.style.display = 'block';
-  }
+    function getInitials(name) {
+      return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+    }
 
-  async function loadProfile() {
-    try {
-      const resp = await fetch('/api/data');
-      if (!resp.ok) throw new Error('API error');
-      const data = await resp.json();
-      const allRecruiters = [...data.coreTeam.recruiters, ...data.extendedTeam.recruiters];
-      const recruiter = allRecruiters.find(r => r.name === recruiterName);
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const d = new Date(dateStr);
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
 
-      if (!recruiter) {
-        document.getElementById('loading').innerHTML = `
-          <div class="flex items-center justify-center py-32">
-            <div class="text-center">
-              <span class="material-symbols-outlined text-4xl text-error">person_off</span>
-              <p class="text-on-surface-variant mt-4">Recruiter "${recruiterName}" not found.</p>
-              <a href="gallery.html" class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-primary hover:underline">
-                <span class="material-symbols-outlined text-[18px]">arrow_back</span>Back to Gallery
-              </a>
+    function groupByDate(timeline) {
+      const groups = {};
+      timeline.forEach(entry => {
+        const key = entry.date || 'Unknown';
+        if (!groups[key]) groups[key] = [];
+        groups[key].push(entry);
+      });
+      return groups;
+    }
+
+    function renderProfile(recruiter, allRecruiters, totals) {
+      const r = recruiter;
+      const photo = PHOTOS[r.name];
+      const linkedin = LINKEDIN[r.name];
+      const conversion = r.interviewConversion != null ? r.interviewConversion : (r.submittals > 0 ? Math.round((r.interviews / r.submittals) * 100) : 0);
+
+      // Determine badge
+      let badgeHtml = '';
+      const maxInterviews = Math.max(...allRecruiters.map(x => x.interviews || 0));
+      const minTTS = Math.min(...allRecruiters.filter(x => x.avgTTS > 0).map(x => x.avgTTS));
+      if (r.name.includes('Rahul')) {
+        badgeHtml = '<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary text-on-primary text-xs font-semibold"><span class="material-symbols-outlined text-[14px]">star</span>Team Lead</span>';
+      } else if (r.interviews > 0 && r.interviews === maxInterviews) {
+        badgeHtml = '<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-secondary text-on-secondary text-xs font-semibold"><span class="material-symbols-outlined text-[14px]">emoji_events</span>Top Performer</span>';
+      } else if (r.avgTTS > 0 && r.avgTTS === minTTS) {
+        badgeHtml = '<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-secondary text-on-secondary text-xs font-semibold"><span class="material-symbols-outlined text-[14px]">bolt</span>Fastest</span>';
+      }
+
+      // Avatar
+      let avatarHtml;
+      if (photo) {
+        avatarHtml = `<div class="relative"><img src="${photo}" alt="${r.name}" class="h-32 w-32 rounded-full ring-4 ring-white shadow-xl object-cover"/><div class="absolute bottom-1 right-1 h-5 w-5 bg-green-500 rounded-full border-[3px] border-white"></div></div>`;
+      } else {
+        const color = getInitialsColor(r.name);
+        avatarHtml = `<div class="relative"><div class="h-32 w-32 rounded-full ring-4 ring-white shadow-xl flex items-center justify-center text-3xl font-headline font-bold text-white" style="background:${color}">${getInitials(r.name)}</div><div class="absolute bottom-1 right-1 h-5 w-5 bg-green-500 rounded-full border-[3px] border-white"></div></div>`;
+      }
+
+      // LinkedIn button
+      const linkedinSvg = `<svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`;
+      const linkedinHtml = linkedin ? `<a href="${linkedin}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0A66C2] text-white text-sm font-medium hover:bg-[#004182] transition-colors">${linkedinSvg} LinkedIn Profile</a>` : '';
+
+      // Role description
+      const roleDesc = r.isCore ? 'Core Team Recruiter' : 'Extended Team Recruiter';
+
+      // Stat pills
+      const statPills = `
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
+          <div class="bg-white/70 backdrop-blur rounded-2xl p-4 text-center">
+            <p class="text-2xl font-headline font-extrabold text-primary">${r.submittals}</p>
+            <p class="text-xs text-on-surface-variant font-medium mt-1">Submittals</p>
+          </div>
+          <div class="bg-white/70 backdrop-blur rounded-2xl p-4 text-center">
+            <p class="text-2xl font-headline font-extrabold text-primary">${r.interviews}</p>
+            <p class="text-xs text-on-surface-variant font-medium mt-1">Interviews</p>
+          </div>
+          <div class="bg-white/70 backdrop-blur rounded-2xl p-4 text-center">
+            <p class="text-2xl font-headline font-extrabold text-primary">${conversion}%</p>
+            <p class="text-xs text-on-surface-variant font-medium mt-1">Conversion</p>
+          </div>
+          <div class="bg-white/70 backdrop-blur rounded-2xl p-4 text-center">
+            <p class="text-2xl font-headline font-extrabold text-error">${r.rejections}</p>
+            <p class="text-xs text-on-surface-variant font-medium mt-1">Rejections</p>
+          </div>
+        </div>`;
+
+      // Profile header
+      const headerSection = `
+        <div class="rounded-3xl bg-gradient-to-br from-primary-fixed via-white to-surface-container-low p-8 shadow-sm">
+          <div class="flex flex-col sm:flex-row items-center gap-6">
+            ${avatarHtml}
+            <div class="text-center sm:text-left space-y-2">
+              <h1 class="text-3xl sm:text-4xl font-headline font-extrabold text-primary">${r.name}</h1>
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <span class="text-sm text-on-surface-variant">${roleDesc}</span>
+                ${badgeHtml}
+              </div>
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-1">
+                ${linkedinHtml}
+              </div>
+            </div>
+          </div>
+          ${statPills}
+        </div>`;
+
+      // Client Coverage
+      const clientCards = (r.clients || []).map((c, i) => `
+        <div class="flex-shrink-0 w-56 bg-white rounded-2xl border border-surface-container-high p-5 hover:shadow-md transition-shadow">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="h-10 w-10 rounded-xl bg-primary-fixed flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-[20px]">apartment</span>
+            </div>
+            <span class="inline-flex items-center justify-center min-w-[24px] h-6 px-2 rounded-full bg-primary text-on-primary text-xs font-bold">${c.count}</span>
+          </div>
+          <p class="font-headline font-bold text-sm text-on-surface truncate">${c.name}</p>
+          <p class="text-xs text-on-surface-variant mt-1">${i === 0 ? 'Primary Client' : 'Active Client'}</p>
+        </div>`).join('');
+
+      const clientSection = (r.clients && r.clients.length > 0) ? `
+        <div class="col-span-12 rounded-3xl bg-white border border-surface-container-high p-6 shadow-sm">
+          <h2 class="text-lg font-headline font-bold text-on-surface mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">business</span>
+            Client Coverage & Focus
+          </h2>
+          <div class="flex gap-4 overflow-x-auto pb-2 -mx-1 px-1">${clientCards}</div>
+        </div>` : '';
+
+      // Donut Chart
+      const total = r.submittals || 1;
+      const submitted = Math.max(0, (r.submittals || 0) - (r.interviews || 0) - (r.rejections || 0));
+      const interviewed = r.interviews || 0;
+      const rejected = r.rejections || 0;
+      const s1 = (submitted / total) * 100;
+      const s2 = (interviewed / total) * 100;
+      const s3 = (rejected / total) * 100;
+      const offset1 = 25;
+      const offset2 = offset1 - s1;
+      const offset3 = offset2 - s2;
+
+      const uniqueReasons = [...new Set((r.rejectionDetails || []).map(d => d.reason).filter(Boolean))];
+      const reasonTags = uniqueReasons.map(reason => `<span class="inline-block px-2.5 py-1 rounded-lg bg-red-50 text-error text-xs font-medium">${reason}</span>`).join('');
+
+      const donutSection = `
+        <div class="col-span-12 lg:col-span-5 rounded-3xl bg-white border border-surface-container-high p-6 shadow-sm">
+          <h2 class="text-lg font-headline font-bold text-on-surface mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">donut_large</span>
+            Candidate Quality
+          </h2>
+          <div class="flex flex-col items-center">
+            <svg viewBox="0 0 42 42" class="w-44 h-44">
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#dae2ff" stroke-width="4"/>
+              ${s1 > 0 ? `<circle cx="21" cy="21" r="15.915" fill="none" stroke="#001e52" stroke-width="4" stroke-dasharray="${s1} ${100-s1}" stroke-dashoffset="${offset1}" stroke-linecap="round"/>` : ''}
+              ${s2 > 0 ? `<circle cx="21" cy="21" r="15.915" fill="none" stroke="#22c55e" stroke-width="4" stroke-dasharray="${s2} ${100-s2}" stroke-dashoffset="${offset2}" stroke-linecap="round"/>` : ''}
+              ${s3 > 0 ? `<circle cx="21" cy="21" r="15.915" fill="none" stroke="#ba1a1a" stroke-width="4" stroke-dasharray="${s3} ${100-s3}" stroke-dashoffset="${offset3}" stroke-linecap="round"/>` : ''}
+              <text x="21" y="19.5" text-anchor="middle" class="text-[5px] font-bold fill-on-surface" font-family="Manrope,sans-serif">${r.submittals}</text>
+              <text x="21" y="24" text-anchor="middle" class="text-[2.5px] fill-on-surface-variant" font-family="Inter,sans-serif">Total</text>
+            </svg>
+            <div class="flex flex-wrap justify-center gap-4 mt-4 text-xs">
+              <div class="flex items-center gap-1.5"><span class="h-3 w-3 rounded-full bg-primary"></span>Submitted ${submitted}</div>
+              <div class="flex items-center gap-1.5"><span class="h-3 w-3 rounded-full bg-green-500"></span>Interviewed ${interviewed}</div>
+              <div class="flex items-center gap-1.5"><span class="h-3 w-3 rounded-full bg-error"></span>Rejected ${rejected}</div>
+            </div>
+            ${uniqueReasons.length > 0 ? `<div class="mt-4 pt-4 border-t border-surface-container-high w-full"><p class="text-xs font-semibold text-on-surface-variant mb-2">Rejection Drivers</p><div class="flex flex-wrap gap-1.5">${reasonTags}</div></div>` : ''}
+          </div>
+        </div>`;
+
+      // Activity Timeline
+      const sortedTimeline = [...(r.timeline || [])].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const grouped = groupByDate(sortedTimeline);
+      let timelineContent = '';
+      for (const [date, entries] of Object.entries(grouped)) {
+        timelineContent += `<div class="mb-4"><p class="text-xs font-semibold text-on-surface-variant mb-2">${formatDate(date)}</p>`;
+        entries.forEach(e => {
+          let dotColor, statusBadge;
+          const st = (e.status || '').toLowerCase();
+          if (st === 'interview' || st === 'interviewed') {
+            dotColor = 'bg-green-500';
+            statusBadge = `<span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-[10px] font-semibold">Interview</span>`;
+          } else if (st === 'submitted') {
+            dotColor = 'bg-primary';
+            statusBadge = `<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-primary text-[10px] font-semibold">Submitted</span>`;
+          } else if (st === 'rejected') {
+            dotColor = 'bg-outline';
+            statusBadge = `<span class="px-2 py-0.5 rounded-full bg-red-50 text-error text-[10px] font-semibold">Rejected</span>`;
+          } else if (st === 'hired') {
+            dotColor = 'bg-green-600';
+            statusBadge = `<span class="px-2 py-0.5 rounded-full bg-green-100 text-green-800 text-[10px] font-semibold">Hired</span>`;
+          } else {
+            dotColor = 'bg-outline';
+            statusBadge = `<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[10px] font-semibold">${e.status || 'Unknown'}</span>`;
+          }
+          const detail = st === 'rejected' && e.reason ? `<p class="text-[10px] text-on-surface-variant mt-0.5">Reason: ${e.reason}</p>` :
+                          (st === 'interview' || st === 'interviewed') && e.interviewDate ? `<p class="text-[10px] text-on-surface-variant mt-0.5">Interview: ${formatDate(e.interviewDate)}</p>` : '';
+          timelineContent += `
+            <div class="flex items-start gap-3 py-2">
+              <div class="mt-1.5 h-2.5 w-2.5 rounded-full ${dotColor} flex-shrink-0"></div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-medium text-on-surface truncate">${e.candidate || 'Unknown'}</p>
+                <p class="text-xs text-on-surface-variant truncate">${e.role || ''}${e.client ? ' @ ' + e.client : ''}</p>
+                ${detail}
+              </div>
+              ${statusBadge}
+            </div>`;
+        });
+        timelineContent += '</div>';
+      }
+
+      const timelineSection = `
+        <div class="col-span-12 lg:col-span-7 rounded-3xl bg-white border border-surface-container-high p-6 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-headline font-bold text-on-surface flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary">timeline</span>
+              Activity Timeline
+            </h2>
+            <span class="px-2.5 py-1 rounded-full bg-primary-fixed text-primary text-xs font-semibold">Last 14 Days</span>
+          </div>
+          <div class="max-h-80 overflow-y-auto pr-1">
+            ${timelineContent || '<p class="text-sm text-on-surface-variant">No recent activity</p>'}
+          </div>
+        </div>`;
+
+      // Performance Insights
+      const strengths = [];
+      if (r.submittals > 0) strengths.push(`${r.submittals} submittals this period`);
+      if (r.interviews > 0) strengths.push(`${r.interviews} interviews secured \u2014 ${conversion}% conversion rate`);
+      if (r.uniqueCompanies > 1) strengths.push(`Coverage across ${r.uniqueCompanies} distinct clients`);
+      if (r.daysActive > 3) strengths.push(`Consistent activity \u2014 active ${r.daysActive} of 14 days`);
+      if (r.avgTTS != null && r.avgTTS > 0 && r.avgTTS < 3) strengths.push(`Fast response time \u2014 ${r.avgTTS} days average time-to-submittal`);
+      if (r.avgBillRate) strengths.push(`Targeting roles at $${r.avgBillRate}/hr average bill rate`);
+
+      const growth = [];
+      if (r.rejections > 0) growth.push(`${r.rejections} rejection(s) \u2014 review client feedback patterns`);
+      if (r.interviews === 0) growth.push('No interviews yet \u2014 focus on candidate-job alignment');
+      if (r.hires === 0) growth.push('No hires yet \u2014 push pipeline to offer stage');
+      if (r.avgTTS != null && r.avgTTS > 4) growth.push(`Time-to-submittal (${r.avgTTS} days) above team average \u2014 look for faster sourcing paths`);
+      if (r.uniqueCompanies === 1) growth.push('Concentrated on single client \u2014 consider diversifying');
+
+      const strengthItems = strengths.map(s => `<li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check_circle</span><span class="text-sm text-on-surface">${s}</span></li>`).join('');
+      const growthItems = growth.map(g => `<li class="flex items-start gap-2"><span class="material-symbols-outlined text-outline text-[18px] mt-0.5">info</span><span class="text-sm text-on-surface">${g}</span></li>`).join('');
+
+      const insightsSection = `
+        <div class="col-span-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="rounded-3xl bg-white border border-surface-container-high border-l-4 border-l-primary p-6 shadow-sm">
+            <h3 class="text-base font-headline font-bold text-on-surface mb-3 flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary">trending_up</span>Strengths
+            </h3>
+            <ul class="space-y-2.5">${strengthItems || '<li class="text-sm text-on-surface-variant">No data yet</li>'}</ul>
+          </div>
+          <div class="rounded-3xl bg-white border border-surface-container-high border-l-4 border-l-outline p-6 shadow-sm">
+            <h3 class="text-base font-headline font-bold text-on-surface mb-3 flex items-center gap-2">
+              <span class="material-symbols-outlined text-outline">lightbulb</span>Areas for Growth
+            </h3>
+            <ul class="space-y-2.5">${growthItems || '<li class="text-sm text-on-surface-variant">Looking great \u2014 no areas flagged</li>'}</ul>
+          </div>
+        </div>`;
+
+      // Key Metrics Comparison
+      const avgSubmittals = allRecruiters.length > 0 ? (allRecruiters.reduce((a, x) => a + (x.submittals || 0), 0) / allRecruiters.length) : 0;
+      const avgInterviews = allRecruiters.length > 0 ? (allRecruiters.reduce((a, x) => a + (x.interviews || 0), 0) / allRecruiters.length) : 0;
+      const avgConversion = allRecruiters.length > 0 ? (allRecruiters.reduce((a, x) => a + (x.interviewConversion || (x.submittals > 0 ? Math.round((x.interviews / x.submittals) * 100) : 0)), 0) / allRecruiters.length) : 0;
+
+      const maxVal = Math.max(r.submittals, avgSubmittals, r.interviews, avgInterviews, 1);
+      const maxConv = Math.max(conversion, avgConversion, 1);
+
+      function barPair(label, recruiterVal, teamVal, maxV) {
+        const rw = Math.max(4, (recruiterVal / maxV) * 100);
+        const tw = Math.max(4, (teamVal / maxV) * 100);
+        return `
+          <div class="space-y-2">
+            <p class="text-sm font-medium text-on-surface">${label}</p>
+            <div class="space-y-1.5">
+              <div class="flex items-center gap-3">
+                <span class="text-xs text-on-surface-variant w-16 text-right">${r.name.split(' ')[0]}</span>
+                <div class="flex-1 bg-surface-container-low rounded-full h-5 overflow-hidden">
+                  <div class="h-full bg-primary rounded-full flex items-center justify-end pr-2" style="width:${rw}%">
+                    <span class="text-[10px] text-on-primary font-bold">${typeof recruiterVal === 'number' && recruiterVal % 1 !== 0 ? recruiterVal.toFixed(1) : recruiterVal}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-xs text-on-surface-variant w-16 text-right">Team Avg</span>
+                <div class="flex-1 bg-surface-container-low rounded-full h-5 overflow-hidden">
+                  <div class="h-full bg-outline/40 rounded-full flex items-center justify-end pr-2" style="width:${tw}%">
+                    <span class="text-[10px] text-on-surface-variant font-bold">${typeof teamVal === 'number' && teamVal % 1 !== 0 ? teamVal.toFixed(1) : teamVal}</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>`;
+      }
+
+      const comparisonSection = `
+        <div class="col-span-12 rounded-3xl bg-white border border-surface-container-high p-6 shadow-sm">
+          <h2 class="text-lg font-headline font-bold text-on-surface mb-6 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">bar_chart</span>
+            Key Metrics Comparison
+          </h2>
+          <div class="space-y-6">
+            ${barPair('Submittals', r.submittals, avgSubmittals, maxVal)}
+            ${barPair('Interviews', r.interviews, avgInterviews, maxVal)}
+            ${barPair('Conversion %', conversion, avgConversion, maxConv)}
+          </div>
+        </div>`;
+
+      // Back link
+      const backLink = `
+        <div class="mt-8">
+          <a href="gallery.html" class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-container transition-colors">
+            <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+            Back to Team Gallery
+          </a>
+        </div>`;
+
+      // Assemble
+      document.getElementById('profile-content').innerHTML = `
+        ${headerSection}
+        <div class="grid grid-cols-12 gap-6 mt-8">
+          ${clientSection}
+          ${donutSection}
+          ${timelineSection}
+          ${insightsSection}
+          ${comparisonSection}
+        </div>
+        ${backLink}
+      `;
+    }
+
+    function renderNotFound(name) {
+      document.getElementById('profile-content').innerHTML = `
+        <div class="rounded-3xl bg-white border border-surface-container-high p-12 text-center shadow-sm">
+          <span class="material-symbols-outlined text-[64px] text-outline mb-4">person_off</span>
+          <h2 class="text-2xl font-headline font-bold text-on-surface mb-2">Recruiter not found</h2>
+          <p class="text-on-surface-variant mb-6">No recruiter matching "${name}" was found in the system.</p>
+          <a href="gallery.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-primary text-on-primary font-medium hover:bg-primary-container transition-colors">
+            <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+            Back to Team Gallery
+          </a>
+        </div>`;
+    }
+
+    async function loadProfile() {
+      const params = new URLSearchParams(window.location.search);
+      const nameQuery = (params.get('name') || '').trim().toLowerCase();
+
+      if (!nameQuery) {
+        renderNotFound('');
         return;
       }
 
-      renderProfile(recruiter, allRecruiters, data.totals);
-    } catch (err) {
-      console.error('Profile load failed:', err);
-      document.getElementById('loading').innerHTML = `
-        <div class="flex items-center justify-center py-32">
-          <div class="text-center">
-            <span class="material-symbols-outlined text-4xl text-error">cloud_off</span>
-            <p class="text-on-surface-variant mt-4">Could not load profile data.</p>
-            <a href="gallery.html" class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-primary hover:underline">
-              <span class="material-symbols-outlined text-[18px]">arrow_back</span>Back to Gallery
-            </a>
-          </div>
-        </div>`;
-    }
-  }
+      try {
+        const res = await fetch('/api/data');
+        const data = await res.json();
 
-  loadProfile();
-  setInterval(loadProfile, REFRESH_INTERVAL);
-})();
-</script>
+        const allRecruiters = [
+          ...(data.coreTeam?.recruiters || []),
+          ...(data.extendedTeam?.recruiters || [])
+        ];
+
+        const recruiter = allRecruiters.find(r => {
+          const firstName = r.name.split(' ')[0].toLowerCase();
+          return firstName.includes(nameQuery) || nameQuery.includes(firstName);
+        });
+
+        if (!recruiter) {
+          renderNotFound(nameQuery);
+          return;
+        }
+
+        document.title = `${recruiter.name} \u2014 JSM Consulting`;
+        renderProfile(recruiter, allRecruiters, data.totals || {});
+      } catch (err) {
+        console.error('Failed to load profile data:', err);
+        document.getElementById('profile-content').innerHTML = `
+          <div class="rounded-3xl bg-white border border-surface-container-high p-12 text-center shadow-sm">
+            <span class="material-symbols-outlined text-[64px] text-error mb-4">error</span>
+            <h2 class="text-2xl font-headline font-bold text-on-surface mb-2">Failed to load data</h2>
+            <p class="text-on-surface-variant mb-6">Could not fetch recruiter data. Please try again.</p>
+            <button onclick="loadProfile()" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-primary text-on-primary font-medium hover:bg-primary-container transition-colors">
+              <span class="material-symbols-outlined text-[18px]">refresh</span>Retry
+            </button>
+          </div>`;
+      }
+    }
+
+    // Initial load
+    loadProfile();
+
+    // Auto-refresh every 15 minutes
+    setInterval(loadProfile, 15 * 60 * 1000);
+  </script>
 </body>
 </html>
