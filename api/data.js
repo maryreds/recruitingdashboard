@@ -224,37 +224,58 @@ function processData(submittals, jobs) {
         uniqueJobs: new Set(), uniqueCompanies: new Set(), uniqueCandidates: new Set(),
         dates: [], rates: [], ttsDays: [],
         rejectionDetails: [], interviewDetails: [],
+        timeline: [], clientMap: {},
       };
     }
     const r = recruiterMap[name];
+    const candidate = `${s.CANDIDATEFIRSTNAME || ''} ${s.CANDIDATELASTNAME || ''}`.trim();
+    const role = s.JOBTITLE || 'Unknown';
+    const client = s.COMPANYNAME || 'Unknown';
+    const subDate = parseDate(s.SUBMITTALDATE || s.DATECREATED);
+
     if (isFlag(s.INTERNALSUBMITTALFLAG) || isFlag(s.EXTERNALSUBMITTALFLAG)) r.submittals++;
     if (isFlag(s.INTERNALSUBMITTALFLAG)) r.internalSubs++;
     if (isFlag(s.EXTERNALSUBMITTALFLAG)) r.externalSubs++;
+
+    // Determine status for timeline
+    let status = 'submitted';
     if (isFlag(s.INTERVIEWFLAG)) {
+      status = 'interview';
       r.interviews++;
       r.interviewDetails.push({
-        candidate: `${s.CANDIDATEFIRSTNAME || ''} ${s.CANDIDATELASTNAME || ''}`.trim(),
-        role: s.JOBTITLE || 'Unknown',
-        client: s.COMPANYNAME || 'Unknown',
+        candidate, role, client,
         date: s.INTERVIEWDATE || s.INTERVIEWSCHEDULEDATE || '',
         scheduleDate: s.INTERVIEWSCHEDULEDATE || '',
       });
     }
-    if (isFlag(s.HIREFLAG)) r.hires++;
+    if (isFlag(s.HIREFLAG)) { status = 'hired'; r.hires++; }
     if (isFlag(s.REJECTFLAG)) {
+      status = 'rejected';
       r.rejections++;
       r.rejectionDetails.push({
-        candidate: `${s.CANDIDATEFIRSTNAME || ''} ${s.CANDIDATELASTNAME || ''}`.trim(),
-        role: s.JOBTITLE || 'Unknown',
-        client: s.COMPANYNAME || 'Unknown',
+        candidate, role, client,
         reason: s.REJECTREASON || 'No reason given',
       });
     }
+
+    // Timeline entry
+    r.timeline.push({
+      candidate, role, client, status,
+      date: subDate ? subDate.toISOString() : null,
+      reason: s.REJECTREASON || null,
+      interviewDate: s.INTERVIEWDATE || s.INTERVIEWSCHEDULEDATE || null,
+    });
+
+    // Client tracking
+    if (client !== 'Unknown') {
+      if (!r.clientMap[client]) r.clientMap[client] = 0;
+      r.clientMap[client]++;
+    }
+
     if (s.JOBID) r.uniqueJobs.add(s.JOBID);
     if (s.COMPANYNAME) r.uniqueCompanies.add(s.COMPANYNAME);
     if (s.CANDIDATEID) r.uniqueCandidates.add(s.CANDIDATEID);
 
-    const subDate = parseDate(s.SUBMITTALDATE || s.DATECREATED);
     if (subDate) r.dates.push(subDate);
 
     try {
@@ -292,6 +313,10 @@ function processData(submittals, jobs) {
       interviewConversion: r.submittals > 0 ? +((r.interviews / r.submittals) * 100).toFixed(1) : 0,
       rejectionDetails: r.rejectionDetails,
       interviewDetails: r.interviewDetails,
+      timeline: r.timeline.sort((a, b) => (b.date || '').localeCompare(a.date || '')),
+      clients: Object.entries(r.clientMap)
+        .sort(([, a], [, b]) => b - a)
+        .map(([name, count]) => ({ name, count })),
     };
   });
 

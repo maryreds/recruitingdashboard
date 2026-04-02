@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recruiter Profile — JSM Consulting Talent Report</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Manrope:wght@200..800&family=Inter:wght@300..700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    ::-webkit-scrollbar { height: 6px; }
+    ::-webkit-scrollbar-thumb { background: #c4c7cf; border-radius: 99px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#001e52",
+            "primary-container": "#00327d",
+            "primary-fixed": "#dae2ff",
+            "primary-fixed-dim": "#b1c5ff",
+            "secondary": "#b6171e",
+            "secondary-container": "#da3433",
+            "secondary-fixed": "#ffdad6",
+            "surface": "#f7f9fb",
+            "surface-container": "#eceef0",
+            "surface-container-low": "#f2f4f6",
+            "surface-container-high": "#e6e8ea",
+            "surface-container-highest": "#e0e3e5",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#191c1e",
+            "on-surface-variant": "#434651",
+            "outline": "#747782",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#7d9eee",
+            "error": "#ba1a1a",
+            "background": "#f7f9fb",
+          },
+          fontFamily: {
+            headline: ["Libre Baskerville", "Georgia", "serif"],
+            body: ["Inter", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background font-body text-on-surface min-h-screen">
+
+  <!-- ============ HEADER ============ -->
+  <header class="fixed top-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-xl z-50 border-b border-surface-container-high">
+    <div class="h-full flex items-center justify-between px-6 lg:px-8 max-w-[1920px] mx-auto">
+      <div class="flex items-center gap-8">
+        <a href="index.html" class="font-headline text-2xl font-extrabold text-primary tracking-tight">JSM</a>
+        <nav class="hidden md:flex items-center gap-1">
+          <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition">Dashboard</a>
+          <a href="gallery.html" class="px-4 py-2 rounded-full text-sm font-medium text-primary bg-primary-fixed/40 transition">Team Gallery</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="gallery.html" class="flex items-center gap-1.5 text-sm font-medium text-on-surface-variant hover:text-primary transition">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+          <span class="hidden sm:inline">Back</span>
+        </a>
+        <button class="relative p-2 rounded-full hover:bg-surface-container-high transition">
+          <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+          <span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-secondary"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="hidden lg:flex flex-col fixed top-20 left-0 bottom-0 w-72 bg-white border-r border-surface-container-high z-40">
+    <div class="p-6 border-b border-surface-container-high">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-primary flex items-center justify-center">
+          <span class="text-white font-headline font-bold text-sm">JSM</span>
+        </div>
+        <div>
+          <p class="font-headline font-bold text-sm text-on-surface">JSM Recruiter</p>
+          <p class="text-xs text-on-surface-variant">Talent Intelligence</p>
+        </div>
+      </div>
+    </div>
+    <nav class="flex-1 p-4 space-y-1">
+      <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+        <span class="material-symbols-outlined text-[20px]">dashboard</span>Dashboard
+      </a>
+      <a href="gallery.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-primary bg-primary-fixed/30 transition">
+        <span class="material-symbols-outlined text-[20px]">group</span>Team Gallery
+      </a>
+      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+        <span class="material-symbols-outlined text-[20px]">analytics</span>Analytics
+      </a>
+      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+        <span class="material-symbols-outlined text-[20px]">strategy</span>Team Strategy
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ============ LOADING STATE ============ -->
+  <div id="loading" class="lg:ml-72 pt-28 px-4 sm:px-6 lg:px-8 pb-28 lg:pb-20 max-w-[1280px]">
+    <div class="flex items-center justify-center py-32">
+      <div class="text-center">
+        <span class="material-symbols-outlined text-4xl text-primary animate-spin">progress_activity</span>
+        <p class="text-on-surface-variant mt-4">Loading profile...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MAIN CONTENT (hidden until data loads) ============ -->
+  <main id="main-content" class="lg:ml-72 pt-28 px-4 sm:px-6 lg:px-8 pb-28 lg:pb-20 max-w-[1280px]" style="display:none">
+
+    <!-- Profile Header -->
+    <section class="relative rounded-3xl bg-gradient-to-br from-primary-fixed via-white to-surface-container-low p-8 sm:p-10 mb-10 overflow-hidden">
+      <div class="absolute top-0 right-0 w-72 h-72 bg-primary-fixed-dim/20 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl"></div>
+      <div class="relative flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        <!-- Avatar -->
+        <div class="relative flex-shrink-0">
+          <div id="avatar-container" class="h-32 w-32 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
+            <!-- Filled by JS -->
+          </div>
+          <span class="absolute bottom-2 right-2 h-5 w-5 rounded-full bg-green-500 border-[3px] border-white"></span>
+        </div>
+        <!-- Info -->
+        <div class="flex-1 min-w-0">
+          <div class="flex flex-wrap items-center gap-3 mb-2">
+            <h1 id="profile-name" class="font-headline text-3xl sm:text-4xl font-extrabold text-primary leading-tight"></h1>
+            <span id="profile-badge" class="hidden items-center px-3 py-1 rounded-full text-white text-[11px] font-bold tracking-wider uppercase"></span>
+          </div>
+          <p id="profile-title" class="text-on-surface-variant text-sm sm:text-base mb-4"></p>
+          <a id="profile-linkedin" href="#" target="_blank" rel="noopener noreferrer" class="hidden items-center gap-1.5 text-sm font-medium text-primary hover:underline transition">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 11.27h-3v-5.6c0-3.37-4-3.12-4 0v5.6h-3v-10h3v1.76c1.4-2.59 7-2.78 7 2.48v5.76z"/></svg>
+            View LinkedIn Profile
+          </a>
+        </div>
+      </div>
+      <!-- Stat Pills -->
+      <div class="relative mt-8 grid grid-cols-2 sm:grid-cols-4 gap-px bg-surface-container-high rounded-2xl overflow-hidden shadow-sm">
+        <div class="bg-white p-5 text-center">
+          <p id="stat-submittals" class="text-2xl font-headline font-extrabold text-primary">-</p>
+          <p class="text-xs text-on-surface-variant font-medium mt-1">Submittals</p>
+        </div>
+        <div class="bg-white p-5 text-center">
+          <p id="stat-interviews" class="text-2xl font-headline font-extrabold text-primary">-</p>
+          <p class="text-xs text-on-surface-variant font-medium mt-1">Interviews</p>
+        </div>
+        <div class="bg-white p-5 text-center">
+          <p id="stat-conversion" class="text-2xl font-headline font-extrabold text-primary">-</p>
+          <p class="text-xs text-on-surface-variant font-medium mt-1">Conversion</p>
+        </div>
+        <div class="bg-white p-5 text-center">
+          <p id="stat-rejections" class="text-2xl font-headline font-extrabold text-secondary">-</p>
+          <p class="text-xs text-on-surface-variant font-medium mt-1">Rejections</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-12 gap-6">
+
+      <!-- Section 1: Client Coverage & Focus -->
+      <section id="clients-section" class="col-span-12">
+        <h2 class="font-headline text-xl font-extrabold text-on-surface mb-5">Client Coverage &amp; Focus</h2>
+        <div id="clients-container" class="flex gap-5 overflow-x-auto pb-3 -mx-1 px-1">
+          <!-- Filled by JS -->
+        </div>
+      </section>
+
+      <!-- Section 2: Candidate Quality Breakdown -->
+      <section class="col-span-12 lg:col-span-5">
+        <div class="bg-white rounded-2xl border border-surface-container-high p-6 h-full">
+          <h2 class="font-headline text-lg font-extrabold text-on-surface mb-6">Candidate Quality Breakdown</h2>
+          <div class="flex justify-center mb-6">
+            <div class="relative">
+              <svg id="donut-chart" width="180" height="180" viewBox="0 0 180 180">
+                <circle cx="90" cy="90" r="70" fill="none" stroke="#e0e3e5" stroke-width="20"/>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span id="donut-center" class="text-3xl font-headline font-extrabold text-primary">-</span>
+                <span class="text-[11px] text-on-surface-variant font-medium">Pipeline</span>
+              </div>
+            </div>
+          </div>
+          <div id="donut-legend" class="flex flex-wrap justify-center gap-x-5 gap-y-2 mb-5">
+            <!-- Filled by JS -->
+          </div>
+          <div id="rejection-drivers" class="border-t border-surface-container-high pt-4" style="display:none">
+            <p class="text-xs text-on-surface-variant font-medium mb-2">Rejection Drivers</p>
+            <div id="rejection-tags" class="flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Activity Timeline -->
+      <section class="col-span-12 lg:col-span-7">
+        <div class="bg-white rounded-2xl border border-surface-container-high p-6 h-full">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="font-headline text-lg font-extrabold text-on-surface">Activity Timeline</h2>
+            <span class="px-3 py-1 rounded-full bg-surface-container-low text-[11px] font-bold text-on-surface-variant tracking-wide">Last 14 Days</span>
+          </div>
+          <div id="timeline-container" class="space-y-6 max-h-[480px] overflow-y-auto pr-2">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Performance Insights -->
+      <section class="col-span-12">
+        <h2 class="font-headline text-xl font-extrabold text-on-surface mb-5">Performance Insights</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-2xl border border-surface-container-high p-6 border-l-4 border-l-primary">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="material-symbols-outlined text-primary text-[22px]">trending_up</span>
+              <h3 class="font-headline font-bold text-on-surface">Strengths</h3>
+            </div>
+            <ul id="strengths-list" class="space-y-3 text-sm text-on-surface-variant leading-relaxed">
+              <!-- Filled by JS -->
+            </ul>
+          </div>
+          <div class="bg-white rounded-2xl border border-surface-container-high p-6 border-l-4 border-l-outline">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="material-symbols-outlined text-outline text-[22px]">lightbulb</span>
+              <h3 class="font-headline font-bold text-on-surface">Areas for Growth</h3>
+            </div>
+            <ul id="growth-list" class="space-y-3 text-sm text-on-surface-variant leading-relaxed">
+              <!-- Filled by JS -->
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Key Metrics Comparison -->
+      <section class="col-span-12">
+        <div class="bg-white rounded-2xl border border-surface-container-high p-6">
+          <h2 class="font-headline text-lg font-extrabold text-on-surface mb-6">Key Metrics Comparison</h2>
+          <div id="comparison-container" class="space-y-6">
+            <!-- Filled by JS -->
+          </div>
+          <div class="flex items-center gap-5 mt-5 pt-4 border-t border-surface-container-high">
+            <div class="flex items-center gap-2">
+              <span class="h-3 w-8 rounded-full bg-primary"></span>
+              <span id="legend-name" class="text-xs text-on-surface-variant font-medium"></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="h-3 w-8 rounded-full bg-outline/50"></span>
+              <span class="text-xs text-on-surface-variant font-medium">Team Average</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Back to Gallery -->
+    <div class="mt-10">
+      <a href="gallery.html" class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline transition">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        Back to Team Gallery
+      </a>
+    </div>
+
+  </main>
+
+  <!-- ============ MOBILE BOTTOM NAV ============ -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-surface-container-high z-50">
+    <div class="grid grid-cols-4 h-16">
+      <a href="index.html" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
+        <span class="material-symbols-outlined text-[22px]">dashboard</span>
+        <span class="text-[10px] font-medium">Dashboard</span>
+      </a>
+      <a href="gallery.html" class="flex flex-col items-center justify-center gap-0.5 text-primary">
+        <span class="material-symbols-outlined text-[22px]">group</span>
+        <span class="text-[10px] font-bold">Gallery</span>
+      </a>
+      <a href="#" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
+        <span class="material-symbols-outlined text-[22px]">analytics</span>
+        <span class="text-[10px] font-medium">Analytics</span>
+      </a>
+      <a href="#" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
+        <span class="material-symbols-outlined text-[22px]">settings</span>
+        <span class="text-[10px] font-medium">Settings</span>
+      </a>
+    </div>
+  </nav>
+
+<script>
+(function() {
+  const REFRESH_INTERVAL = 15 * 60 * 1000;
+  const params = new URLSearchParams(window.location.search);
+  const recruiterName = params.get('name');
+
+  if (!recruiterName) {
+    window.location.href = 'gallery.html';
+    return;
+  }
+
+  document.title = `${recruiterName} — JSM Consulting Talent Report`;
+
+  // LinkedIn URLs (known team members)
+  const linkedinMap = {
+    'Rahul Kanojiya': 'https://www.linkedin.com/in/rahul-kanojiya-55821b113/',
+    'Shaily Juneja': 'https://www.linkedin.com/in/shaily-juneja-659290100',
+    'Santoshi Hegde': 'https://in.linkedin.com/in/santoshi-hegde-5389a44',
+    'Vishal Khatri': 'https://www.linkedin.com/in/vishal-khatri-92756984/',
+    'Treesa Tijo': 'https://www.linkedin.com/in/treesatijo',
+    'Vivek Shenoy': 'https://www.linkedin.com/in/vivek-s-6b186232/',
+    'Shreerang Tarte': 'https://www.linkedin.com/in/shreerang-tarte-2632652/',
+  };
+
+  // Role descriptions
+  const roleMap = {
+    'Rahul Kanojiya': 'Team Lead, Recruiting & BD',
+    'Shaily Juneja': 'Senior IT Recruiter',
+    'Sahithya Mogalapu': 'IT Recruiter',
+    'Akash Nair': 'HR Recruiter',
+    'Santoshi Hegde': 'Senior Recruiter · Extended Team · IT & Government Sector Specialist',
+    'Vishal Khatri': 'Senior Recruiter',
+    'Shubham Kenjale': 'IT Recruiter',
+    'Mona P': 'Recruiter',
+    'Rutuja Pande': 'Senior IT Recruiter',
+    'Treesa Tijo': 'Recruiter',
+    'Vivek Shenoy': 'Sr. VP Operations',
+    'Shreerang Tarte': 'Head HR & Strategy',
+  };
+
+  // Client icons
+  const clientIcons = {
+    'NYS ITS': 'apartment',
+    'NYS OMH': 'health_and_safety',
+    'NYS DOL': 'work',
+    'NYS DOT': 'directions_car',
+    'NYC DYCD': 'groups',
+    'HonorVet Technologies': 'military_tech',
+    'Knowledge Services Technology': 'school',
+    'State of Georgia': 'account_balance',
+    'HBITS': 'schedule',
+  };
+
+  function getClientIcon(name) {
+    return clientIcons[name] || 'business';
+  }
+
+  function slugify(name) {
+    return name.toLowerCase().split(' ')[0];
+  }
+
+  function renderProfile(recruiter, allRecruiters, totals) {
+    const loading = document.getElementById('loading');
+    const main = document.getElementById('main-content');
+
+    // Avatar
+    const avatarContainer = document.getElementById('avatar-container');
+    const imgSlug = slugify(recruiter.name);
+    avatarContainer.innerHTML = `<img src="img/${imgSlug}.png" alt="${recruiter.name}" class="w-full h-full object-cover object-top" onerror="this.parentElement.innerHTML='<div class=\\'w-full h-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center\\'><span class=\\'text-white text-4xl font-bold font-headline\\'>${recruiter.initials}</span></div>'"/>`;
+
+    // Name & badge
+    document.getElementById('profile-name').textContent = recruiter.name;
+    const badge = document.getElementById('profile-badge');
+
+    // Determine badge
+    const sortedByInterviews = [...allRecruiters].sort((a, b) => b.interviews - a.interviews || b.submittals - a.submittals);
+    const sortedBySubs = [...allRecruiters].sort((a, b) => b.submittals - a.submittals);
+    const fastestTTS = [...allRecruiters].filter(r => r.avgTTS !== null).sort((a, b) => a.avgTTS - b.avgTTS);
+
+    if (sortedByInterviews[0] && sortedByInterviews[0].name === recruiter.name && recruiter.interviews > 0) {
+      badge.textContent = 'Top Performer';
+      badge.className = 'inline-flex items-center px-3 py-1 rounded-full bg-secondary text-white text-[11px] font-bold tracking-wider uppercase';
+    } else if (sortedBySubs[0] && sortedBySubs[0].name === recruiter.name) {
+      badge.textContent = 'Most Active';
+      badge.className = 'inline-flex items-center px-3 py-1 rounded-full bg-primary text-white text-[11px] font-bold tracking-wider uppercase';
+    } else if (fastestTTS[0] && fastestTTS[0].name === recruiter.name && recruiter.avgTTS === 0) {
+      badge.textContent = 'Fastest';
+      badge.className = 'inline-flex items-center px-3 py-1 rounded-full bg-secondary text-white text-[11px] font-bold tracking-wider uppercase';
+    } else if (recruiter.isCore) {
+      badge.textContent = 'Core Team';
+      badge.className = 'inline-flex items-center px-3 py-1 rounded-full bg-primary-fixed text-primary text-[11px] font-bold tracking-wider uppercase';
+    } else {
+      badge.textContent = 'Extended Team';
+      badge.className = 'inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-[11px] font-bold tracking-wider uppercase';
+    }
+
+    // Title
+    document.getElementById('profile-title').textContent = roleMap[recruiter.name] || (recruiter.isCore ? 'Core Team Recruiter' : 'Extended Team Recruiter');
+
+    // LinkedIn
+    const linkedinEl = document.getElementById('profile-linkedin');
+    if (linkedinMap[recruiter.name]) {
+      linkedinEl.href = linkedinMap[recruiter.name];
+      linkedinEl.style.display = 'inline-flex';
+    }
+
+    // Stats
+    document.getElementById('stat-submittals').textContent = recruiter.submittals;
+    document.getElementById('stat-interviews').textContent = recruiter.interviews;
+    document.getElementById('stat-conversion').textContent = recruiter.interviewConversion + '%';
+    document.getElementById('stat-rejections').textContent = recruiter.rejections;
+
+    // Clients
+    const clientsContainer = document.getElementById('clients-container');
+    if (recruiter.clients && recruiter.clients.length > 0) {
+      const bgColors = ['bg-primary', 'bg-primary-container', 'bg-on-surface-variant'];
+      clientsContainer.innerHTML = recruiter.clients.map((c, i) => `
+        <div class="flex-shrink-0 w-72 bg-white rounded-2xl border border-surface-container-high p-6 hover:shadow-lg transition-shadow">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-11 w-11 rounded-xl ${bgColors[i] || bgColors[2]} flex items-center justify-center">
+              <span class="material-symbols-outlined text-white text-[20px]">${getClientIcon(c.name)}</span>
+            </div>
+            <div>
+              <p class="font-headline font-bold text-sm text-on-surface">${c.name}</p>
+              <span class="inline-block mt-0.5 px-2 py-0.5 rounded-full bg-primary-fixed text-primary text-[10px] font-bold tracking-wide uppercase">${i === 0 ? 'Primary Client' : 'Active Client'}</span>
+            </div>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">${c.count} submittal${c.count !== 1 ? 's' : ''} during this period</p>
+        </div>
+      `).join('');
+    } else {
+      document.getElementById('clients-section').style.display = 'none';
+    }
+
+    // Donut Chart
+    const total = recruiter.submittals + recruiter.rejections;
+    const submitted = recruiter.submittals - recruiter.interviews;
+    const circumference = 2 * Math.PI * 70; // ~439.82
+    document.getElementById('donut-center').textContent = recruiter.submittals;
+
+    const svg = document.getElementById('donut-chart');
+    // Clear existing arcs (keep background)
+    while (svg.children.length > 1) svg.removeChild(svg.lastChild);
+
+    if (total > 0) {
+      const segments = [];
+      if (submitted > 0) segments.push({ count: submitted, color: '#001e52', label: 'Submitted' });
+      if (recruiter.interviews > 0) segments.push({ count: recruiter.interviews, color: '#b6171e', label: 'Interviewed' });
+      if (recruiter.rejections > 0) segments.push({ count: recruiter.rejections, color: '#747782', label: 'Rejected' });
+
+      let offset = -circumference / 4;
+      segments.forEach(seg => {
+        const len = (seg.count / total) * circumference;
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', '90');
+        circle.setAttribute('cy', '90');
+        circle.setAttribute('r', '70');
+        circle.setAttribute('fill', 'none');
+        circle.setAttribute('stroke', seg.color);
+        circle.setAttribute('stroke-width', '20');
+        circle.setAttribute('stroke-dasharray', `${len} ${circumference - len}`);
+        circle.setAttribute('stroke-dashoffset', `${-offset}`);
+        circle.setAttribute('stroke-linecap', 'round');
+        svg.appendChild(circle);
+        offset += len;
+      });
+
+      // Legend
+      const legendEl = document.getElementById('donut-legend');
+      legendEl.innerHTML = segments.map(seg => `
+        <div class="flex items-center gap-2">
+          <span class="h-3 w-3 rounded-full" style="background:${seg.color}"></span>
+          <span class="text-xs text-on-surface-variant">${seg.count} ${seg.label}</span>
+        </div>
+      `).join('');
+    }
+
+    // Rejection drivers
+    if (recruiter.rejectionDetails && recruiter.rejectionDetails.length > 0) {
+      document.getElementById('rejection-drivers').style.display = 'block';
+      const reasonCounts = {};
+      recruiter.rejectionDetails.forEach(r => {
+        const reason = r.reason || 'Not specified';
+        reasonCounts[reason] = (reasonCounts[reason] || 0) + 1;
+      });
+      document.getElementById('rejection-tags').innerHTML = Object.entries(reasonCounts)
+        .map(([reason, count]) => `<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-low text-xs font-medium text-on-surface-variant">${reason} (${count})</span>`)
+        .join('');
+    }
+
+    // Timeline
+    const timelineContainer = document.getElementById('timeline-container');
+    if (recruiter.timeline && recruiter.timeline.length > 0) {
+      // Group by date
+      const grouped = {};
+      recruiter.timeline.forEach(entry => {
+        const d = entry.date ? new Date(entry.date) : null;
+        const key = d ? d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Unknown Date';
+        const sortKey = d ? d.toISOString() : '0000';
+        if (!grouped[key]) grouped[key] = { sortKey, entries: [] };
+        grouped[key].entries.push(entry);
+      });
+
+      const sortedDays = Object.entries(grouped).sort(([, a], [, b]) => b.sortKey.localeCompare(a.sortKey));
+
+      timelineContainer.innerHTML = sortedDays.map(([dateLabel, { entries }]) => `
+        <div>
+          <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-3">${dateLabel}</p>
+          <div class="ml-4 border-l-2 border-primary-fixed pl-5 space-y-4">
+            ${entries.map(e => {
+              let dotColor, badgeClass, badgeText;
+              if (e.status === 'interview') {
+                dotColor = 'bg-green-500'; badgeClass = 'bg-green-100 text-green-700'; badgeText = 'Interview';
+              } else if (e.status === 'rejected') {
+                dotColor = 'bg-outline'; badgeClass = 'bg-red-50 text-error'; badgeText = 'Rejected';
+              } else if (e.status === 'hired') {
+                dotColor = 'bg-secondary'; badgeClass = 'bg-secondary-fixed text-secondary'; badgeText = 'Hired';
+              } else {
+                dotColor = 'bg-primary'; badgeClass = 'bg-primary-fixed text-primary'; badgeText = 'Submitted';
+              }
+              const interviewNote = e.status === 'interview' && e.interviewDate
+                ? `<span class="text-[11px] text-on-surface-variant">Interview: ${new Date(e.interviewDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>`
+                : '';
+              return `<div class="relative">
+                <span class="absolute -left-[27px] top-1 h-3 w-3 rounded-full ${dotColor} ring-2 ring-white"></span>
+                <p class="text-sm font-semibold text-on-surface">${e.candidate || 'Unknown Candidate'}</p>
+                <p class="text-xs text-on-surface-variant mt-0.5">${e.role} @ ${e.client}</p>
+                <div class="flex items-center gap-2 mt-1.5">
+                  <span class="px-2 py-0.5 rounded-full ${badgeClass} text-[10px] font-bold uppercase tracking-wide">${badgeText}</span>
+                  ${interviewNote}
+                </div>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+      `).join('');
+    } else {
+      timelineContainer.innerHTML = '<p class="text-sm text-on-surface-variant text-center py-8">No activity recorded in this period.</p>';
+    }
+
+    // Performance Insights (generated dynamically)
+    const strengthsList = document.getElementById('strengths-list');
+    const growthList = document.getElementById('growth-list');
+    const strengths = [];
+    const growth = [];
+
+    const avgSubs = allRecruiters.reduce((s, r) => s + r.submittals, 0) / allRecruiters.length;
+    const avgInts = allRecruiters.reduce((s, r) => s + r.interviews, 0) / allRecruiters.length;
+
+    if (recruiter.submittals > avgSubs) {
+      strengths.push(`Above-average volume (${recruiter.submittals} submittals vs ${avgSubs.toFixed(1)} team avg)`);
+    }
+    if (recruiter.interviews > 0) {
+      strengths.push(`Achieved ${recruiter.interviews} interview${recruiter.interviews > 1 ? 's' : ''} this period`);
+    }
+    if (recruiter.interviewConversion > 0) {
+      strengths.push(`${recruiter.interviewConversion}% submittal-to-interview conversion rate`);
+    }
+    if (recruiter.daysActive >= 3) {
+      strengths.push(`Consistent activity across ${recruiter.daysActive} active days`);
+    }
+    if (recruiter.clients && recruiter.clients.length >= 2) {
+      strengths.push(`Covers ${recruiter.clients.length} distinct clients`);
+    }
+    if (recruiter.avgTTS !== null && recruiter.avgTTS <= 1) {
+      strengths.push(`Exceptional speed — ${recruiter.avgTTS} day${recruiter.avgTTS === 0 ? '' : 's'} average time-to-submittal`);
+    }
+    if (recruiter.avgBillRate && recruiter.avgBillRate > 70) {
+      strengths.push(`Strong bill rate positioning ($${recruiter.avgBillRate}/hr average)`);
+    }
+    if (strengths.length === 0) {
+      strengths.push('Contributing to team pipeline');
+    }
+
+    if (recruiter.rejections > 0) {
+      growth.push(`${recruiter.rejections} rejection${recruiter.rejections > 1 ? 's' : ''} in the period — monitor client feedback patterns`);
+    }
+    if (recruiter.interviews === 0 && recruiter.submittals > 0) {
+      growth.push('No interviews yet — focus on candidate-job fit to improve conversion');
+    }
+    if (recruiter.hires === 0) {
+      growth.push('No hires yet — push candidates through to offer stage');
+    }
+    if (recruiter.avgTTS !== null && recruiter.avgTTS > 4) {
+      growth.push(`Time-to-submittal (${recruiter.avgTTS} days) above team benchmark — consider faster sourcing`);
+    }
+    if (recruiter.submittals < avgSubs && recruiter.submittals > 0) {
+      growth.push(`Below-average volume (${recruiter.submittals} vs ${avgSubs.toFixed(1)} team avg) — increase pipeline activity`);
+    }
+    if (recruiter.clients && recruiter.clients.length <= 1) {
+      growth.push('Consider expanding beyond current client focus for diversification');
+    }
+    if (growth.length === 0) {
+      growth.push('Continue current trajectory and maintain consistency');
+    }
+
+    strengthsList.innerHTML = strengths.map(s => `<li class="flex gap-2"><span class="text-green-600 mt-0.5 flex-shrink-0">&#10003;</span>${s}</li>`).join('');
+    growthList.innerHTML = growth.map(g => `<li class="flex gap-2"><span class="text-on-surface-variant mt-0.5 flex-shrink-0">&bull;</span>${g}</li>`).join('');
+
+    // Key Metrics Comparison
+    document.getElementById('legend-name').textContent = recruiter.name;
+    const maxSubs = Math.max(...allRecruiters.map(r => r.submittals), 1);
+    const maxInts = Math.max(...allRecruiters.map(r => r.interviews), 1);
+    const maxConv = Math.max(...allRecruiters.map(r => r.interviewConversion), 1);
+
+    const compContainer = document.getElementById('comparison-container');
+    const metrics = [
+      { label: 'Submittals', value: recruiter.submittals, avg: avgSubs, max: maxSubs },
+      { label: 'Interviews', value: recruiter.interviews, avg: avgInts, max: Math.max(maxInts, 1) },
+      { label: 'Conversion Rate', value: recruiter.interviewConversion, avg: +(allRecruiters.reduce((s, r) => s + r.interviewConversion, 0) / allRecruiters.length).toFixed(1), max: Math.max(maxConv, 1), suffix: '%' },
+    ];
+
+    compContainer.innerHTML = metrics.map(m => {
+      const valPct = Math.min(100, (m.value / m.max) * 100) || 0;
+      const avgPct = Math.min(100, (m.avg / m.max) * 100) || 0;
+      const suffix = m.suffix || '';
+      return `<div>
+        <div class="flex items-center justify-between mb-2">
+          <p class="text-sm font-medium text-on-surface">${m.label}</p>
+          <div class="flex items-center gap-4 text-xs text-on-surface-variant">
+            <span><span class="font-bold text-primary">${recruiter.name.split(' ')[0]}: ${m.value}${suffix}</span></span>
+            <span>Team Avg: ${m.avg}${suffix}</span>
+          </div>
+        </div>
+        <div class="space-y-1.5">
+          <div class="h-4 rounded-full bg-surface-container-low overflow-hidden">
+            <div class="h-full rounded-full bg-primary transition-all" style="width: ${valPct}%"></div>
+          </div>
+          <div class="h-4 rounded-full bg-surface-container-low overflow-hidden">
+            <div class="h-full rounded-full bg-outline/50 transition-all" style="width: ${avgPct}%"></div>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+
+    // Show content
+    loading.style.display = 'none';
+    main.style.display = 'block';
+  }
+
+  async function loadProfile() {
+    try {
+      const resp = await fetch('/api/data');
+      if (!resp.ok) throw new Error('API error');
+      const data = await resp.json();
+      const allRecruiters = [...data.coreTeam.recruiters, ...data.extendedTeam.recruiters];
+      const recruiter = allRecruiters.find(r => r.name === recruiterName);
+
+      if (!recruiter) {
+        document.getElementById('loading').innerHTML = `
+          <div class="flex items-center justify-center py-32">
+            <div class="text-center">
+              <span class="material-symbols-outlined text-4xl text-error">person_off</span>
+              <p class="text-on-surface-variant mt-4">Recruiter "${recruiterName}" not found.</p>
+              <a href="gallery.html" class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-primary hover:underline">
+                <span class="material-symbols-outlined text-[18px]">arrow_back</span>Back to Gallery
+              </a>
+            </div>
+          </div>`;
+        return;
+      }
+
+      renderProfile(recruiter, allRecruiters, data.totals);
+    } catch (err) {
+      console.error('Profile load failed:', err);
+      document.getElementById('loading').innerHTML = `
+        <div class="flex items-center justify-center py-32">
+          <div class="text-center">
+            <span class="material-symbols-outlined text-4xl text-error">cloud_off</span>
+            <p class="text-on-surface-variant mt-4">Could not load profile data.</p>
+            <a href="gallery.html" class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-primary hover:underline">
+              <span class="material-symbols-outlined text-[18px]">arrow_back</span>Back to Gallery
+            </a>
+          </div>
+        </div>`;
+    }
+  }
+
+  loadProfile();
+  setInterval(loadProfile, REFRESH_INTERVAL);
+})();
+</script>
+</body>
+</html>
