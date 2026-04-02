@@ -14,6 +14,7 @@ const NAME_MAP = {
   'Rahul K': 'Rahul Kanojiya',
   'Akash N': 'Akash Nair',
   'Shreerang T': 'Shreerang Tarte',
+  'Mona P': 'Monoshree Pramanik',
 };
 
 function fullName(first, last) {
