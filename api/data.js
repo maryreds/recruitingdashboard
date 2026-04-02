@@ -1,10 +1,10 @@
 // Vercel Serverless Function — JobDiva Live Data API
 // Returns processed recruiting metrics for the Talent Architect dashboard
 
-const JOBDIVA_BASE_URL = process.env.JOBDIVA_BASE_URL || 'https://api.jobdiva.com';
-const CLIENT_ID = process.env.JOBDIVA_CLIENT_ID;
-const USERNAME = process.env.JOBDIVA_USERNAME;
-const PASSWORD = process.env.JOBDIVA_PASSWORD;
+const JOBDIVA_BASE_URL = (process.env.JOBDIVA_BASE_URL || 'https://api.jobdiva.com').trim().replace(/\/+$/, '');
+const CLIENT_ID = (process.env.JOBDIVA_CLIENT_ID || '').trim();
+const USERNAME = (process.env.JOBDIVA_USERNAME || '').trim();
+const PASSWORD = (process.env.JOBDIVA_PASSWORD || '').trim();
 const LOOKBACK_DAYS = parseInt(process.env.LOOKBACK_DAYS || '14', 10);
 
 const JSM_FIRST_NAMES = ['shaily', 'akash', 'rahul', 'sahithya', 'vivek', 'shreerang'];
@@ -79,19 +79,51 @@ async function authenticate() {
   });
   const resp = await fetch(`${JOBDIVA_BASE_URL}/api/authenticate?${params}`);
   const body = await resp.text();
+
+  // The JobDiva auth endpoint can return:
+  // 1. A plain text token string (possibly quoted)
+  // 2. A JSON string like "tokenvalue"
+  // 3. A JSON object like {"token": "tokenvalue"}
+  let token = null;
   try {
     const parsed = JSON.parse(body);
-    if (typeof parsed === 'string') return parsed.trim().replace(/"/g, '');
-    if (parsed && parsed.token) return parsed.token;
-    return String(parsed).trim().replace(/"/g, '');
+    if (typeof parsed === 'string') {
+      token = parsed;
+    } else if (parsed && typeof parsed === 'object') {
+      // Try common token field names
+      token = parsed.token || parsed.Token || parsed.access_token || parsed.sessionId || parsed.id;
+      if (!token) {
+        // Try the first string value in the object
+        for (const val of Object.values(parsed)) {
+          if (typeof val === 'string' && val.length > 5) {
+            token = val;
+            break;
+          }
+        }
+      }
+    }
   } catch {
-    return body.trim().replace(/"/g, '');
+    // Not JSON — use raw body
+    token = body;
   }
+
+  if (token) {
+    token = String(token).trim().replace(/^"|"$/g, '');
+  }
+
+  debugLog.push({ step: 'auth_detail', rawBodyLen: body.length, rawBodySample: body.slice(0, 100), tokenExtracted: token ? token.slice(0, 10) + '...' : null });
+
+  return token;
 }
+
+const debugLog = [];
 
 async function fetchRecords(token, endpoint, fromDt, toDt) {
   const all = [];
   let page = 0;
+  const url0 = `${JOBDIVA_BASE_URL}${endpoint}?fromDate=${encodeURIComponent(fmtDate(fromDt))}&toDate=${encodeURIComponent(fmtDate(toDt))}&pageSize=500&pageNumber=0`;
+  debugLog.push({ endpoint, fromDate: fmtDate(fromDt), toDate: fmtDate(toDt), url: url0.replace(/password=[^&]*/g, 'password=***') });
+
   while (true) {
     const params = new URLSearchParams({
       fromDate: fmtDate(fromDt),
@@ -99,11 +131,37 @@ async function fetchRecords(token, endpoint, fromDt, toDt) {
       pageSize: '500',
       pageNumber: String(page),
     });
-    const resp = await fetch(`${JOBDIVA_BASE_URL}${endpoint}?${params}`, {
+    const fetchUrl = `${JOBDIVA_BASE_URL}${endpoint}?${params}`;
+    const resp = await fetch(fetchUrl, {
       headers: { Authorization: token },
     });
-    if (!resp.ok) break;
-    const result = await resp.json();
+
+    if (!resp.ok) {
+      const errBody = await resp.text().catch(() => '');
+      debugLog.push({ error: `HTTP ${resp.status}`, endpoint, body: errBody.slice(0, 300) });
+      break;
+    }
+
+    const bodyText = await resp.text();
+    let result;
+    try {
+      result = JSON.parse(bodyText);
+    } catch {
+      debugLog.push({ error: 'JSON parse failed', body: bodyText.slice(0, 300) });
+      break;
+    }
+
+    debugLog.push({
+      endpoint,
+      page,
+      responseType: Array.isArray(result) ? 'array' : typeof result,
+      hasData: result && result.data !== undefined,
+      dataType: result && result.data ? (Array.isArray(result.data) ? 'array' : typeof result.data) : 'none',
+      dataLength: result && Array.isArray(result.data) ? result.data.length : (Array.isArray(result) ? result.length : 0),
+      message: result && result.message ? result.message.slice(0, 200) : null,
+      sample: bodyText.slice(0, 200),
+    });
+
     let raw = null;
     if (result && typeof result === 'object' && !Array.isArray(result)) {
       if (result.data === null || result.data === undefined) break;
@@ -414,6 +472,8 @@ module.exports = async (req, res) => {
     if (!token || token.length < 5) {
       return res.status(401).json({ error: 'JobDiva authentication failed' });
     }
+
+    debugLog.length = 0;
 
     const [submittals, jobs] = await Promise.all([
       fetchRecords(token, '/api/bi/NewUpdatedSubmittalInterviewHireActivityRecords', fromDt, now),
