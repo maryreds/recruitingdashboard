@@ -365,21 +365,22 @@ function processData(submittals, jobs) {
   }
 
   // Build weekly heatmap
+  const emptyDay = { count: 0, detail: {} };
   const weekMap = {};
   for (const [dateStr, info] of Object.entries(dailyMap)) {
     const d = new Date(dateStr + 'T12:00:00');
     const ws = weekStartMonday(d);
     const wKey = ws.toISOString().slice(0, 10);
-    if (!weekMap[wKey]) weekMap[wKey] = { label: '', days: [0, 0, 0, 0, 0, 0, 0] };
+    if (!weekMap[wKey]) weekMap[wKey] = { label: '', days: Array.from({ length: 7 }, () => ({ count: 0, detail: {} })) };
     const dow = dayOfWeekIndex(d);
-    weekMap[wKey].days[dow] = info.total;
+    weekMap[wKey].days[dow] = { count: info.total, detail: info.detail };
   }
 
   // Also fill in weeks within the range that have no activity
   const cursor = new Date(weekStartMonday(fromDt));
   while (cursor <= now) {
     const wKey = cursor.toISOString().slice(0, 10);
-    if (!weekMap[wKey]) weekMap[wKey] = { days: [0, 0, 0, 0, 0, 0, 0] };
+    if (!weekMap[wKey]) weekMap[wKey] = { days: Array.from({ length: 7 }, () => ({ count: 0, detail: {} })) };
     const m = cursor.toLocaleString('en-US', { month: 'short' });
     const d = cursor.getDate();
     weekMap[wKey].label = `${m} ${d}`;
