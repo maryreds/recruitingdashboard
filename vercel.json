@@ -14,6 +14,9 @@
     "api/cover-letter.js": {
       "maxDuration": 60
     },
+    "api/candidate-match.js": {
+      "maxDuration": 90
+    },
     "api/export-docx.js": {
       "maxDuration": 30
     }

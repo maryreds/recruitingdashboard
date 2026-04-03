@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png"/>
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+  <title>Candidate Match — JSM Recruiting Intelligence</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZFJ1MNDSK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VZFJ1MNDSK');
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Manrope:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            "primary":"#001e52","primary-container":"#00327d","primary-fixed":"#dae2ff","primary-fixed-dim":"#b1c5ff",
+            "secondary":"#b6171e","secondary-container":"#da3433","secondary-fixed":"#ffdad6","secondary-fixed-dim":"#ffb3ac",
+            "tertiary":"#411100","tertiary-container":"#651f00","tertiary-fixed":"#ffdbcf",
+            "surface":"#f7f9fb","surface-container":"#eceef0","surface-container-low":"#f2f4f6",
+            "surface-container-high":"#e6e8ea","surface-container-highest":"#e0e3e5","surface-container-lowest":"#ffffff",
+            "on-surface":"#191c1e","on-surface-variant":"#434651","outline":"#747782","outline-variant":"#c4c6d3",
+            "on-primary":"#ffffff","on-secondary":"#ffffff","on-primary-container":"#7d9eee",
+            "error":"#ba1a1a","error-container":"#ffdad6","on-secondary-container":"#fffbff",
+            "on-tertiary-container":"#eb845c","background":"#f7f9fb","inverse-surface":"#2d3133"
+          },
+          fontFamily: {
+            "headline": ["Libre Baskerville", "Georgia", "serif"],
+            "body": ["Inter", "sans-serif"],
+            "label": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+    .font-headline { font-family: 'Libre Baskerville', Georgia, serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    @keyframes cm-spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+
+  <!-- Fixed Header -->
+  <header class="fixed top-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-xl border-b border-outline-variant/30 z-50 flex items-center justify-between px-6 xl:px-10">
+    <a href="index.html" class="flex items-center"><img src="img/jsm-logo.svg" alt="JSM Consulting" class="h-12"/></a>
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="index.html" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Dashboard</a>
+      <a href="gallery.html" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Team Gallery</a>
+      <a href="candidate-match.html" class="text-sm font-semibold text-primary border-b-2 border-secondary pb-1">Tools</a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <button class="relative p-2 rounded-full hover:bg-surface-container-high transition-colors">
+        <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="hidden xl:flex fixed top-0 left-0 bottom-0 w-72 bg-white border-r border-outline-variant/20 z-40 flex-col pt-24 pb-6 px-6">
+    <nav class="flex-1 flex flex-col gap-1 pt-2">
+      <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+        <span class="material-symbols-outlined text-xl">dashboard</span>
+        Dashboard
+      </a>
+      <a href="gallery.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+        <span class="material-symbols-outlined text-xl">groups</span>
+        Team Gallery
+      </a>
+      <a href="analytics.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+        <span class="material-symbols-outlined text-xl">analytics</span>
+        Analytics
+      </a>
+      <a href="resources.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+        <span class="material-symbols-outlined text-xl">school</span>
+        Recruiter Resources
+      </a>
+      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant/50 cursor-default text-sm" onclick="return false">
+        <span class="material-symbols-outlined text-xl">strategy</span>
+        Team Strategy
+        <span class="ml-auto text-[10px] font-semibold uppercase tracking-wider bg-surface-container-high text-on-surface-variant rounded-full px-2 py-0.5">Soon</span>
+      </a>
+
+      <div class="mt-6 mb-2 px-4">
+        <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-outline">Tools</p>
+      </div>
+      <a href="cv-enhancer.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+        <span class="material-symbols-outlined text-xl">auto_fix_high</span>
+        CV Enhancer
+      </a>
+      <a href="cover-letters.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+        <span class="material-symbols-outlined text-xl">description</span>
+        Cover Letters
+      </a>
+      <a href="candidate-match.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-primary-fixed/60 text-primary font-medium text-sm">
+        <span class="material-symbols-outlined text-xl">person_search</span>
+        Candidate Match
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="xl:pl-72 pt-28 pb-20 px-4 sm:px-6 lg:px-10 max-w-[1400px]">
+
+    <!-- Page Header -->
+    <section class="mb-12">
+      <p class="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-4">Intelligence Tools</p>
+      <h1 class="font-headline text-[2.5rem] sm:text-[3rem] font-bold text-primary leading-[1.1] mb-4">Candidate Match</h1>
+      <p class="text-on-surface-variant max-w-2xl leading-relaxed">
+        Compare up to 10 candidates against a job description. AI-powered analysis with match scoring, risk detection, stability insights, and positioning strategy.
+      </p>
+    </section>
+
+    <!-- Dynamic content rendered by JS -->
+    <div id="candidate-match"></div>
+
+    <!-- Loading Overlay -->
+    <div id="cm-loading" class="hidden fixed inset-0 z-[60] bg-white/70 backdrop-blur-sm flex flex-col items-center justify-center">
+      <div class="w-12 h-12 border-4 border-surface-container-high border-t-primary rounded-full" style="animation: cm-spin 0.8s linear infinite;"></div>
+      <p class="text-on-surface font-headline font-bold text-lg mt-6">Analyzing candidates with AI...</p>
+      <p class="text-outline text-sm mt-2">This may take 10-30 seconds depending on the number of CVs</p>
+    </div>
+
+  </main>
+
+<script>
+(function() {
+  const root = document.getElementById('candidate-match');
+  const loadingEl = document.getElementById('cm-loading');
+  if (!root) return;
+
+  let cvFiles = [];
+  let jdText = '';
+  let results = null;
+
+  // PDF.js
+  if (window.pdfjsLib) {
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  }
+
+  async function extractPDF(file) {
+    const buf = await file.arrayBuffer();
+    const pdf = await window.pdfjsLib.getDocument({ data: buf }).promise;
+    const pages = [];
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const pg = await pdf.getPage(i);
+      const tc = await pg.getTextContent();
+      pages.push(tc.items.map(x => x.str).join(' '));
+    }
+    return pages.join('\n');
+  }
+
+  async function extractText(file) {
+    if (file.type === 'application/pdf') return extractPDF(file);
+    return file.text();
+  }
+
+  function render() {
+    root.innerHTML = '';
+    if (results) { renderResults(); return; }
+
+    root.innerHTML = `
+      <!-- JD Input -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-outline-variant/10">
+          <h2 class="text-lg font-headline font-bold text-primary mb-1 flex items-center gap-2">
+            <span class="material-symbols-outlined text-xl">content_paste</span>
+            Paste Job Description
+          </h2>
+          <p class="text-xs text-outline mb-4">Paste the full job requirements below</p>
+          <textarea id="cm-jd" class="w-full h-48 bg-surface-container-low border-none rounded-xl p-4 text-sm focus:ring-2 focus:ring-primary/20 resize-none placeholder:text-outline" placeholder="Paste job description here...">${jdText}</textarea>
+        </div>
+        <div id="cm-jd-drop" class="bg-white p-6 rounded-2xl shadow-sm border-2 border-dashed border-outline-variant hover:border-primary transition-colors flex flex-col items-center justify-center text-center cursor-pointer group">
+          <div class="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-primary text-3xl">upload_file</span>
+          </div>
+          <h3 class="font-headline text-lg font-bold mb-1">Upload JD File</h3>
+          <p class="text-on-surface-variant text-sm px-8">Drag and drop your PDF or TXT file here</p>
+        </div>
+      </div>
+
+      <!-- CV Upload -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-outline-variant/10 mb-10">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-lg font-headline font-bold text-primary flex items-center gap-2">
+              <span class="material-symbols-outlined text-xl">groups</span>
+              Candidate CVs
+            </h2>
+            <p class="text-xs text-outline mt-1">Drop up to 10 CV files (PDF or TXT). Each file is one candidate.</p>
+          </div>
+          <span id="cm-counter" class="text-xs font-bold text-outline bg-surface-container-high px-3 py-1.5 rounded-full">${cvFiles.length} / 10</span>
+        </div>
+        <div id="cm-cv-drop" class="relative group cursor-pointer border-2 border-dashed border-outline-variant hover:border-primary transition-colors rounded-xl p-10 text-center bg-surface-container-low/50">
+          <span class="material-symbols-outlined text-4xl text-outline-variant group-hover:text-primary transition-colors block mb-2">person_add</span>
+          <p class="text-sm font-medium text-on-surface-variant">Click to upload or drag & drop CVs</p>
+          <p class="text-xs text-outline mt-1">PDF or TXT files</p>
+          <input type="file" id="cm-cv-input" multiple accept=".pdf,.txt,.doc,.docx" class="absolute inset-0 opacity-0 cursor-pointer"/>
+        </div>
+        <div id="cm-cv-list" class="mt-4 flex flex-col gap-2"></div>
+      </div>
+
+      <!-- Run -->
+      <div class="flex items-center gap-6">
+        <button id="cm-run" disabled class="bg-gradient-to-r from-primary to-primary-container text-white px-10 py-4 rounded-full font-bold text-base flex items-center gap-3 hover:shadow-xl transition-all active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none">
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">bolt</span>
+          Run Comparison
+        </button>
+        <span id="cm-hint" class="text-sm text-on-surface-variant"></span>
+      </div>
+    `;
+
+    wireJD(); wireCV(); updateBtn();
+  }
+
+  function wireJD() {
+    const ta = document.getElementById('cm-jd');
+    const drop = document.getElementById('cm-jd-drop');
+    ta.addEventListener('input', () => { jdText = ta.value; updateBtn(); });
+    drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('border-primary', 'bg-primary-fixed/10'); });
+    drop.addEventListener('dragleave', () => { drop.classList.remove('border-primary', 'bg-primary-fixed/10'); });
+    drop.addEventListener('drop', async e => {
+      e.preventDefault(); drop.classList.remove('border-primary', 'bg-primary-fixed/10');
+      const f = e.dataTransfer.files[0];
+      if (f) { jdText = await extractText(f); ta.value = jdText; updateBtn(); }
+    });
+  }
+
+  function wireCV() {
+    const drop = document.getElementById('cm-cv-drop');
+    const inp = document.getElementById('cm-cv-input');
+    // click handled by the hidden input overlay
+    inp.addEventListener('change', async () => { await addFiles(inp.files); inp.value = ''; });
+    drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('border-primary'); });
+    drop.addEventListener('dragleave', () => { drop.classList.remove('border-primary'); });
+    drop.addEventListener('drop', async e => { e.preventDefault(); drop.classList.remove('border-primary'); await addFiles(e.dataTransfer.files); });
+  }
+
+  async function addFiles(list) {
+    const rem = 10 - cvFiles.length;
+    for (const f of Array.from(list).slice(0, rem)) {
+      const text = await extractText(f);
+      cvFiles.push({ name: f.name.replace(/\.(pdf|txt|doc|docx)$/i, ''), text });
+    }
+    renderCVList(); updateBtn();
+  }
+
+  function renderCVList() {
+    const el = document.getElementById('cm-cv-list');
+    const ctr = document.getElementById('cm-counter');
+    if (ctr) ctr.textContent = `${cvFiles.length} / 10`;
+    if (!el) return;
+    el.innerHTML = cvFiles.map((c, i) => `
+      <div class="flex items-center gap-3 bg-surface-container-low px-4 py-3 rounded-xl">
+        <span class="material-symbols-outlined text-primary text-lg">description</span>
+        <span class="flex-1 text-sm font-medium text-on-surface truncate">${c.name}</span>
+        <span class="text-[11px] text-outline">${c.text.length.toLocaleString()} chars</span>
+        <button data-i="${i}" class="cm-rm material-symbols-outlined text-outline-variant hover:text-secondary cursor-pointer text-lg transition-colors">close</button>
+      </div>
+    `).join('');
+    el.querySelectorAll('.cm-rm').forEach(b => b.addEventListener('click', () => { cvFiles.splice(+b.dataset.i, 1); renderCVList(); updateBtn(); }));
+  }
+
+  function updateBtn() {
+    const btn = document.getElementById('cm-run');
+    const hint = document.getElementById('cm-hint');
+    if (!btn) return;
+    const hasJD = jdText.trim().length >= 20, hasCVs = cvFiles.length > 0;
+    btn.disabled = !(hasJD && hasCVs);
+    if (!hasJD && !hasCVs) hint.textContent = 'Add a job description and at least one CV';
+    else if (!hasJD) hint.textContent = 'Add a job description (at least 20 characters)';
+    else if (!hasCVs) hint.textContent = 'Add at least one candidate CV';
+    else hint.textContent = `Ready to compare ${cvFiles.length} candidate${cvFiles.length > 1 ? 's' : ''}`;
+    btn.onclick = run;
+  }
+
+  async function run() {
+    loadingEl.classList.remove('hidden');
+    try {
+      const res = await fetch('/api/candidate-match', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ jobDescription: jdText, candidates: cvFiles.map(c => ({ name: c.name, text: c.text })) }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Something went wrong');
+      results = data.analysis;
+      render();
+    } catch (err) {
+      loadingEl.classList.add('hidden');
+      alert('Error: ' + err.message);
+    }
+  }
+
+  function renderResults() {
+    loadingEl.classList.add('hidden');
+    const cands = (results.candidates || []).sort((a, b) => a.rank - b.rank);
+
+    root.innerHTML = `
+      <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
+        <div>
+          <h2 class="font-headline text-2xl font-bold text-primary">Alignment Matrix</h2>
+          <p class="text-on-surface-variant text-sm mt-1">${cands.length} candidate${cands.length > 1 ? 's' : ''} ranked against your job description</p>
+        </div>
+        <button id="cm-back" class="flex items-center gap-2 bg-white px-5 py-2.5 rounded-full font-semibold text-sm text-primary hover:shadow-md transition-all border border-outline-variant">
+          <span class="material-symbols-outlined text-lg">arrow_back</span> New Comparison
+        </button>
+      </div>
+      ${results.summary ? `<div class="bg-white p-5 rounded-2xl shadow-sm mb-8 border-l-4 border-primary"><p class="text-[10px] font-bold uppercase tracking-[0.15em] text-secondary mb-2">Executive Summary</p><p class="text-sm text-on-surface leading-relaxed">${results.summary}</p></div>` : ''}
+      <div class="flex flex-col gap-6">${cands.map((c, i) => card(c, i)).join('')}</div>
+    `;
+
+    document.getElementById('cm-back').addEventListener('click', () => { results = null; render(); });
+    root.querySelectorAll('[data-toggle]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const d = document.getElementById('cm-d-' + btn.dataset.toggle);
+        const ico = btn.querySelector('.t-ico');
+        d.classList.toggle('hidden');
+        ico.textContent = d.classList.contains('hidden') ? 'expand_more' : 'expand_less';
+      });
+    });
+  }
+
+  function card(c, i) {
+    const mc = c.matchScore >= 75 ? 'text-green-700' : c.matchScore >= 50 ? 'text-amber-600' : 'text-red-600';
+    const mb = c.matchScore >= 75 ? 'bg-green-500' : c.matchScore >= 50 ? 'bg-amber-500' : 'bg-red-500';
+    const vc = c.matchScore >= 75 ? 'bg-green-100 text-green-800' : c.matchScore >= 50 ? 'bg-amber-100 text-amber-800' : 'bg-red-100 text-red-800';
+    const rl = c.riskScore?.level ?? 0;
+    const rc = rl <= 30 ? 'text-green-700' : rl <= 60 ? 'text-amber-600' : 'text-red-600';
+    const rb = rl <= 30 ? 'bg-green-50 border-green-200' : rl <= 60 ? 'bg-amber-50 border-amber-200' : 'bg-red-50 border-red-200';
+    const sc = (c.stability?.score ?? 50) >= 70 ? 'text-green-700' : (c.stability?.score ?? 50) >= 40 ? 'text-amber-600' : 'text-red-600';
+    const top = i === 0;
+
+    return `
+    <div class="bg-white rounded-2xl shadow-sm border ${top ? 'border-green-300 ring-2 ring-green-50' : 'border-outline-variant/10'} overflow-hidden">
+      <div class="p-5 flex items-center gap-4 flex-wrap">
+        <div class="w-11 h-11 rounded-full ${top ? 'bg-green-600' : 'bg-primary'} text-white flex items-center justify-center font-bold text-sm shrink-0">#${c.rank}</div>
+        <div class="flex-1 min-w-[160px]">
+          <h3 class="font-headline text-lg font-bold text-on-surface">${c.name}</h3>
+          <span class="inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${vc}">${c.verdict}</span>
+        </div>
+        <div class="flex gap-6">
+          <div class="text-center"><span class="text-[10px] font-bold text-outline uppercase block">Match</span><span class="text-2xl font-bold font-headline ${mc}">${c.matchScore}%</span></div>
+          <div class="text-center"><span class="text-[10px] font-bold text-outline uppercase block">Risk</span><span class="text-2xl font-bold font-headline ${rc}">${rl}</span></div>
+        </div>
+        <button data-toggle="${i}" class="ml-auto p-2 rounded-full hover:bg-surface-container-low transition-colors"><span class="material-symbols-outlined t-ico">expand_more</span></button>
+      </div>
+      <div class="px-5 pb-4"><div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden"><div class="h-full ${mb} rounded-full" style="width:${c.matchScore}%"></div></div></div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 border-t border-surface-container-high divide-x divide-surface-container-high">
+        <div class="px-3 py-2.5 text-center"><span class="text-[10px] font-bold text-outline uppercase block">Percentile</span><span class="text-xs font-semibold">${c.matchPercentile || 'N/A'}</span></div>
+        <div class="px-3 py-2.5 text-center"><span class="text-[10px] font-bold text-outline uppercase block">Stability</span><span class="text-xs font-semibold ${sc}">${c.stability?.flag || 'N/A'}</span></div>
+        <div class="px-3 py-2.5 text-center"><span class="text-[10px] font-bold text-outline uppercase block">Avg Tenure</span><span class="text-xs font-semibold">${c.stability?.avgTenure || 'N/A'}</span></div>
+        <div class="px-3 py-2.5 text-center"><span class="text-[10px] font-bold text-outline uppercase block">Work Type</span><span class="text-xs font-semibold">${c.workType?.history || 'N/A'}</span></div>
+        <div class="px-3 py-2.5 text-center"><span class="text-[10px] font-bold text-outline uppercase block">Location</span><span class="text-xs font-semibold">${c.location?.detected || 'N/A'}</span></div>
+        <div class="px-3 py-2.5 text-center"><span class="text-[10px] font-bold text-outline uppercase block">Risk</span><span class="text-xs font-semibold ${rc}">${c.riskScore?.label || 'N/A'}</span></div>
+      </div>
+      <div id="cm-d-${i}" class="hidden border-t border-surface-container-high p-5 grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="bg-surface-container-low p-4 rounded-xl"><p class="text-[10px] font-bold uppercase tracking-[0.15em] text-primary mb-2">Role Fit (${c.roleFit?.score || 0}/100)</p><div class="w-full h-1 bg-surface-container-high rounded-full mb-3"><div class="h-full ${mb} rounded-full" style="width:${c.roleFit?.score || 0}%"></div></div><p class="text-xs text-on-surface-variant leading-relaxed">${c.roleFit?.summary || ''}</p></div>
+        <div class="p-4 rounded-xl border ${rb}"><p class="text-[10px] font-bold uppercase tracking-[0.15em] text-secondary mb-2">Risk Assessment — ${c.riskScore?.label || 'N/A'} (${rl}/100)</p>${(c.riskScore?.flags || []).length ? `<ul class="text-xs text-on-surface-variant space-y-1 list-disc list-inside">${c.riskScore.flags.map(f => `<li>${f}</li>`).join('')}</ul>` : '<p class="text-xs text-on-surface-variant">No significant flags.</p>'}</div>
+        <div class="bg-surface-container-low p-4 rounded-xl"><p class="text-[10px] font-bold uppercase tracking-[0.15em] text-green-700 mb-2">Strengths</p><ul class="text-xs text-on-surface-variant space-y-1 list-disc list-inside">${(c.strengths || []).map(s => `<li>${s}</li>`).join('')}</ul></div>
+        <div class="bg-surface-container-low p-4 rounded-xl"><p class="text-[10px] font-bold uppercase tracking-[0.15em] text-red-600 mb-2">Weaknesses</p><ul class="text-xs text-on-surface-variant space-y-1 list-disc list-inside">${(c.weaknesses || []).map(w => `<li>${w}</li>`).join('')}</ul></div>
+        <div class="bg-surface-container-low p-4 rounded-xl"><p class="text-[10px] font-bold uppercase tracking-[0.15em] text-primary mb-2">Stability</p><p class="text-xs text-on-surface-variant"><strong>${c.stability?.flag || 'N/A'}</strong> — ${c.stability?.detail || ''}</p><p class="text-[10px] text-outline mt-1">Positions: ${c.stability?.jobCount || 'N/A'} | Avg tenure: ${c.stability?.avgTenure || 'N/A'}</p></div>
+        <div class="bg-surface-container-low p-4 rounded-xl"><p class="text-[10px] font-bold uppercase tracking-[0.15em] text-primary mb-2">Employment Gaps</p><p class="text-xs text-on-surface-variant">${c.employmentGaps?.detail || 'No significant gaps detected'}</p></div>
+        <div class="lg:col-span-2 bg-primary-fixed/30 p-4 rounded-xl"><p class="text-[10px] font-bold uppercase tracking-[0.15em] text-primary mb-2">Positioning Advice</p><p class="text-xs text-on-surface-variant leading-relaxed">${c.positioningAdvice || ''}</p></div>
+        <div class="bg-surface-container-low p-4 rounded-xl"><p class="text-[10px] font-bold uppercase tracking-[0.15em] text-primary mb-2">Improvement Tips</p><ul class="text-xs text-on-surface-variant space-y-1 list-disc list-inside">${(c.improvementTips || []).map(t => `<li>${t}</li>`).join('')}</ul></div>
+        <div class="bg-surface-container-low p-4 rounded-xl"><p class="text-[10px] font-bold uppercase tracking-[0.15em] text-primary mb-2">Interview Questions</p><ul class="text-xs text-on-surface-variant space-y-1 list-disc list-inside">${(c.interviewQuestions || []).map(q => `<li>${q}</li>`).join('')}</ul></div>
+        <div class="lg:col-span-2 bg-surface-container-low p-4 rounded-xl"><p class="text-[10px] font-bold uppercase tracking-[0.15em] text-primary mb-2">Location & Availability</p><p class="text-xs text-on-surface-variant"><strong>${c.location?.detected || 'Not specified'}</strong> — ${c.location?.availabilityNote || ''}</p><p class="text-[10px] text-outline mt-1">Work history: ${c.workType?.history || 'N/A'} — ${c.workType?.detail || ''}</p></div>
+      </div>
+    </div>`;
+  }
+
+  render();
+})();
+</script>
+
+</body>
+</html>
