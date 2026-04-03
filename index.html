@@ -618,7 +618,9 @@
         const weekRows = data.dailyActivity.map(w => {
           const cells = w.days.map((c, i) => {
             const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-            return `<div class="aspect-square rounded-lg ${intensityClass(c)}" title="${dayNames[i]}: ${c}"></div>`;
+            return `<div class="aspect-square rounded-lg ${intensityClass(c)} relative group cursor-default">
+              <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">${dayNames[i]}: ${c} submittal${c !== 1 ? 's' : ''}<div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-primary"></div></div>
+            </div>`;
           }).join('');
           return `<div class="grid grid-cols-8 gap-2 items-center">
             <span class="text-xs text-on-surface-variant">${w.label}</span>${cells}</div>`;
