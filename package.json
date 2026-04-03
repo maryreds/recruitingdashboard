@@ -2,5 +2,8 @@
   "private": true,
   "dependencies": {
     "docx": "^9.1.1"
+  },
+  "scripts": {
+    "check": "node check.js"
   }
 }

@@ -102,6 +102,9 @@
       <a href="analytics.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-primary bg-primary-fixed/30 transition">
         <span class="material-symbols-outlined text-[20px]">analytics</span>Analytics
       </a>
+      <a href="resources.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+        <span class="material-symbols-outlined text-[20px]">school</span>Recruiter Resources
+      </a>
       <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant/50 cursor-default" onclick="return false">
         <span class="material-symbols-outlined text-[20px]">strategy</span>Team Strategy
         <span class="ml-auto text-[10px] font-semibold uppercase tracking-wider bg-surface-container-high text-on-surface-variant rounded-full px-2 py-0.5">Soon</span>
@@ -269,31 +272,31 @@
   </main>
 
   <!-- Mobile Bottom Nav -->
-  <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-surface-container-high z-50">
-    <div class="grid grid-cols-4 h-16">
-      <a href="index.html" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
-        <span class="material-symbols-outlined text-[22px]">dashboard</span>
-        <span class="text-[10px] font-medium">Dashboard</span>
-      </a>
-      <a href="gallery.html" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
-        <span class="material-symbols-outlined text-[22px]">group</span>
-        <span class="text-[10px] font-medium">Gallery</span>
-      </a>
-      <a href="analytics.html" class="flex flex-col items-center justify-center gap-0.5 text-primary">
-        <span class="material-symbols-outlined text-[22px]">analytics</span>
-        <span class="text-[10px] font-bold">Analytics</span>
-      </a>
-      <a href="#" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
-        <span class="material-symbols-outlined text-[22px]">settings</span>
-        <span class="text-[10px] font-medium">Settings</span>
-      </a>
-    </div>
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-primary z-50 flex items-center justify-around py-2.5">
+    <a href="index.html" class="flex flex-col items-center gap-0.5 text-white/70 hover:text-white">
+      <span class="material-symbols-outlined text-2xl">dashboard</span>
+      <span class="text-[10px] font-medium">Dashboard</span>
+    </a>
+    <a href="gallery.html" class="flex flex-col items-center gap-0.5 text-white/70 hover:text-white">
+      <span class="material-symbols-outlined text-2xl">groups</span>
+      <span class="text-[10px] font-medium">Gallery</span>
+    </a>
+    <a href="analytics.html" class="flex flex-col items-center gap-0.5 text-white">
+      <span class="material-symbols-outlined text-2xl">analytics</span>
+      <span class="text-[10px] font-medium">Analytics</span>
+    </a>
+    <a href="resources.html" class="flex flex-col items-center gap-0.5 text-white/70 hover:text-white">
+      <span class="material-symbols-outlined text-2xl">school</span>
+      <span class="text-[10px] font-medium">Resources</span>
+    </a>
   </nav>
 
 <script>
 (function() {
   let allData = null;
   let allRecruiters = [];
+
+  function cleanText(str) { return (str || '').replace(/\u00C2/g, '').replace(/\s{2,}/g, ' ').trim(); }
 
   // ── Funnel ──
   function renderFunnel(totals) {
@@ -470,7 +473,7 @@
     // By Client
     const clientMap = {};
     rejections.forEach(r => {
-      const client = r.client || 'Unknown';
+      const client = cleanText(r.client || 'Unknown');
       clientMap[client] = (clientMap[client] || 0) + 1;
     });
     const clients = Object.entries(clientMap).sort(([, a], [, b]) => b - a);
@@ -524,7 +527,7 @@
         <tr class="border-b border-surface-container-high/50">
           <td class="py-3 pr-4 font-medium">${r.recruiter}</td>
           <td class="py-3 pr-4">${r.candidate || '&mdash;'}</td>
-          <td class="py-3 pr-4 text-on-surface-variant">${r.role || ''} @ ${r.client || ''}</td>
+          <td class="py-3 pr-4 text-on-surface-variant">${cleanText(r.role || '')} @ ${cleanText(r.client || '')}</td>
           <td class="py-3"><span class="bg-error-container text-error text-xs px-2.5 py-1 rounded-full font-medium">${r.reason || 'Not specified'}</span></td>
         </tr>
       `).join('');
@@ -585,7 +588,7 @@
     // Count rejections per client
     const rejectByClient = {};
     rejections.forEach(r => {
-      const c = r.client || 'Unknown';
+      const c = cleanText(r.client || 'Unknown');
       rejectByClient[c] = (rejectByClient[c] || 0) + 1;
     });
 
@@ -672,7 +675,7 @@
     try {
       const resp = await fetch('/api/data');
       if (!resp.ok) throw new Error('API error');
-      allData = await resp.json();
+      allData = JSON.parse(JSON.stringify(await resp.json()));
       allRecruiters = [...allData.coreTeam.recruiters, ...allData.extendedTeam.recruiters];
 
       // Date range
@@ -695,6 +698,7 @@
           <div class="text-center">
             <span class="material-symbols-outlined text-4xl text-error">cloud_off</span>
             <p class="text-on-surface-variant mt-4">Could not load analytics data.</p>
+            <p class="text-on-surface-variant text-xs mt-2 max-w-md mx-auto" style="color:#999;">${String(err.message || err).replace(/</g,'&lt;')}</p>
             <a href="index.html" class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-primary hover:underline">
               <span class="material-symbols-outlined text-[18px]">arrow_back</span>Back to Dashboard
             </a>

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Recruiter Resources | JSM Recruiting Intelligence Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "on-secondary": "#ffffff",
+        "primary-container": "#001e52",
+        "surface-bright": "#f7f9fb",
+        "tertiary": "#0a0427",
+        "surface-dim": "#d8dadc",
+        "inverse-on-surface": "#eff1f3",
+        "surface-container-low": "#f2f4f6",
+        "background": "#f7f9fb",
+        "on-secondary-fixed-variant": "#930010",
+        "on-error-container": "#93000a",
+        "on-tertiary-fixed": "#1c1739",
+        "surface-container-lowest": "#ffffff",
+        "on-tertiary-container": "#8a83ac",
+        "on-secondary-fixed": "#410003",
+        "tertiary-fixed-dim": "#c9c1ed",
+        "tertiary-fixed": "#e5deff",
+        "error-container": "#ffdad6",
+        "primary": "#000924",
+        "surface-container": "#eceef0",
+        "primary-fixed": "#dae2ff",
+        "inverse-primary": "#b1c5ff",
+        "secondary-fixed": "#ffdad6",
+        "on-primary-fixed-variant": "#2e457a",
+        "on-secondary-container": "#fffbff",
+        "on-background": "#191c1e",
+        "on-surface-variant": "#44464f",
+        "primary-fixed-dim": "#b1c5ff",
+        "on-primary-fixed": "#001946",
+        "secondary": "#b6171e",
+        "outline-variant": "#c5c6d1",
+        "surface-container-high": "#e6e8ea",
+        "surface-container-highest": "#e0e3e5",
+        "inverse-surface": "#2d3133",
+        "surface-variant": "#e0e3e5",
+        "surface-tint": "#475d93",
+        "secondary-fixed-dim": "#ffb3ac",
+        "secondary-container": "#da3433",
+        "on-surface": "#191c1e",
+        "on-primary-container": "#7287c1",
+        "on-tertiary-fixed-variant": "#474267",
+        "error": "#ba1a1a",
+        "on-error": "#ffffff",
+        "on-primary": "#ffffff",
+        "outline": "#757780",
+        "on-tertiary": "#ffffff",
+        "surface": "#f7f9fb",
+        "tertiary-container": "#211c3f"
+      },
+      fontFamily: {
+        "headline": ["Inter"],
+        "body": ["Inter"],
+        "label": ["Inter"],
+        "serif": ["Libre Baskerville"]
+      },
+      borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+    },
+  },
+}
+</script>
+<style>
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+.editorial-shadow {
+  box-shadow: 0 12px 32px -4px rgba(0, 30, 82, 0.06);
+}
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.premium-gradient {
+  background: linear-gradient(135deg, #000924 0%, #001e52 100%);
+}
+</style>
+</head>
+<body class="bg-surface font-body text-on-surface overflow-x-hidden">
+
+<!-- Sidebar -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex-col bg-slate-100 z-40 hidden md:flex">
+  <div class="flex flex-col h-full py-6">
+    <div class="px-8 mb-10">
+      <h1 class="font-serif text-lg text-blue-950 leading-tight">Recruiter Resources</h1>
+      <p class="text-[10px] uppercase tracking-[0.2em] font-medium text-slate-500">JSM Consulting</p>
+    </div>
+    <nav class="flex-1 space-y-1">
+      <a class="text-blue-900 font-bold bg-white/50 rounded-l-full ml-4 pl-4 py-3 flex items-center gap-3" href="#overview">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="text-[10px] font-bold uppercase tracking-widest">Overview</span>
+      </a>
+      <a class="text-slate-500 py-3 pl-8 flex items-center gap-3 hover:bg-slate-200 transition-all hover:translate-x-1 duration-200" href="#modules">
+        <span class="material-symbols-outlined">school</span>
+        <span class="text-[10px] font-bold uppercase tracking-widest">Skill Modules</span>
+      </a>
+      <a class="text-slate-500 py-3 pl-8 flex items-center gap-3 hover:bg-slate-200 transition-all hover:translate-x-1 duration-200" href="#playbooks">
+        <span class="material-symbols-outlined">import_contacts</span>
+        <span class="text-[10px] font-bold uppercase tracking-widest">Playbooks</span>
+      </a>
+      <a class="text-slate-500 py-3 pl-8 flex items-center gap-3 hover:bg-slate-200 transition-all hover:translate-x-1 duration-200" href="#dei">
+        <span class="material-symbols-outlined">diversity_3</span>
+        <span class="text-[10px] font-bold uppercase tracking-widest">DEI Resources</span>
+      </a>
+      <a class="text-slate-500 py-3 pl-8 flex items-center gap-3 hover:bg-slate-200 transition-all hover:translate-x-1 duration-200" href="#challenges">
+        <span class="material-symbols-outlined">event_upcoming</span>
+        <span class="text-[10px] font-bold uppercase tracking-widest">Challenges</span>
+      </a>
+    </nav>
+    <div class="mt-auto pt-6 border-t border-slate-200/50">
+      <a class="text-slate-500 py-2 pl-8 flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest hover:text-blue-900 transition-colors" href="/">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Back to Dashboard
+      </a>
+    </div>
+  </div>
+</aside>
+
+<!-- Main -->
+<main class="md:ml-64 min-h-screen flex flex-col">
+
+  <!-- Top Bar -->
+  <header class="bg-slate-50/70 backdrop-blur-xl sticky top-0 z-50 shadow-sm shadow-blue-900/5">
+    <div class="flex justify-between items-center w-full px-8 py-3">
+      <div class="flex items-center gap-8">
+        <span class="text-xl font-bold italic tracking-tight text-blue-900">Recruiter Resources</span>
+        <nav class="hidden lg:flex gap-6">
+          <a class="text-blue-900 font-bold border-b-2 border-red-700 pb-1 text-sm" href="#modules">Modules</a>
+          <a class="text-slate-500 font-medium text-sm hover:text-red-700 transition-colors" href="#playbooks">Playbooks</a>
+          <a class="text-slate-500 font-medium text-sm hover:text-red-700 transition-colors" href="#dei">DEI</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-[10px] uppercase tracking-widest text-slate-400 font-bold hidden sm:inline">All resources externally sourced</span>
+        <span class="material-symbols-outlined text-slate-400">verified</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Section Nav -->
+  <nav class="md:hidden sticky top-[52px] z-40 bg-white/90 backdrop-blur-lg border-b border-slate-200/50 overflow-x-auto">
+    <div class="flex gap-1 px-4 py-2 min-w-max">
+      <a href="#overview" class="flex items-center gap-1.5 px-3 py-2 rounded-full bg-primary-container/10 text-primary-container text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
+        <span class="material-symbols-outlined text-[16px]">dashboard</span>Overview
+      </a>
+      <a href="#modules" class="flex items-center gap-1.5 px-3 py-2 rounded-full text-slate-500 hover:bg-slate-100 text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
+        <span class="material-symbols-outlined text-[16px]">school</span>Modules
+      </a>
+      <a href="#playbooks" class="flex items-center gap-1.5 px-3 py-2 rounded-full text-slate-500 hover:bg-slate-100 text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
+        <span class="material-symbols-outlined text-[16px]">import_contacts</span>Playbooks
+      </a>
+      <a href="#dei" class="flex items-center gap-1.5 px-3 py-2 rounded-full text-slate-500 hover:bg-slate-100 text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
+        <span class="material-symbols-outlined text-[16px]">diversity_3</span>DEI
+      </a>
+      <a href="#challenges" class="flex items-center gap-1.5 px-3 py-2 rounded-full text-slate-500 hover:bg-slate-100 text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
+        <span class="material-symbols-outlined text-[16px]">event_upcoming</span>Challenges
+      </a>
+    </div>
+  </nav>
+
+  <div class="p-8 lg:p-12 max-w-7xl mx-auto space-y-20">
+
+    <!-- ═══ HERO ═══ -->
+    <section id="overview" class="scroll-mt-20">
+      <div class="mb-6">
+        <span class="text-secondary font-bold uppercase tracking-[0.2em] text-xs mb-4 block">Professional Development</span>
+        <h2 class="text-5xl font-serif text-primary-container leading-tight mb-6">Recruiter Resources</h2>
+        <p class="text-xl text-on-surface-variant font-serif italic max-w-2xl border-l-4 border-secondary/20 pl-8 py-2">
+          "Every rejection is a data point. Every placement is a story well told. This library curates the best thinking in talent acquisition from SHRM, Harvard Business Review, LinkedIn, and ERE."
+        </p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+        <div>
+          <span class="text-3xl font-serif text-primary-container">33+</span>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-2">Curated Resources</p>
+        </div>
+        <div>
+          <span class="text-3xl font-serif text-primary-container">8</span>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-2">Skill Categories</p>
+        </div>
+        <div>
+          <span class="text-3xl font-serif text-primary-container">6</span>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-2">Expert Sources</p>
+        </div>
+        <div>
+          <span class="text-3xl font-serif text-primary-container">100%</span>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mt-2">Free Access</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SKILL MODULES ═══ -->
+    <section id="modules" class="scroll-mt-20">
+      <div class="flex justify-between items-end mb-8">
+        <div>
+          <p class="text-[10px] uppercase tracking-[0.3em] font-bold text-secondary mb-1">Curated Curriculum</p>
+          <h2 class="text-3xl font-serif text-primary-container">Strategic Skill Modules</h2>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Module 1: Reading Job Reqs -->
+        <div class="bg-surface-container-lowest rounded-xl p-8 editorial-shadow group hover:shadow-xl transition-all duration-500">
+          <div class="flex justify-between items-start mb-6">
+            <span class="inline-block px-3 py-1 bg-primary-fixed text-on-primary-fixed text-[9px] font-extrabold uppercase tracking-widest rounded-full">Client Insight</span>
+            <span class="material-symbols-outlined text-primary-container text-2xl">search</span>
+          </div>
+          <h3 class="text-xl font-bold text-primary mb-2">Reading a Job Req Like a Client</h3>
+          <p class="text-sm text-slate-500 mb-6">Master intake meetings, decode shadow requirements, and align with hiring managers before a single resume is sourced.</p>
+          <div class="space-y-3">
+            <a href="https://www.ere.net/14-questions-i-ask-managers-in-intake-meetings/" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">14 Questions I Ask Managers in Intake Meetings</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">ERE &mdash; Brian Thompson</span>
+              </div>
+            </a>
+            <a href="https://business.linkedin.com/talent-solutions/blog/talent-on-tap/2019/brendan-brown-shares-checklist-to-improve-intake-meetings" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">LinkedIn's Head of Recruiting Shares His Intake Checklist</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">LinkedIn Talent Blog &mdash; Brendan Browne</span>
+              </div>
+            </a>
+            <a href="https://www.shrm.org/in/topics-tools/news/talent-acquisition/recruiting-101-5-tips-better-communication-hiring-managers" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">5 Tips for Better Communication with Hiring Managers</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">SHRM</span>
+              </div>
+            </a>
+            <a href="https://www.shrm.org/topics-tools/tools/toolkits/optimize-hiring-strategy-with-business-driven-recruiting" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">Optimize Hiring with Business-Driven Recruiting</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">SHRM Toolkit</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Module 2: Resume Screening -->
+        <div class="bg-surface-container-lowest rounded-xl p-8 editorial-shadow group hover:shadow-xl transition-all duration-500">
+          <div class="flex justify-between items-start mb-6">
+            <span class="inline-block px-3 py-1 bg-secondary-fixed text-on-secondary-fixed text-[9px] font-extrabold uppercase tracking-widest rounded-full">Candidate Quality</span>
+            <span class="material-symbols-outlined text-primary-container text-2xl">description</span>
+          </div>
+          <h3 class="text-xl font-bold text-primary mb-2">Resume Screening Before Submittal</h3>
+          <p class="text-sm text-slate-500 mb-6">Evidence-based approaches to screening resumes, reducing bias, and improving the quality of every submittal.</p>
+          <div class="space-y-3">
+            <a href="https://hbr.org/2017/06/7-practical-ways-to-reduce-bias-in-your-hiring-process" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">7 Practical Ways to Reduce Bias in Your Hiring Process</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">Harvard Business Review &mdash; Rebecca Knight</span>
+              </div>
+            </a>
+            <a href="https://www.ere.net/bias-interrupted-9-ways-to-create-a-fairer-hiring-process/" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">Bias Interrupted: 9 Ways to Create a Fairer Hiring Process</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">ERE &mdash; Joan C. Williams</span>
+              </div>
+            </a>
+            <a href="https://www.shrm.org/topics-tools/news/hr-magazine/can-blind-hiring-improve-workplace-diversity" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">Can Blind Hiring Improve Workplace Diversity?</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">SHRM</span>
+              </div>
+            </a>
+            <a href="https://recruitingdaily.com/resume-bias-is-real-closing-gaps-and-advancing-the-screening-process/" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">Resume Bias is Real: Closing Gaps in Screening</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">RecruitingDaily</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Module 3: Speed & Efficiency -->
+        <div class="bg-surface-container-lowest rounded-xl p-8 editorial-shadow group hover:shadow-xl transition-all duration-500">
+          <div class="flex justify-between items-start mb-6">
+            <span class="inline-block px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-[9px] font-extrabold uppercase tracking-widest rounded-full">Efficiency</span>
+            <span class="material-symbols-outlined text-primary-container text-2xl">speed</span>
+          </div>
+          <h3 class="text-xl font-bold text-primary mb-2">Speed-to-Submit &amp; Sourcing Mastery</h3>
+          <p class="text-sm text-slate-500 mb-6">Boolean search, pipeline building, AI-assisted sourcing, and the strategies behind same-day submittals.</p>
+          <div class="space-y-3">
+            <a href="https://www.shrm.org/topics-tools/news/talent-acquisition/locate-right-talent-basic-boolean-search-tips" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">Locate the Right Talent with Boolean Search Tips</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">SHRM &mdash; Roy Maurer</span>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/business/talent/blog/talent-acquisition/build-candidate-pipeline" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">Build a Candidate Pipeline That Cuts Time-to-Hire</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">LinkedIn Talent Blog &mdash; Samantha McLaren</span>
+              </div>
+            </a>
+            <a href="https://www.ere.net/articles/leverage-ai-to-improve-your-sourcing-strategy-but-dont-rely-on-it-completely" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">Leverage AI to Improve Sourcing (But Don't Over-Rely)</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">ERE</span>
+              </div>
+            </a>
+            <a href="https://www.ere.net/articles/9-steps-to-improve-the-sourcing-and-recruiting-partnership" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">9 Steps to Improve the Sourcing &amp; Recruiting Partnership</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">ERE</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Module 4: Salary Negotiation -->
+        <div class="bg-surface-container-lowest rounded-xl p-8 editorial-shadow group hover:shadow-xl transition-all duration-500">
+          <div class="flex justify-between items-start mb-6">
+            <span class="inline-block px-3 py-1 bg-secondary-fixed text-on-secondary-fixed text-[9px] font-extrabold uppercase tracking-widest rounded-full">Compensation</span>
+            <span class="material-symbols-outlined text-primary-container text-2xl">payments</span>
+          </div>
+          <h3 class="text-xl font-bold text-primary mb-2">Salary Negotiation for Recruiters</h3>
+          <p class="text-sm text-slate-500 mb-6">Close the offer gap. From Harvard-backed negotiation principles to real-world compensation playbooks.</p>
+          <div class="space-y-3">
+            <a href="https://hbr.org/2014/04/15-rules-for-negotiating-a-job-offer" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">15 Rules for Negotiating a Job Offer</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">Harvard Business Review &mdash; Deepak Malhotra</span>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/business/talent/blog/talent-strategy/linkedins-head-of-recruiting-shares-his-tactics-for-handling-salary-negotiations" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">LinkedIn's Head of Recruiting: Salary Negotiation Tactics</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">LinkedIn Talent Blog &mdash; Brendan Browne</span>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/business/talent/blog/talent-management/salary-negotiations-things-every-recruiter-should-do" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">5 Things Every Recruiter Should Do in Salary Talks</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">LinkedIn Talent Blog</span>
+              </div>
+            </a>
+            <a href="https://business.linkedin.com/talent-solutions/blog/recruiting-tips/2016/how-to-overcome-these-4-difficult-salary-negotiation-scenarios" target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <span class="material-symbols-outlined text-secondary mt-0.5 text-lg">article</span>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">How to Overcome 4 Difficult Salary Negotiation Scenarios</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">LinkedIn Talent Solutions</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ REJECTION PLAYBOOKS ═══ -->
+    <section id="playbooks" class="scroll-mt-20">
+      <div class="flex items-center gap-2 text-secondary mb-4">
+        <span class="material-symbols-outlined text-sm">auto_stories</span>
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em]">Strategy Archive</span>
+      </div>
+      <h2 class="text-4xl font-serif text-primary-container leading-tight mb-4">Rejection Playbooks</h2>
+      <p class="text-lg text-on-surface-variant font-serif italic max-w-2xl border-l-4 border-secondary/20 pl-8 py-2 mb-12">
+        "Every rejection is a data point. Our role is to refine the narrative before the client ever sees the profile."
+      </p>
+
+      <div class="grid grid-cols-12 gap-8">
+
+        <!-- Improving Submittal Quality -->
+        <div class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-3xl p-10 editorial-shadow border border-white/40">
+          <div class="flex justify-between items-start mb-8">
+            <div>
+              <h3 class="text-2xl font-serif text-primary mb-2">Improving Submittal Quality</h3>
+              <p class="text-on-surface-variant max-w-lg">How to reduce client rejections by improving candidate-job matching before you hit submit.</p>
+            </div>
+            <div class="bg-surface-container-low p-4 rounded-2xl">
+              <span class="material-symbols-outlined text-primary text-3xl">target</span>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <a href="https://www.shrm.org/topics-tools/news/talent-acquisition/holy-grail-recruiting-how-to-measure-quality-hire" target="_blank" rel="noopener noreferrer" class="flex items-start gap-4 p-4 rounded-xl bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <div class="w-6 h-6 rounded-full border-2 border-primary-container/20 flex items-center justify-center mt-0.5 group-hover/link:border-secondary transition-colors flex-shrink-0">
+                <span class="material-symbols-outlined text-[14px] text-secondary">check</span>
+              </div>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">The Holy Grail: How to Measure Quality of Hire</span>
+                <span class="text-xs text-on-surface-variant">Shift from efficiency metrics to effectiveness metrics aligned with business outcomes.</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider block mt-1">SHRM &mdash; Roy Maurer</span>
+              </div>
+            </a>
+            <a href="https://recruitingdaily.com/staffing-agency-recruitment-tips/" target="_blank" rel="noopener noreferrer" class="flex items-start gap-4 p-4 rounded-xl bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <div class="w-6 h-6 rounded-full border-2 border-primary-container/20 flex items-center justify-center mt-0.5 group-hover/link:border-secondary transition-colors flex-shrink-0">
+                <span class="material-symbols-outlined text-[14px] text-secondary">check</span>
+              </div>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">What Corporate Recruiters Really Want From a Staffing Agency</span>
+                <span class="text-xs text-on-surface-variant">A corporate recruiter reveals what makes agency submittals succeed or fail.</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider block mt-1">RecruitingDaily &mdash; Pete Radloff</span>
+              </div>
+            </a>
+            <a href="https://recruitingdaily.com/when-a-recruiter-and-a-hiring-manager-come-together/" target="_blank" rel="noopener noreferrer" class="flex items-start gap-4 p-4 rounded-xl bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <div class="w-6 h-6 rounded-full border-2 border-primary-container/20 flex items-center justify-center mt-0.5 group-hover/link:border-secondary transition-colors flex-shrink-0">
+                <span class="material-symbols-outlined text-[14px] text-secondary">check</span>
+              </div>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">When a Recruiter and Hiring Manager Come Together</span>
+                <span class="text-xs text-on-surface-variant">How recruiter-HM alignment directly reduces rejection rates.</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider block mt-1">RecruitingDaily</span>
+              </div>
+            </a>
+            <a href="https://www.bullhorn.com/blog/4-kpis-for-staffing-agencies/" target="_blank" rel="noopener noreferrer" class="flex items-start gap-4 p-4 rounded-xl bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <div class="w-6 h-6 rounded-full border-2 border-primary-container/20 flex items-center justify-center mt-0.5 group-hover/link:border-secondary transition-colors flex-shrink-0">
+                <span class="material-symbols-outlined text-[14px] text-secondary">check</span>
+              </div>
+              <div>
+                <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">Staffing KPIs: 4 Performance Benchmarks</span>
+                <span class="text-xs text-on-surface-variant">Best-in-class firms submit 1-2 candidates per hire vs. the average 3-4.</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider block mt-1">Bullhorn</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Client Feedback Decoded -->
+        <div class="col-span-12 lg:col-span-4 bg-surface-container-low rounded-3xl p-8 flex flex-col">
+          <div class="mb-6">
+            <span class="material-symbols-outlined text-secondary mb-3">forum</span>
+            <h3 class="text-xl font-serif text-primary">Client Feedback Decoded</h3>
+            <p class="text-sm text-on-surface-variant mt-2">Turn vague rejections into actionable next steps.</p>
+          </div>
+          <div class="space-y-3 flex-1">
+            <a href="https://ere.net/latest-findings-on-giving-feedback-to-candidates-show-missed-opportunities" target="_blank" rel="noopener noreferrer" class="block p-4 bg-white/60 backdrop-blur-sm rounded-xl border-l-2 border-secondary hover:bg-white transition-colors group/link">
+              <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">Latest Findings on Candidate Feedback</span>
+              <span class="text-xs text-on-surface-variant block mt-1">71% of candidates never receive feedback, yet it increases reapplication rates 4x.</span>
+              <span class="text-[10px] text-slate-400 uppercase tracking-wider block mt-1">ERE &mdash; Kevin Grossman</span>
+            </a>
+            <a href="https://www.ere.net/recruiters-dont-risk-your-credibility-because-you-hate-giving-bad-news/" target="_blank" rel="noopener noreferrer" class="block p-4 bg-white/40 rounded-xl hover:bg-white/60 transition-colors group/link">
+              <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">Don't Risk Credibility by Avoiding Bad News</span>
+              <span class="text-[10px] text-slate-400 uppercase tracking-wider block mt-1">ERE &mdash; Charlene Long</span>
+            </a>
+            <a href="https://recruitingdaily.com/turning-rejection-into-opportunity-mastering-rejection-feedback/" target="_blank" rel="noopener noreferrer" class="block p-4 bg-white/40 rounded-xl hover:bg-white/60 transition-colors group/link">
+              <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">Turning Rejection into Opportunity</span>
+              <span class="text-[10px] text-slate-400 uppercase tracking-wider block mt-1">RecruitingDaily &mdash; Ismirelda Forst</span>
+            </a>
+            <a href="https://www.shrm.org/topics-tools/flagships/all-things-work/recruiters-guide-turning-candidates-down-right-way" target="_blank" rel="noopener noreferrer" class="block p-4 bg-white/40 rounded-xl hover:bg-white/60 transition-colors group/link">
+              <span class="block font-bold text-sm text-primary group-hover/link:text-secondary transition-colors">A Guide to Turning Candidates Down the Right Way</span>
+              <span class="text-[10px] text-slate-400 uppercase tracking-wider block mt-1">SHRM</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Interview Prep Resources -->
+        <div class="col-span-12 bg-surface-container-lowest rounded-3xl p-10 editorial-shadow border border-white/40">
+          <div class="flex items-center gap-3 mb-8">
+            <span class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center">
+              <span class="material-symbols-outlined text-on-tertiary-fixed text-sm">videocam</span>
+            </span>
+            <h3 class="text-2xl font-serif text-primary">Interview Preparation</h3>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <a href="https://www.ere.net/articles/the-recruiters-obligation-preparing-your-candidate-for-the-interview" target="_blank" rel="noopener noreferrer" class="flex gap-6 p-6 rounded-xl bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <div class="w-12 h-12 rounded-full bg-white flex-shrink-0 flex items-center justify-center italic font-serif text-primary text-lg shadow-sm">1</div>
+              <div>
+                <h4 class="font-bold text-sm text-primary mb-1 group-hover/link:text-secondary transition-colors">The Recruiter's Obligation: Preparing Candidates</h4>
+                <p class="text-sm text-on-surface-variant">Recruiters have a professional duty to prepare candidates across 5 key areas before every interview.</p>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider block mt-2">ERE &mdash; Joshua Albucker, CPC</span>
+              </div>
+            </a>
+            <a href="https://www.ere.net/articles/6-interview-tips-to-help-your-candidates-star-shine" target="_blank" rel="noopener noreferrer" class="flex gap-6 p-6 rounded-xl bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <div class="w-12 h-12 rounded-full bg-white flex-shrink-0 flex items-center justify-center italic font-serif text-primary text-lg shadow-sm">2</div>
+              <div>
+                <h4 class="font-bold text-sm text-primary mb-1 group-hover/link:text-secondary transition-colors">6 Tips to Help Your Candidate's Star Shine</h4>
+                <p class="text-sm text-on-surface-variant">Leaving interview preparation to chance could cost you the placement.</p>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider block mt-2">ERE &mdash; Debra Wheatman</span>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/business/talent/blog/talent-acquisition/things-recruiters-should-do-before-every-interview" target="_blank" rel="noopener noreferrer" class="flex gap-6 p-6 rounded-xl bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <div class="w-12 h-12 rounded-full bg-white flex-shrink-0 flex items-center justify-center italic font-serif text-primary text-lg shadow-sm">3</div>
+              <div>
+                <h4 class="font-bold text-sm text-primary mb-1 group-hover/link:text-secondary transition-colors">7 Things Recruiters Should Do Before Every Interview</h4>
+                <p class="text-sm text-on-surface-variant">From structured questions to showcasing culture, essential pre-interview steps.</p>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider block mt-2">LinkedIn Talent Blog &mdash; Paul Petrone</span>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/business/talent/blog/talent-acquisition/interview-prep-to-ensure-good-candidates-arent-being-excluded-for-bad-reasons" target="_blank" rel="noopener noreferrer" class="flex gap-6 p-6 rounded-xl bg-surface-container-low/50 hover:bg-surface-container-low transition-colors group/link">
+              <div class="w-12 h-12 rounded-full bg-white flex-shrink-0 flex items-center justify-center italic font-serif text-primary text-lg shadow-sm">4</div>
+              <div>
+                <h4 class="font-bold text-sm text-primary mb-1 group-hover/link:text-secondary transition-colors">Ensure Good Candidates Aren't Excluded for Bad Reasons</h4>
+                <p class="text-sm text-on-surface-variant">Proper prep prevents unfair screening from nervousness or misunderstandings.</p>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider block mt-2">LinkedIn Talent Solutions</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DEI RESOURCES ═══ -->
+    <section id="dei" class="scroll-mt-20">
+      <div class="flex items-center gap-2 text-secondary mb-4">
+        <span class="material-symbols-outlined text-sm">diversity_3</span>
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em]">Inclusive Practices</span>
+      </div>
+      <h2 class="text-3xl font-serif text-primary-container mb-8">Diversity, Equity &amp; Inclusion in Recruiting</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="https://www.shrm.org/resourcesandtools/hr-topics/talent-acquisition/pages/diversify-your-recruitment-sources-improve-dei.aspx" target="_blank" rel="noopener noreferrer" class="glass-panel p-6 rounded-xl border border-white/50 shadow-lg shadow-blue-900/5 flex flex-col justify-between min-h-[220px] hover:shadow-xl transition-all group/link">
+          <div>
+            <div class="p-2 bg-surface-container-lowest rounded-lg shadow-sm inline-block mb-4">
+              <span class="material-symbols-outlined text-secondary">groups</span>
+            </div>
+            <h3 class="text-lg font-bold text-primary-container mb-2 group-hover/link:text-secondary transition-colors">Diversify Your Recruitment Sources</h3>
+            <p class="text-sm text-slate-500">"People recruit in their own likeness" &mdash; diversifying TA teams and search firms accesses wider candidate pools.</p>
+          </div>
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pt-4 border-t border-slate-200/50 mt-4 block">SHRM &mdash; Roy Maurer</span>
+        </a>
+        <a href="https://www.shrm.org/topics-tools/news/inclusion-diversity/how-to-build-inclusive-hiring-practices" target="_blank" rel="noopener noreferrer" class="glass-panel p-6 rounded-xl border border-white/50 shadow-lg shadow-blue-900/5 flex flex-col justify-between min-h-[220px] hover:shadow-xl transition-all group/link">
+          <div>
+            <div class="p-2 bg-surface-container-lowest rounded-lg shadow-sm inline-block mb-4">
+              <span class="material-symbols-outlined text-secondary">accessible</span>
+            </div>
+            <h3 class="text-lg font-bold text-primary-container mb-2 group-hover/link:text-secondary transition-colors">How to Build Inclusive Hiring Practices</h3>
+            <p class="text-sm text-slate-500">Expanding recruitment to include candidates with disabilities and nontraditional backgrounds strengthens organizational diversity.</p>
+          </div>
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pt-4 border-t border-slate-200/50 mt-4 block">SHRM &mdash; Beth Mirza</span>
+        </a>
+        <a href="https://www.linkedin.com/business/talent/blog/talent-acquisition/ways-to-make-real-progress-on-diversity-equity-and-inclusion" target="_blank" rel="noopener noreferrer" class="glass-panel p-6 rounded-xl border border-white/50 shadow-lg shadow-blue-900/5 flex flex-col justify-between min-h-[220px] hover:shadow-xl transition-all group/link">
+          <div>
+            <div class="p-2 bg-surface-container-lowest rounded-lg shadow-sm inline-block mb-4">
+              <span class="material-symbols-outlined text-secondary">trending_up</span>
+            </div>
+            <h3 class="text-lg font-bold text-primary-container mb-2 group-hover/link:text-secondary transition-colors">38 Ways to Make Real Progress on DEI</h3>
+            <p class="text-sm text-slate-500">Actionable strategies spanning sourcing, screening, interviewing, and onboarding that recruiters can implement immediately.</p>
+          </div>
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pt-4 border-t border-slate-200/50 mt-4 block">LinkedIn Talent Blog</span>
+        </a>
+        <a href="https://business.linkedin.com/talent-solutions/diversity-inclusion-belonging/diverse-hiring-practices" target="_blank" rel="noopener noreferrer" class="glass-panel p-6 rounded-xl border border-white/50 shadow-lg shadow-blue-900/5 flex flex-col justify-between min-h-[220px] hover:shadow-xl transition-all md:col-span-2 lg:col-span-2 group/link">
+          <div>
+            <div class="p-2 bg-surface-container-lowest rounded-lg shadow-sm inline-block mb-4">
+              <span class="material-symbols-outlined text-secondary">menu_book</span>
+            </div>
+            <h3 class="text-lg font-bold text-primary-container mb-2 group-hover/link:text-secondary transition-colors">Diverse Hiring Practices: The Complete Guide</h3>
+            <p class="text-sm text-slate-500">LinkedIn's comprehensive guide covering inclusive job descriptions, diverse sourcing channels, structured interviews, and measurable diversity goals for the full recruiting funnel.</p>
+          </div>
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pt-4 border-t border-slate-200/50 mt-4 block">LinkedIn Talent Solutions</span>
+        </a>
+        <a href="https://www.ere.net/bias-interrupted-9-ways-to-create-a-fairer-hiring-process/" target="_blank" rel="noopener noreferrer" class="glass-panel p-6 rounded-xl border border-white/50 shadow-lg shadow-blue-900/5 flex flex-col justify-between min-h-[220px] hover:shadow-xl transition-all group/link">
+          <div>
+            <div class="p-2 bg-surface-container-lowest rounded-lg shadow-sm inline-block mb-4">
+              <span class="material-symbols-outlined text-secondary">balance</span>
+            </div>
+            <h3 class="text-lg font-bold text-primary-container mb-2 group-hover/link:text-secondary transition-colors">Bias Interrupted: 9 Ways to Fairer Hiring</h3>
+            <p class="text-sm text-slate-500">Airbnb increased female data scientist hires from 10% to 47% using these evidence-based strategies.</p>
+          </div>
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pt-4 border-t border-slate-200/50 mt-4 block">ERE &mdash; Joan C. Williams</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══ WEEKLY CHALLENGES ═══ -->
+    <section id="challenges" class="scroll-mt-20">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-serif text-primary-container">Weekly Challenges</h2>
+        <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Tied to your dashboard metrics</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-surface-container-lowest p-6 rounded-xl editorial-shadow flex flex-col justify-between min-h-[240px]">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <div class="p-2 bg-surface-container-low rounded-lg">
+                <span class="material-symbols-outlined text-secondary">rate_review</span>
+              </div>
+              <span class="text-[10px] font-bold text-white bg-secondary px-2 py-0.5 rounded uppercase tracking-widest">This Week</span>
+            </div>
+            <h3 class="text-lg font-bold text-primary-container mb-2">The Quality Audit</h3>
+            <p class="text-sm text-slate-500">Read all 4 articles in "Improving Submittal Quality" and apply one insight to your next 3 submittals.</p>
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-slate-200/50">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Goal: Reduce rejections</span>
+          </div>
+        </div>
+        <div class="bg-surface-container-lowest p-6 rounded-xl editorial-shadow flex flex-col justify-between min-h-[240px]">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <div class="p-2 bg-surface-container-low rounded-lg">
+                <span class="material-symbols-outlined text-primary-container">speed</span>
+              </div>
+              <span class="text-[10px] font-bold text-slate-400 bg-surface-container-high px-2 py-0.5 rounded uppercase tracking-widest">Next Week</span>
+            </div>
+            <h3 class="text-lg font-bold text-primary-container mb-2">Speed-to-Submit Sprint</h3>
+            <p class="text-sm text-slate-500">Complete the Boolean search and pipeline articles. Target: match Shaily's same-day submittal benchmark.</p>
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-slate-200/50">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Goal: Same-day response</span>
+          </div>
+        </div>
+        <div class="premium-gradient p-6 rounded-xl flex flex-col justify-between min-h-[240px] shadow-xl shadow-blue-950/20 relative overflow-hidden">
+          <div class="absolute bottom-0 right-0 p-4 opacity-10">
+            <span class="material-symbols-outlined text-[80px] text-white">trophy</span>
+          </div>
+          <div class="relative z-10">
+            <div class="flex justify-between items-start mb-4">
+              <div class="p-2 bg-white/10 rounded-lg backdrop-blur-sm">
+                <span class="material-symbols-outlined text-white">stars</span>
+              </div>
+              <span class="text-[10px] font-bold text-white/50 uppercase tracking-widest italic">Team Event</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">The Interview Surge</h3>
+            <p class="text-sm text-blue-100/70">Team challenge: improve the 3.9% interview rate to 10%+ by applying intake meeting and screening best practices from the Hub.</p>
+          </div>
+          <div class="relative z-10 flex items-center justify-between pt-4 border-t border-white/10">
+            <span class="text-[10px] font-bold text-tertiary-fixed uppercase tracking-widest">Goal: 10% interview rate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SOURCE LEGEND ═══ -->
+    <section class="mt-16 py-12 border-t border-slate-200">
+      <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Trusted Sources</h3>
+      <div class="flex flex-wrap gap-8 items-center text-sm text-on-surface-variant">
+        <span class="font-bold">SHRM</span>
+        <span class="text-slate-300">|</span>
+        <span class="font-bold">Harvard Business Review</span>
+        <span class="text-slate-300">|</span>
+        <span class="font-bold">LinkedIn Talent Solutions</span>
+        <span class="text-slate-300">|</span>
+        <span class="font-bold">ERE</span>
+        <span class="text-slate-300">|</span>
+        <span class="font-bold">RecruitingDaily</span>
+        <span class="text-slate-300">|</span>
+        <span class="font-bold">Bullhorn</span>
+      </div>
+      <p class="text-xs text-slate-400 mt-4 font-serif italic">All resources are free-to-read articles from industry-recognized publishers. Links open in new tabs.</p>
+    </section>
+
+  </div>
+</main>
+
+<!-- Mobile Bottom Nav -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-primary z-50 flex items-center justify-around py-2.5">
+  <a href="index.html" class="flex flex-col items-center gap-0.5 text-white/70 hover:text-white">
+    <span class="material-symbols-outlined text-2xl">dashboard</span>
+    <span class="text-[10px] font-medium">Dashboard</span>
+  </a>
+  <a href="gallery.html" class="flex flex-col items-center gap-0.5 text-white/70 hover:text-white">
+    <span class="material-symbols-outlined text-2xl">groups</span>
+    <span class="text-[10px] font-medium">Gallery</span>
+  </a>
+  <a href="analytics.html" class="flex flex-col items-center gap-0.5 text-white/70 hover:text-white">
+    <span class="material-symbols-outlined text-2xl">analytics</span>
+    <span class="text-[10px] font-medium">Analytics</span>
+  </a>
+  <a href="resources.html" class="flex flex-col items-center gap-0.5 text-white">
+    <span class="material-symbols-outlined text-2xl">school</span>
+    <span class="text-[10px] font-medium">Resources</span>
+  </a>
+</nav>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 {
-  "buildCommand": "",
+  "framework": null,
+  "buildCommand": "node check.js",
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,

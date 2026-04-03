@@ -97,6 +97,9 @@
       <a href="analytics.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
         <span class="material-symbols-outlined text-[20px]">analytics</span>Analytics
       </a>
+      <a href="resources.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+        <span class="material-symbols-outlined text-[20px]">school</span>Recruiter Resources
+      </a>
       <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant/50 cursor-default" onclick="return false">
         <span class="material-symbols-outlined text-[20px]">strategy</span>Team Strategy
         <span class="ml-auto text-[10px] font-semibold uppercase tracking-wider bg-surface-container-high text-on-surface-variant rounded-full px-2 py-0.5">Soon</span>
@@ -142,19 +145,19 @@
       <!-- Stat Pills -->
       <div class="relative mt-8 grid grid-cols-2 sm:grid-cols-4 gap-px bg-surface-container-high rounded-2xl overflow-hidden shadow-sm">
         <div class="bg-white p-5 text-center">
-          <p class="text-2xl font-headline font-extrabold text-primary">12</p>
+          <p data-stat="submittals" class="text-2xl font-headline font-extrabold text-primary">14</p>
           <p class="text-xs text-on-surface-variant font-medium mt-1">Submittals</p>
         </div>
         <div class="bg-white p-5 text-center">
-          <p class="text-2xl font-headline font-extrabold text-primary">2</p>
+          <p data-stat="interviews" class="text-2xl font-headline font-extrabold text-primary">2</p>
           <p class="text-xs text-on-surface-variant font-medium mt-1">Interviews</p>
         </div>
         <div class="bg-white p-5 text-center">
-          <p class="text-2xl font-headline font-extrabold text-primary">16.7%</p>
+          <p data-stat="conversion" class="text-2xl font-headline font-extrabold text-primary">14.3%</p>
           <p class="text-xs text-on-surface-variant font-medium mt-1">Conversion</p>
         </div>
         <div class="bg-white p-5 text-center">
-          <p class="text-2xl font-headline font-extrabold text-secondary">1</p>
+          <p data-stat="rejections" class="text-2xl font-headline font-extrabold text-secondary">1</p>
           <p class="text-xs text-on-surface-variant font-medium mt-1">Rejection</p>
         </div>
       </div>
@@ -219,7 +222,7 @@
               <svg width="180" height="180" viewBox="0 0 180 180">
                 <!-- Background ring -->
                 <circle cx="90" cy="90" r="70" fill="none" stroke="#e0e3e5" stroke-width="20"/>
-                <!-- Submitted (12 of 15 total = 288deg) -->
+                <!-- Submitted (14 of 17 total) -->
                 <circle cx="90" cy="90" r="70" fill="none" stroke="#001e52" stroke-width="20"
                   stroke-dasharray="352.4 87.96" stroke-dashoffset="110"
                   transform="rotate(-90 90 90)" stroke-linecap="round"/>
@@ -233,7 +236,7 @@
                   transform="rotate(-90 90 90)" stroke-linecap="round"/>
               </svg>
               <div class="absolute inset-0 flex flex-col items-center justify-center">
-                <span class="text-3xl font-headline font-extrabold text-primary">12</span>
+                <span class="text-3xl font-headline font-extrabold text-primary">14</span>
                 <span class="text-[11px] text-on-surface-variant font-medium">Pipeline</span>
               </div>
             </div>
@@ -242,7 +245,7 @@
           <div class="flex flex-wrap justify-center gap-x-5 gap-y-2 mb-5">
             <div class="flex items-center gap-2">
               <span class="h-3 w-3 rounded-full bg-primary"></span>
-              <span class="text-xs text-on-surface-variant">12 Submitted</span>
+              <span class="text-xs text-on-surface-variant">14 Submitted</span>
             </div>
             <div class="flex items-center gap-2">
               <span class="h-3 w-3 rounded-full bg-secondary"></span>
@@ -433,7 +436,7 @@
             <ul class="space-y-3 text-sm text-on-surface-variant leading-relaxed">
               <li class="flex gap-2">
                 <span class="text-green-600 mt-0.5 flex-shrink-0">&#10003;</span>
-                Highest volume on any team (12 submittals = 23% of total)
+                Highest volume on any team (14 submittals = 27% of total)
               </li>
               <li class="flex gap-2">
                 <span class="text-green-600 mt-0.5 flex-shrink-0">&#10003;</span>
@@ -487,7 +490,7 @@
               <div class="flex items-center justify-between mb-2">
                 <p class="text-sm font-medium text-on-surface">Submittals</p>
                 <div class="flex items-center gap-4 text-xs text-on-surface-variant">
-                  <span><span class="font-bold text-primary">Santoshi: 12</span></span>
+                  <span><span class="font-bold text-primary">Santoshi: 14</span></span>
                   <span>Team Avg: 5.2</span>
                 </div>
               </div>
@@ -578,9 +581,9 @@
         <span class="material-symbols-outlined text-[22px]">analytics</span>
         <span class="text-[10px] font-medium">Analytics</span>
       </a>
-      <a href="#" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
-        <span class="material-symbols-outlined text-[22px]">settings</span>
-        <span class="text-[10px] font-medium">Settings</span>
+      <a href="resources.html" class="flex flex-col items-center justify-center gap-0.5 text-on-surface-variant">
+        <span class="material-symbols-outlined text-[22px]">school</span>
+        <span class="text-[10px] font-medium">Resources</span>
       </a>
     </div>
   </nav>
@@ -593,7 +596,7 @@
     try {
       const resp = await fetch('/api/data');
       if (!resp.ok) return;
-      const data = await resp.json();
+      const data = JSON.parse(JSON.stringify(await resp.json()));
       // Find Santoshi in the data
       const all = [...data.coreTeam.recruiters, ...data.extendedTeam.recruiters];
       const santoshi = all.find(r => r.name.toLowerCase().includes('santoshi'));

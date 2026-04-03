@@ -74,6 +74,9 @@
       <a href="analytics.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">
         <span class="material-symbols-outlined text-[20px]">analytics</span>Analytics
       </a>
+      <a href="resources.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">
+        <span class="material-symbols-outlined text-[20px]">school</span>Recruiter Resources
+      </a>
       <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-on-surface-variant/50 cursor-default" onclick="return false">
         <span class="material-symbols-outlined text-[20px]">strategy</span>Team Strategy
         <span class="ml-auto text-[10px] font-semibold uppercase tracking-wider bg-surface-container-high text-on-surface-variant rounded-full px-2 py-0.5">Soon</span>
@@ -122,25 +125,23 @@
   </main>
 
   <!-- Mobile Bottom Nav -->
-  <nav class="md:hidden fixed bottom-0 inset-x-0 bg-white border-t border-surface-container-high z-50">
-    <div class="flex items-center justify-around h-16">
-      <a href="index.html" class="flex flex-col items-center gap-0.5 text-on-surface-variant">
-        <span class="material-symbols-outlined text-[22px]">dashboard</span>
-        <span class="text-[10px] font-medium">Dashboard</span>
-      </a>
-      <a href="gallery.html" class="flex flex-col items-center gap-0.5 text-primary">
-        <span class="material-symbols-outlined text-[22px]">groups</span>
-        <span class="text-[10px] font-medium">Gallery</span>
-      </a>
-      <a href="analytics.html" class="flex flex-col items-center gap-0.5 text-on-surface-variant">
-        <span class="material-symbols-outlined text-[22px]">analytics</span>
-        <span class="text-[10px] font-medium">Analytics</span>
-      </a>
-      <a href="#" class="flex flex-col items-center gap-0.5 text-on-surface-variant">
-        <span class="material-symbols-outlined text-[22px]">settings</span>
-        <span class="text-[10px] font-medium">Settings</span>
-      </a>
-    </div>
+  <nav class="md:hidden fixed bottom-0 inset-x-0 bg-primary z-50 flex items-center justify-around py-2.5">
+    <a href="index.html" class="flex flex-col items-center gap-0.5 text-white/70 hover:text-white">
+      <span class="material-symbols-outlined text-2xl">dashboard</span>
+      <span class="text-[10px] font-medium">Dashboard</span>
+    </a>
+    <a href="gallery.html" class="flex flex-col items-center gap-0.5 text-white">
+      <span class="material-symbols-outlined text-2xl">groups</span>
+      <span class="text-[10px] font-medium">Gallery</span>
+    </a>
+    <a href="analytics.html" class="flex flex-col items-center gap-0.5 text-white/70 hover:text-white">
+      <span class="material-symbols-outlined text-2xl">analytics</span>
+      <span class="text-[10px] font-medium">Analytics</span>
+    </a>
+    <a href="resources.html" class="flex flex-col items-center gap-0.5 text-white/70 hover:text-white">
+      <span class="material-symbols-outlined text-2xl">school</span>
+      <span class="text-[10px] font-medium">Resources</span>
+    </a>
   </nav>
 
   <script>
@@ -522,7 +523,7 @@
 
       try {
         const res = await fetch('/api/data');
-        const data = await res.json();
+        const data = JSON.parse(JSON.stringify(await res.json()));
 
         const allRecruiters = [
           ...(data.coreTeam?.recruiters || []),
