@@ -7,7 +7,7 @@ const USERNAME = (process.env.JOBDIVA_USERNAME || '').trim();
 const PASSWORD = (process.env.JOBDIVA_PASSWORD || '').trim();
 const LOOKBACK_DAYS = parseInt(process.env.LOOKBACK_DAYS || '14', 10);
 
-const JSM_FIRST_NAMES = ['shaily', 'akash', 'rahul', 'sahithya', 'vivek', 'shreerang', 'dhananjay', 'meenal'];
+const JSM_FIRST_NAMES = ['shaily', 'akash', 'rahul', 'sahithya', 'vivek', 'shreerang', 'dhananjay', 'meenal', 'santoshi', 'vishal', 'shubham', 'monoshree', 'rutuja', 'treesa'];
 
 // Full-name mapping for abbreviated JobDiva last names
 const NAME_MAP = {
@@ -352,10 +352,9 @@ function processData(submittals, jobs) {
       warning: r.avgTTS >= 5,
     }));
 
-  // Daily activity (core team)
+  // Daily activity (all recruiters)
   const dailyMap = {};
   for (const r of Object.values(recruiterMap)) {
-    if (!r.isCore) continue;
     for (const d of r.dates) {
       const key = d.toISOString().slice(0, 10);
       if (!dailyMap[key]) dailyMap[key] = { total: 0, detail: {} };
