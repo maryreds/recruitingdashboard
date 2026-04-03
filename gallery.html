@@ -223,10 +223,10 @@
             <div class="w-40 h-40 sm:w-32 sm:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
               <img src="img/vivek-vinod.png" alt="Vivek Vinod" class="w-full h-full object-cover object-top"/>
             </div>
-            <span class="tag-badge -top-2 -right-2 z-10"><span class="tag-tooltip">The Sensei. 🥋 You're not just winning; you're showing the rest of us how it's done. Respect.</span><span class="text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full shadow inline-block">Mentor</span></span>
+            <span class="tag-badge -top-2 -right-2 z-10"><span class="tag-tooltip">Senior team member helping guide the recruiting team's approach.</span><span class="text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full shadow inline-block">Mentor</span></span>
           </div>
           <h3 class="text-xl font-bold text-on-surface font-headline">Vivek Vinod</h3>
-          <p class="text-on-surface-variant text-sm mt-1">Country Head, India Operations</p>
+          <p class="text-on-surface-variant text-sm mt-1">Head of Operations, India</p>
           <span data-team="India Team" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">India Team</span>
           <div class="flex items-center gap-3 mt-auto">
             <a href="profile.html?name=Vivek%20Vinod" class="btn-profile px-6 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold">View Profile</a>
@@ -242,7 +242,7 @@
             <div class="w-40 h-40 sm:w-32 sm:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
               <img src="img/vivek.png" alt="Vivek Shenoy" class="w-full h-full object-cover object-top"/>
             </div>
-            <span class="tag-badge -top-2 -right-2 z-10"><span class="tag-tooltip">The Sensei. 🥋 You're not just winning; you're showing the rest of us how it's done. Respect.</span><span class="text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full shadow inline-block">Mentor</span></span>
+            <span class="tag-badge -top-2 -right-2 z-10"><span class="tag-tooltip">Senior team member helping guide the recruiting team's approach.</span><span class="text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full shadow inline-block">Mentor</span></span>
           </div>
           <h3 class="text-xl font-bold text-on-surface font-headline">Vivek Shenoy</h3>
           <p class="text-on-surface-variant text-sm mt-1">Sr. VP Operations</p>
@@ -261,7 +261,7 @@
             <div class="w-40 h-40 sm:w-32 sm:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
               <img src="img/shreerang.png" alt="Shreerang Tarte" class="w-full h-full object-cover object-top"/>
             </div>
-            <span class="tag-badge -top-2 -right-2 z-10"><span class="tag-tooltip">The Sensei. 🥋 You're not just winning; you're showing the rest of us how it's done. Respect.</span><span class="text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full shadow inline-block">Mentor</span></span>
+            <span class="tag-badge -top-2 -right-2 z-10"><span class="tag-tooltip">Senior team member helping guide the recruiting team's approach.</span><span class="text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full shadow inline-block">Mentor</span></span>
           </div>
           <h3 class="text-xl font-bold text-on-surface font-headline">Shreerang Tarte</h3>
           <p class="text-on-surface-variant text-sm mt-1">Head HR &amp; Strategy</p>
@@ -382,12 +382,18 @@
 
   // Team assignments (for filtering)
   const TEAMS = {
-    'Vishal Khatri': 'India Team',
-    'Shubham Kenjale': 'India Team',
-    'Rutuja Pande': 'India Team',
-    'Dhananjay More': 'India Team',
-    'Meenal Amodkar': 'India Team',
-    'Vivek Vinod': 'India Team',
+    'Rahul Kanojiya': { region: 'US Team', leader: 'Vivek' },
+    'Santoshi Hegde': { region: 'US Team', leader: 'Vivek' },
+    'Monoshree Pramanik': { region: 'US Team', leader: 'Vivek' },
+    'Shaily Juneja': { region: 'US Team', leader: 'Shreerang' },
+    'Sahithya Mogalapu': { region: 'US Team', leader: 'Shreerang' },
+    'Akash Nair': { region: 'US Team', leader: 'Shreerang' },
+    'Treesa Tijo': { region: 'US Team', leader: 'Shreerang' },
+    'Vishal Khatri': { region: 'India Team', leader: 'Vinod' },
+    'Shubham Kenjale': { region: 'India Team', leader: 'Vinod' },
+    'Rutuja Pande': { region: 'India Team', leader: 'Vinod' },
+    'Dhananjay More': { region: 'India Team', leader: 'Vinod' },
+    'Meenal Amodkar': { region: 'India Team', leader: 'Vinod' },
   };
 
   // Static team members to always show (even without API submittals)
@@ -510,39 +516,52 @@
     return tags;
   }
 
-  var TAG_TOOLTIPS = {
-    // Tier 1: Competitive awards
-    'Most Submittals': 'Volume: CRANKED. 🔊 You\'re a one-person pipeline—keep those shots on goal coming!',
-    'Highest Conversion': 'The Sniper. 🎯 Every shot is a hit. You don\'t just find candidates; you find the right ones.',
-    'Interview Leader': 'Interview magnet! 🧲 Your candidates don\'t just get submitted—they get called back.',
-    'Lightning Fast': 'Mach 5 speeds. ⚡ You\'re closing gaps while others are still reading the job description.',
-    'Same-Day Speed': 'Zero days between job open and submittal. ⚡ You move before anyone else even sees the req.',
-    'Client Reach': 'Wide net, big catches. 🎣 You\'re covering more ground than anyone. Diversity of clients is your superpower.',
-    'High-Value Roles': 'Targeting premium bill rates. 💎 You\'re going after the roles that move the needle most.',
-    'Mentor': 'The Sensei. 🥋 You\'re not just winning; you\'re showing the rest of us how it\'s done. Respect.',
-    // Tier 2: Runner-up
-    'Runner Up': 'Objects in mirror are closer than they appear! 🏎️ You\'re one big week away from the throne.',
-    'Pipeline Builder': 'Future-proofing the leaderboard. 🏗️ You\'re building a fortress of talent—placements are incoming.',
-    'Consistency Award': 'The Internal Combustion Engine. ⚙️ No drama, no plateaus—just pure, relentless output.',
-    'Quality Pick': 'Cherry-picker extraordinaire. 🍒 You know exactly which candidates will make clients say yes.',
-    'Quick Draw': 'Fastest hands in the West. 🤠 You beat the competition to the punch before they\'ve even finished their coffee.',
-    'Network Builder': 'Main character energy. 🌐 You\'re everywhere at once! More connections = more wins.',
-    'Momentum Builder': 'Clear the tracks—the hype train is leaving the station! 🚂 You\'re hitting your stride big time.',
-    // Data-driven fill badges
-    'Marathon Runner': 'The Grind-Master. 🧗 8+ submittals this period. Placements are a marathon and you\'ve got the lungs.',
-    'Steady Output': 'Reliable flow. ⚙️ Maintaining a solid cadence of submittals. Keep building on it!',
-    'Fast Responder': 'Quick on the draw. 🏁 Averaging under 2 days from job open to submittal.',
-    'Multi-Client': 'Spread across 3+ clients. 🌐 You\'re not putting all eggs in one basket.',
-    'Niche Expert': 'The Gatekeeper. 🧠 Focused on one client—you know their needs inside and out.',
-    'Prospect Hunter': 'Talent tracker. 🔍 5+ unique candidates sourced. You\'re casting a wide net.',
-    'Premium Roles': 'Targeting $60+/hr bill rates. 💰 You\'re going where the margins are.',
-    'Daily Active': 'Active 5+ days this period. 📅 Consistency is your superpower.',
-    'Consistent': 'Active 3-4 days this period. 📊 Showing up regularly.',
-    'Interview Getter': 'Your submittals are landing interviews. 🎯 Quality over quantity is paying off.',
-    '1 Submittal': 'On the board with 1 submittal. 🌱 Momentum starts here—let\'s build on it.',
-    '2 Submittals': 'Two submittals and counting. 📈 The pipeline is taking shape.',
-    'Needs Activity': 'No submittals yet this period. ⏰ Time to get on the board!',
-  };
+  // Dynamic tooltip generator — every tooltip reflects the recruiter's real numbers
+  function getTooltip(tagText, r) {
+    var s = r.submittals || 0;
+    var iv = r.interviews || 0;
+    var conv = s > 0 ? ((iv / s) * 100).toFixed(1) : '0';
+    var clients = r.uniqueCompanies || 0;
+    var tts = r.avgTTS;
+    var rate = r.avgBillRate || 0;
+    var days = r.daysActive || 0;
+    var cands = r.uniqueCandidates || 0;
+
+    switch (tagText) {
+      // Tier 1
+      case 'Most Submittals': return s + ' submittals this period — leading the entire team in volume.';
+      case 'Highest Conversion': return conv + '% conversion rate (' + iv + ' interviews from ' + s + ' submittals). Best on the team.';
+      case 'Interview Leader': return iv + ' interviews secured — more than any other recruiter this period.';
+      case 'Lightning Fast': return 'Avg ' + (tts !== null ? tts : '?') + ' days from job open to submittal. Fastest response time on the team.';
+      case 'Same-Day Speed': return '0-day avg response time — submitting candidates the same day jobs open.';
+      case 'Client Reach': return 'Submitting across ' + clients + ' different clients — broadest coverage on the team.';
+      case 'High-Value Roles': return 'Avg $' + rate + '/hr bill rate — targeting the highest-value positions.';
+      case 'Mentor': return 'Senior team member helping guide the recruiting team\'s approach.';
+      // Tier 2
+      case 'Runner Up': return s + ' submittals — 2nd highest volume on the team.';
+      case 'Pipeline Builder': return 'Working across ' + clients + ' clients — 2nd broadest client coverage.';
+      case 'Consistency Award': return s + ' submittals — 3rd highest volume. Steady and reliable output.';
+      case 'Quality Pick': return iv + ' interviews from ' + s + ' submittals — 2nd most interviews on the team.';
+      case 'Quick Draw': return 'Avg ' + (tts !== null ? tts : '?') + ' days response time — 2nd fastest on the team.';
+      case 'Network Builder': return 'Submitting to ' + clients + ' clients — 3rd broadest coverage.';
+      case 'Momentum Builder': return s + ' submittals — 4th highest volume and building momentum.';
+      // Data-driven fill
+      case 'Marathon Runner': return s + ' submittals this period. High-volume output sustained over time.';
+      case 'Steady Output': return s + ' submittals across ' + days + ' active days. Maintaining a solid cadence.';
+      case 'Fast Responder': return 'Avg ' + (tts !== null ? tts : '?') + ' days from job open to submittal.';
+      case 'Multi-Client': return 'Spread across ' + clients + ' different clients this period.';
+      case 'Niche Expert': return 'Focused on 1 client with ' + s + ' submittals — deep specialization.';
+      case 'Prospect Hunter': return cands + ' unique candidates sourced this period.';
+      case 'Premium Roles': return 'Avg $' + rate + '/hr bill rate — targeting high-value positions.';
+      case 'Daily Active': return 'Active ' + days + ' days this period. Consistent daily presence.';
+      case 'Consistent': return 'Active ' + days + ' days this period. Showing up regularly.';
+      case 'Interview Getter': return iv + ' interviews from ' + s + ' submittals (' + conv + '% conversion).';
+      case '1 Submittal': return '1 submittal this period. On the board — time to build on it.';
+      case '2 Submittals': return '2 submittals this period. Pipeline is taking shape.';
+      case 'Needs Activity': return '0 submittals this period. Time to get on the board.';
+      default: return '';
+    }
+  }
 
   function isTopPerformer(r, topPerformer) {
     return topPerformer && r.name === topPerformer.name;
@@ -553,7 +572,9 @@
     const photo = PHOTOS[r.name] || (r.name.split(' ')[0].toLowerCase() + '.png');
     const linkedin = LINKEDIN[r.name] || '#';
     const title = TITLES[r.name] || 'Recruiter';
-    const team = TEAMS[r.name] || 'US Team';
+    const teamInfo = TEAMS[r.name] || { region: 'US Team', leader: '' };
+    const teamRegion = teamInfo.region || teamInfo;
+    const teamLabel = teamInfo.leader ? teamRegion + ' ' + teamInfo.leader : teamRegion;
     const myTags = tags[r.name] || [];
     const conv = r.submittals > 0 ? ((r.interviews / r.submittals) * 100).toFixed(1) + '%' : '0%';
 
@@ -570,7 +591,7 @@
         ? (posClass === 'top' ? 'bg-white text-primary' : 'bg-white/20 text-white backdrop-blur')
         : (tag.style === 'secondary' ? 'bg-secondary text-white' : 'bg-primary text-white');
       var posCls = posClass === 'top' ? '-top-2 -right-2' : '-bottom-2 left-0';
-      var tip = TAG_TOOLTIPS[tag.text] || '';
+      var tip = getTooltip(tag.text, r);
       var tooltipEl = tip ? '<span class="tag-tooltip">' + tip + '</span>' : '';
       return '<span class="tag-badge ' + posCls + ' z-10">' +
         tooltipEl +
@@ -589,7 +610,7 @@
         '</div>' +
         '<h3 class="text-xl font-bold text-white font-headline">' + r.name + '</h3>' +
         '<p class="text-primary-fixed-dim text-sm mt-1">' + title + '</p>' +
-        '<span data-team="' + team + '" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full ' + (team === 'India Team' ? 'bg-emerald-400/20 text-emerald-100' : 'bg-blue-400/20 text-blue-100') + '">' + team + '</span>' +
+        '<span data-team="' + teamRegion + '" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full ' + (teamRegion === 'India Team' ? 'bg-emerald-400/20 text-emerald-100' : 'bg-blue-400/20 text-blue-100') + '">' + teamLabel + '</span>' +
         '<div class="flex items-center justify-center gap-3 text-xs font-medium text-white/80 mb-6 flex-wrap">' +
           stats.map(function(s) { return '<span class="bg-white/15 backdrop-blur px-3 py-1.5 rounded-full">' + s + '</span>'; }).join('') +
         '</div>' +
@@ -608,7 +629,7 @@
       '</div>' +
       '<h3 class="text-xl font-bold text-on-surface font-headline">' + r.name + '</h3>' +
       '<p class="text-on-surface-variant text-sm mt-1">' + title + '</p>' +
-      '<span data-team="' + team + '" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full ' + (team === 'India Team' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700') + '">' + team + '</span>' +
+      '<span data-team="' + teamRegion + '" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full ' + (teamRegion === 'India Team' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700') + '">' + teamLabel + '</span>' +
       '<div class="flex items-center justify-center gap-3 text-xs font-medium text-on-surface-variant mb-6 flex-wrap">' +
         stats.map(function(s) { return '<span class="bg-surface-container px-3 py-1.5 rounded-full">' + s + '</span>'; }).join('') +
       '</div>' +

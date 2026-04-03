@@ -189,12 +189,18 @@
     ];
 
     const TEAMS = {
-      'Vishal Khatri': 'India Team',
-      'Shubham Kenjale': 'India Team',
-      'Rutuja Pande': 'India Team',
-      'Dhananjay More': 'India Team',
-      'Meenal Amodkar': 'India Team',
-      'Vivek Vinod': 'India Team',
+      'Rahul Kanojiya': { region: 'US Team', leader: 'Vivek' },
+      'Santoshi Hegde': { region: 'US Team', leader: 'Vivek' },
+      'Monoshree Pramanik': { region: 'US Team', leader: 'Vivek' },
+      'Shaily Juneja': { region: 'US Team', leader: 'Shreerang' },
+      'Sahithya Mogalapu': { region: 'US Team', leader: 'Shreerang' },
+      'Akash Nair': { region: 'US Team', leader: 'Shreerang' },
+      'Treesa Tijo': { region: 'US Team', leader: 'Shreerang' },
+      'Vishal Khatri': { region: 'India Team', leader: 'Vinod' },
+      'Shubham Kenjale': { region: 'India Team', leader: 'Vinod' },
+      'Rutuja Pande': { region: 'India Team', leader: 'Vinod' },
+      'Dhananjay More': { region: 'India Team', leader: 'Vinod' },
+      'Meenal Amodkar': { region: 'India Team', leader: 'Vinod' },
     };
 
     function getInitialsColor(name) {
@@ -254,8 +260,10 @@
 
       // Role description
       const roleDesc = r.isCore ? 'Core Team Recruiter' : 'Extended Team Recruiter';
-      const teamName = TEAMS[r.name] || 'US Team';
-      const teamBadge = `<span class="text-xs px-2.5 py-0.5 rounded-full ${teamName === 'India Team' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}">${teamName}</span>`;
+      const teamInfo = TEAMS[r.name] || { region: 'US Team', leader: '' };
+      const teamRegion = teamInfo.region || 'US Team';
+      const teamLabel = teamInfo.leader ? teamRegion + ' ' + teamInfo.leader : teamRegion;
+      const teamBadge = `<span class="text-xs px-2.5 py-0.5 rounded-full ${teamRegion === 'India Team' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}">${teamLabel}</span>`;
 
       // Stat pills
       const statPills = `
