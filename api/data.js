@@ -506,7 +506,7 @@ function processData(submittals, jobs) {
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
+  res.setHeader('Cache-Control', 'public, s-maxage=1800, stale-while-revalidate=3600');
 
   if (!CLIENT_ID || !USERNAME || !PASSWORD) {
     return res.status(500).json({

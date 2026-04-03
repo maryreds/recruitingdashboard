@@ -19,6 +19,9 @@
     },
     "api/export-docx.js": {
       "maxDuration": 30
+    },
+    "api/takeaways.js": {
+      "maxDuration": 30
     }
   },
   "headers": [

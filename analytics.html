@@ -266,7 +266,11 @@
           <span class="material-symbols-outlined text-2xl">auto_awesome</span>
           <h2 class="font-headline text-xl font-extrabold">Key Takeaways</h2>
         </div>
-        <ul id="takeaways-list" class="space-y-3 text-sm text-primary-fixed leading-relaxed">
+        <div id="takeaways-loading" class="flex items-center gap-3 text-sm text-primary-fixed">
+          <span class="material-symbols-outlined text-base animate-spin">progress_activity</span>
+          Generating AI insights from your pipeline data...
+        </div>
+        <ul id="takeaways-list" class="space-y-3 text-sm text-primary-fixed leading-relaxed" style="display:none">
           <!-- Filled by JS -->
         </ul>
       </div>
@@ -537,50 +541,44 @@
     }
   }
 
-  // ── Takeaways ──
-  function renderTakeaways(totals, recruiters, rejections) {
+  // ── Takeaways (AI-generated) ──
+  async function renderTakeaways(totals, recruiters, rejections, topCompanies, dateRange) {
     const list = document.getElementById('takeaways-list');
-    const takeaways = [];
+    const loading = document.getElementById('takeaways-loading');
 
-    // Conversion insight
-    const convRate = totals.submittals > 0 ? ((totals.interviews / totals.submittals) * 100).toFixed(1) : 0;
-    if (convRate < 10) {
-      takeaways.push(`<span class="material-symbols-outlined text-base align-middle mr-1">warning</span> Only <strong>${convRate}%</strong> of submittals convert to interviews. Industry benchmark is 15-25%. Candidate-job matching needs improvement.`);
-    } else {
-      takeaways.push(`<span class="material-symbols-outlined text-base align-middle mr-1">check_circle</span> <strong>${convRate}%</strong> submittal-to-interview conversion rate is ${convRate >= 15 ? 'solid' : 'approaching benchmark'}.`);
+    try {
+      const resp = await fetch('/api/takeaways', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          totals,
+          recruiters: recruiters.map(r => ({ name: r.name, submittals: r.submittals, interviews: r.interviews, rejections: r.rejections || 0 })),
+          rejections: (rejections || []).slice(0, 30),
+          topCompanies: (topCompanies || []).slice(0, 10),
+          dateRange: dateRange || '',
+        }),
+      });
+
+      if (!resp.ok) throw new Error('API error');
+      const data = await resp.json();
+
+      list.innerHTML = data.takeaways.map(t =>
+        `<li class="flex items-start gap-1"><span class="material-symbols-outlined text-base align-middle mr-1">${t.icon}</span> ${t.text}</li>`
+      ).join('');
+
+      loading.style.display = 'none';
+      list.style.display = '';
+    } catch (err) {
+      console.error('AI takeaways failed, using fallback:', err);
+      // Fallback to basic stats if AI fails
+      const convRate = totals.submittals > 0 ? ((totals.interviews / totals.submittals) * 100).toFixed(1) : 0;
+      const items = [];
+      items.push(`<span class="material-symbols-outlined text-base align-middle mr-1">check_circle</span> <strong>${convRate}%</strong> submittal-to-interview conversion rate (benchmark: 15-25%).`);
+      if (totals.hires === 0) items.push(`<span class="material-symbols-outlined text-base align-middle mr-1">priority_high</span> <strong>Zero hires</strong> this period.`);
+      list.innerHTML = items.map(t => `<li class="flex items-start gap-1">${t}</li>`).join('');
+      loading.style.display = 'none';
+      list.style.display = '';
     }
-
-    // Top performer
-    const withInterviews = recruiters.filter(r => r.interviews > 0).sort((a, b) => b.interviews - a.interviews);
-    if (withInterviews.length > 0) {
-      const top = withInterviews[0];
-      takeaways.push(`<span class="material-symbols-outlined text-base align-middle mr-1">star</span> <strong>${top.name}</strong> is the only recruiter converting submittals to interviews (${top.interviews} of ${top.submittals}). Study their sourcing approach for the team.`);
-    }
-
-    // Concentration risk
-    const totalSubs = recruiters.reduce((s, r) => s + r.submittals, 0);
-    const topContributor = [...recruiters].sort((a, b) => b.submittals - a.submittals)[0];
-    if (topContributor && totalSubs > 0) {
-      const pct = ((topContributor.submittals / totalSubs) * 100).toFixed(0);
-      if (pct > 30) {
-        takeaways.push(`<span class="material-symbols-outlined text-base align-middle mr-1">balance</span> <strong>${topContributor.name}</strong> accounts for ${pct}% of all submittals. Distribute workload more evenly to reduce single-point dependency.`);
-      }
-    }
-
-    // Rejection patterns
-    if (rejections.length > 0) {
-      const reasons = {};
-      rejections.forEach(r => { reasons[r.reason || 'Not specified'] = (reasons[r.reason || 'Not specified'] || 0) + 1; });
-      const topReason = Object.entries(reasons).sort(([, a], [, b]) => b - a)[0];
-      takeaways.push(`<span class="material-symbols-outlined text-base align-middle mr-1">feedback</span> Top rejection reason: <strong>"${topReason[0]}"</strong> (${topReason[1]} occurrence${topReason[1] > 1 ? 's' : ''}). Address this pattern to reduce waste.`);
-    }
-
-    // Hires
-    if (totals.hires === 0) {
-      takeaways.push(`<span class="material-symbols-outlined text-base align-middle mr-1">priority_high</span> <strong>Zero hires</strong> this period. The full pipeline (submittal &rarr; interview &rarr; offer &rarr; hire) needs end-to-end attention.`);
-    }
-
-    list.innerHTML = takeaways.map(t => `<li class="flex items-start gap-1">${t}</li>`).join('');
   }
 
   // ── Client Health Scores ──
@@ -690,7 +688,7 @@
       renderTeamChart('submittals');
       renderRejections(allData.rejections, allRecruiters);
       renderClientHealth(allData.topCompanies, allData.rejections, allRecruiters);
-      renderTakeaways(allData.totals, allRecruiters, allData.rejections);
+      renderTakeaways(allData.totals, allRecruiters, allData.rejections, allData.topCompanies, allData.meta?.dateRangeShort || '');
 
       document.getElementById('loading').style.display = 'none';
       document.getElementById('main-content').style.display = 'block';
