@@ -7,7 +7,7 @@ const USERNAME = (process.env.JOBDIVA_USERNAME || '').trim();
 const PASSWORD = (process.env.JOBDIVA_PASSWORD || '').trim();
 const LOOKBACK_DAYS = parseInt(process.env.LOOKBACK_DAYS || '14', 10);
 
-const JSM_FIRST_NAMES = ['shaily', 'akash', 'rahul', 'sahithya', 'vivek', 'shreerang'];
+const JSM_FIRST_NAMES = ['shaily', 'akash', 'rahul', 'sahithya', 'vivek', 'shreerang', 'dhananjay', 'meenal'];
 
 // Full-name mapping for abbreviated JobDiva last names
 const NAME_MAP = {
