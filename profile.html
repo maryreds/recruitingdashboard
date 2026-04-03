@@ -263,7 +263,10 @@
       const teamInfo = TEAMS[r.name] || { region: 'US Team', leader: '' };
       const teamRegion = teamInfo.region || 'US Team';
       const teamLabel = teamInfo.leader ? teamRegion + ' ' + teamInfo.leader : teamRegion;
-      const teamBadge = `<span class="text-xs px-2.5 py-0.5 rounded-full ${teamRegion === 'India Team' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}">${teamLabel}</span>`;
+      const teamColorCls = teamRegion === 'India Team' ? 'bg-emerald-100 text-emerald-700'
+        : teamInfo.leader === 'Shreerang' ? 'bg-purple-100 text-purple-700'
+        : 'bg-blue-100 text-blue-700';
+      const teamBadge = `<span class="text-xs px-2.5 py-0.5 rounded-full ${teamColorCls}">${teamLabel}</span>`;
 
       // Stat pills
       const statPills = `
