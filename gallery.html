@@ -227,7 +227,7 @@
           </div>
           <h3 class="text-xl font-bold text-on-surface font-headline">Vivek Vinod</h3>
           <p class="text-on-surface-variant text-sm mt-1">Country Head, India Operations</p>
-          <span data-team="India Team" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary">India Team</span>
+          <span data-team="India Team" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">India Team</span>
           <div class="flex items-center gap-3 mt-auto">
             <a href="profile.html?name=Vivek%20Vinod" class="btn-profile px-6 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold">View Profile</a>
             <a href="https://www.linkedin.com/in/vivek-vinod-7032699/" target="_blank" class="p-2 rounded-full hover:bg-surface-container transition-colors" title="LinkedIn">
@@ -599,7 +599,7 @@
         '</div>' +
         '<h3 class="text-xl font-bold text-white font-headline">' + r.name + '</h3>' +
         '<p class="text-primary-fixed-dim text-sm mt-1">' + title + '</p>' +
-        '<span data-team="' + team + '" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full ' + (team === 'India Team' ? 'bg-white/20 text-white' : 'bg-white/20 text-white') + '">' + team + '</span>' +
+        '<span data-team="' + team + '" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full ' + (team === 'India Team' ? 'bg-emerald-400/20 text-emerald-100' : 'bg-blue-400/20 text-blue-100') + '">' + team + '</span>' +
         '<div class="flex items-center justify-center gap-3 text-xs font-medium text-white/80 mb-6 flex-wrap">' +
           stats.map(function(s) { return '<span class="bg-white/15 backdrop-blur px-3 py-1.5 rounded-full">' + s + '</span>'; }).join('') +
         '</div>' +
@@ -618,7 +618,7 @@
       '</div>' +
       '<h3 class="text-xl font-bold text-on-surface font-headline">' + r.name + '</h3>' +
       '<p class="text-on-surface-variant text-sm mt-1">' + title + '</p>' +
-      '<span data-team="' + team + '" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full ' + (team === 'India Team' ? 'bg-primary/10 text-primary' : 'bg-secondary/10 text-secondary') + '">' + team + '</span>' +
+      '<span data-team="' + team + '" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full ' + (team === 'India Team' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700') + '">' + team + '</span>' +
       '<div class="flex items-center justify-center gap-3 text-xs font-medium text-on-surface-variant mb-6 flex-wrap">' +
         stats.map(function(s) { return '<span class="bg-surface-container px-3 py-1.5 rounded-full">' + s + '</span>'; }).join('') +
       '</div>' +
@@ -632,7 +632,7 @@
   async function refreshGallery() {
     try {
       const resp = await fetch('/api/data');
-      if (!resp.ok) return;
+      if (!resp.ok) throw new Error('API returned ' + resp.status);
       const data = JSON.parse(JSON.stringify(await resp.json()));
 
       const apiRecruiters = [...data.coreTeam.recruiters, ...data.extendedTeam.recruiters]
@@ -665,7 +665,25 @@
       }).join('');
 
       console.log('[Gallery] Data refreshed at', new Date().toLocaleTimeString());
-    } catch (e) { console.error('Gallery refresh failed:', e); }
+    } catch (e) {
+      console.error('Gallery refresh failed:', e);
+      // Fallback: show all known team members with static info
+      var grid = document.getElementById('recruiter-grid');
+      if (grid && grid.innerHTML.indexOf('Loading') !== -1) {
+        var allNames = Object.keys(LINKEDIN);
+        var fallback = allNames.map(function(name) {
+          var r = {
+            name: name,
+            submittals: 0, interviews: 0, hires: 0, rejections: 0,
+            uniqueJobs: 0, uniqueCompanies: 0, uniqueCandidates: 0,
+            daysActive: 0, avgTTS: null, avgBillRate: null,
+            interviewConversion: 0,
+          };
+          return renderCard(r, {}, null);
+        });
+        grid.innerHTML = fallback.join('');
+      }
+    }
   }
 
   refreshGallery();
