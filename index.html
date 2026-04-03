@@ -139,6 +139,10 @@
         <span class="material-symbols-outlined text-xl">description</span>
         Cover Letters
       </a>
+      <a href="candidate-match.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+        <span class="material-symbols-outlined text-xl">person_search</span>
+        Candidate Match
+      </a>
     </nav>
   </aside>
 
@@ -448,7 +452,7 @@
   <!-- Auto-Refresh Script -->
   <script>
   (function() {
-    const REFRESH_INTERVAL = 15 * 60 * 1000; // 15 minutes
+    const REFRESH_INTERVAL = 2 * 60 * 60 * 1000; // 2 hours
     const API_URL = '/api/data';
     let refreshTimer = null;
 
@@ -797,7 +801,7 @@
         renderDashboard(data);
         if (data.activityFeed && window.renderNotifications) window.renderNotifications(data.activityFeed);
         const time = new Date(data.meta.lastUpdated).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-        updateStatus(`Live \u2022 Updated ${time} \u2022 Next refresh in 15m`);
+        updateStatus(`Live \u2022 Updated ${time} \u2022 Next refresh in 2h`);
       } catch (err) {
         console.error('Refresh failed:', err);
         updateStatus('Live data unavailable \u2022 Showing cached snapshot', true);

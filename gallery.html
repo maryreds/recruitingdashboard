@@ -163,6 +163,10 @@
         <span class="material-symbols-outlined text-xl">description</span>
         <span class="text-sm font-medium">Cover Letters</span>
       </a>
+      <a href="candidate-match.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors mb-1">
+        <span class="material-symbols-outlined text-xl">person_search</span>
+        <span class="text-sm font-medium">Candidate Match</span>
+      </a>
     </nav>
 
   </aside>
@@ -222,7 +226,8 @@
             <span class="tag-badge -top-2 -right-2 z-10"><span class="tag-tooltip">The Sensei. 🥋 You're not just winning; you're showing the rest of us how it's done. Respect.</span><span class="text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full shadow inline-block">Mentor</span></span>
           </div>
           <h3 class="text-xl font-bold text-on-surface font-headline">Vivek Vinod</h3>
-          <p class="text-on-surface-variant text-sm mt-1 mb-5">Country Head, India Operations</p>
+          <p class="text-on-surface-variant text-sm mt-1">Country Head, India Operations</p>
+          <span data-team="India Team" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary">India Team</span>
           <div class="flex items-center gap-3 mt-auto">
             <a href="profile.html?name=Vivek%20Vinod" class="btn-profile px-6 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold">View Profile</a>
             <a href="https://www.linkedin.com/in/vivek-vinod-7032699/" target="_blank" class="p-2 rounded-full hover:bg-surface-container transition-colors" title="LinkedIn">
@@ -322,7 +327,7 @@
 <!-- Dynamic Gallery Script -->
 <script>
 (function() {
-  const REFRESH_INTERVAL = 15 * 60 * 1000;
+  const REFRESH_INTERVAL = 2 * 60 * 60 * 1000; // 2 hours
   const LI_ICON = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>';
 
   // LinkedIn URLs (static, not in API)
@@ -337,6 +342,8 @@
     'Monoshree Pramanik': 'https://www.linkedin.com/in/monoshree-pramanik-3599261b/',
     'Rutuja Pande': 'https://www.linkedin.com/in/rutuja-pande-181546159/',
     'Treesa Tijo': 'https://www.linkedin.com/in/treesatijo',
+    'Dhananjay More': 'https://www.linkedin.com/in/dhananjay-more-ab44a6232/',
+    'Meenal Amodkar': 'https://www.linkedin.com/in/meenalamodkar/',
   };
 
   // Photo filenames
@@ -351,6 +358,8 @@
     'Monoshree Pramanik': 'monoshree.png',
     'Rutuja Pande': 'rutuja.png',
     'Treesa Tijo': 'treesa.png',
+    'Dhananjay More': 'dhananjay.png',
+    'Meenal Amodkar': 'meenal.png',
   };
 
   // Titles
@@ -365,7 +374,25 @@
     'Monoshree Pramanik': 'Recruiter',
     'Rutuja Pande': 'Senior IT Recruiter',
     'Treesa Tijo': 'Recruiter',
+    'Dhananjay More': 'Recruiter',
+    'Meenal Amodkar': 'Recruiter',
   };
+
+  // Team assignments (for filtering)
+  const TEAMS = {
+    'Vishal Khatri': 'India Team',
+    'Shubham Kenjale': 'India Team',
+    'Rutuja Pande': 'India Team',
+    'Dhananjay More': 'India Team',
+    'Meenal Amodkar': 'India Team',
+    'Vivek Vinod': 'India Team',
+  };
+
+  // Static team members to always show (even without API submittals)
+  const STATIC_MEMBERS = [
+    'Dhananjay More',
+    'Meenal Amodkar',
+  ];
 
   function assignTags(recruiters) {
     const tags = {};
@@ -536,6 +563,7 @@
     const photo = PHOTOS[r.name] || (r.name.split(' ')[0].toLowerCase() + '.png');
     const linkedin = LINKEDIN[r.name] || '#';
     const title = TITLES[r.name] || 'Recruiter';
+    const team = TEAMS[r.name] || 'US Team';
     const myTags = tags[r.name] || [];
     const conv = r.submittals > 0 ? ((r.interviews / r.submittals) * 100).toFixed(1) + '%' : '0%';
 
@@ -570,7 +598,8 @@
           '</div>' + tagTop + tagBottom +
         '</div>' +
         '<h3 class="text-xl font-bold text-white font-headline">' + r.name + '</h3>' +
-        '<p class="text-primary-fixed-dim text-sm mt-1 mb-5">' + title + '</p>' +
+        '<p class="text-primary-fixed-dim text-sm mt-1">' + title + '</p>' +
+        '<span data-team="' + team + '" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full ' + (team === 'India Team' ? 'bg-white/20 text-white' : 'bg-white/20 text-white') + '">' + team + '</span>' +
         '<div class="flex items-center justify-center gap-3 text-xs font-medium text-white/80 mb-6 flex-wrap">' +
           stats.map(function(s) { return '<span class="bg-white/15 backdrop-blur px-3 py-1.5 rounded-full">' + s + '</span>'; }).join('') +
         '</div>' +
@@ -588,7 +617,8 @@
         '</div>' + tagTop + tagBottom +
       '</div>' +
       '<h3 class="text-xl font-bold text-on-surface font-headline">' + r.name + '</h3>' +
-      '<p class="text-on-surface-variant text-sm mt-1 mb-5">' + title + '</p>' +
+      '<p class="text-on-surface-variant text-sm mt-1">' + title + '</p>' +
+      '<span data-team="' + team + '" class="text-xs mt-1 mb-4 inline-block px-2 py-0.5 rounded-full ' + (team === 'India Team' ? 'bg-primary/10 text-primary' : 'bg-secondary/10 text-secondary') + '">' + team + '</span>' +
       '<div class="flex items-center justify-center gap-3 text-xs font-medium text-on-surface-variant mb-6 flex-wrap">' +
         stats.map(function(s) { return '<span class="bg-surface-container px-3 py-1.5 rounded-full">' + s + '</span>'; }).join('') +
       '</div>' +
@@ -605,8 +635,25 @@
       if (!resp.ok) return;
       const data = JSON.parse(JSON.stringify(await resp.json()));
 
-      const allRecruiters = [...data.coreTeam.recruiters, ...data.extendedTeam.recruiters]
-        .filter(function(r) { return r.submittals > 0; })
+      const apiRecruiters = [...data.coreTeam.recruiters, ...data.extendedTeam.recruiters]
+        .filter(function(r) { return r.submittals > 0; });
+      const apiNames = new Set(apiRecruiters.map(function(r) { return r.name; }));
+
+      // Add static members who have no API data yet
+      STATIC_MEMBERS.forEach(function(name) {
+        if (!apiNames.has(name)) {
+          apiRecruiters.push({
+            name: name,
+            initials: name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase(),
+            submittals: 0, interviews: 0, hires: 0, rejections: 0,
+            uniqueJobs: 0, uniqueCompanies: 0, uniqueCandidates: 0,
+            daysActive: 0, avgTTS: null, avgBillRate: null,
+            interviewConversion: 0,
+          });
+        }
+      });
+
+      const allRecruiters = apiRecruiters
         .sort(function(a, b) { return b.submittals - a.submittals; });
 
       const tags = assignTags(allRecruiters);

@@ -89,6 +89,9 @@
       <a href="cover-letters.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">
         <span class="material-symbols-outlined text-[20px]">description</span>Cover Letters
       </a>
+      <a href="candidate-match.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors">
+        <span class="material-symbols-outlined text-[20px]">person_search</span>Candidate Match
+      </a>
     </nav>
   </aside>
 
@@ -559,8 +562,8 @@
     // Initial load
     loadProfile();
 
-    // Auto-refresh every 15 minutes
-    setInterval(loadProfile, 15 * 60 * 1000);
+    // Auto-refresh every 2 hours
+    setInterval(loadProfile, 2 * 60 * 60 * 1000);
   </script>
 </body>
 </html>

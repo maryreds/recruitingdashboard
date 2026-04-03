@@ -112,6 +112,9 @@
       <a href="cover-letters.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
         <span class="material-symbols-outlined text-[20px]">description</span>Cover Letters
       </a>
+      <a href="candidate-match.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-low transition">
+        <span class="material-symbols-outlined text-[20px]">person_search</span>Candidate Match
+      </a>
     </nav>
   </aside>
 
@@ -591,7 +594,7 @@
 <!-- Auto-Refresh Script -->
 <script>
 (function() {
-  const REFRESH_INTERVAL = 15 * 60 * 1000;
+  const REFRESH_INTERVAL = 2 * 60 * 60 * 1000; // 2 hours
   async function refreshProfile() {
     try {
       const resp = await fetch('/api/data');
