@@ -15,6 +15,7 @@
     gtag('js', new Date());
     gtag('config', 'G-VZFJ1MNDSK');
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300..700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -162,6 +163,24 @@
       <div class="bg-white rounded-3xl border border-surface-container-high p-8">
         <div id="team-chart" class="space-y-4">
           <!-- Filled by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ SECTION 1B: TREND CHART ═══════ -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="material-symbols-outlined text-primary text-2xl">trending_up</span>
+        <div>
+          <h2 class="font-headline text-xl font-extrabold text-on-surface">Submittal & Interview Trends</h2>
+          <p class="text-on-surface-variant text-sm mt-0.5">Daily activity over the last 14 days</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-3xl border border-surface-container-high p-8">
+        <canvas id="trend-chart" height="90"></canvas>
+        <div class="flex gap-6 mt-4 justify-center">
+          <div class="flex items-center gap-2 text-xs text-on-surface-variant"><span class="w-3 h-3 rounded-full bg-[#001e52] inline-block"></span> Submittals</div>
+          <div class="flex items-center gap-2 text-xs text-on-surface-variant"><span class="w-3 h-3 rounded-full bg-[#b6171e] inline-block"></span> Interviews</div>
         </div>
       </div>
     </section>
@@ -366,6 +385,105 @@
         <p class="text-xs text-on-surface-variant mt-1">${totals.hires} of ${totals.interviews} interviews converted</p>
       </div>
     `;
+  }
+
+  // ── Trend Chart ──
+  var trendChartInstance = null;
+  function renderTrendChart(allRecruiters, meta) {
+    var canvas = document.getElementById('trend-chart');
+    if (!canvas) return;
+
+    // Build day-by-day counts from recruiter timelines
+    var subsByDay = {};
+    var intsByDay = {};
+    allRecruiters.forEach(function(r) {
+      (r.timeline || []).forEach(function(ev) {
+        var key = new Date(ev.date).toISOString().split('T')[0];
+        if (ev.status === 'submitted' || ev.status === 'interview' || ev.status === 'rejected') {
+          subsByDay[key] = (subsByDay[key] || 0) + 1;
+        }
+        if (ev.status === 'interview') {
+          intsByDay[key] = (intsByDay[key] || 0) + 1;
+        }
+      });
+    });
+
+    var labels = [], subs = [], ints = [];
+    var end = new Date(meta.lastUpdated);
+    for (var i = 13; i >= 0; i--) {
+      var d = new Date(end);
+      d.setDate(d.getDate() - i);
+      var key = d.toISOString().split('T')[0];
+      labels.push(d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+      subs.push(subsByDay[key] || 0);
+      ints.push(intsByDay[key] || 0);
+    }
+
+    if (trendChartInstance) trendChartInstance.destroy();
+    trendChartInstance = new Chart(canvas.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Submittals',
+            data: subs,
+            borderColor: '#001e52',
+            backgroundColor: 'rgba(0, 30, 82, 0.08)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.35,
+            pointRadius: 5,
+            pointBackgroundColor: '#001e52',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+            pointHoverRadius: 7,
+          },
+          {
+            label: 'Interviews',
+            data: ints,
+            borderColor: '#b6171e',
+            backgroundColor: 'rgba(182, 23, 30, 0.06)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.35,
+            pointRadius: 5,
+            pointBackgroundColor: '#b6171e',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+            pointHoverRadius: 7,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#001e52',
+            titleFont: { family: 'Inter', size: 13 },
+            bodyFont: { family: 'Inter', size: 12 },
+            padding: 12,
+            cornerRadius: 10,
+            displayColors: true,
+            boxPadding: 4,
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { stepSize: 1, font: { family: 'Inter', size: 12 }, color: '#747782' },
+            grid: { color: 'rgba(0,0,0,0.05)' },
+            title: { display: true, text: 'Count', font: { family: 'Inter', size: 12 }, color: '#747782' }
+          },
+          x: {
+            ticks: { font: { family: 'Inter', size: 11 }, color: '#747782', maxRotation: 45 },
+            grid: { display: false }
+          }
+        }
+      }
+    });
   }
 
   // ── Team Comparison ──
@@ -685,6 +803,7 @@
       }
 
       renderFunnel(allData.totals);
+      renderTrendChart(allRecruiters, allData.meta);
       renderTeamChart('submittals');
       renderRejections(allData.rejections, allRecruiters);
       renderClientHealth(allData.topCompanies, allData.rejections, allRecruiters);
