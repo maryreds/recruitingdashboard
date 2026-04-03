@@ -481,9 +481,15 @@ function processData(submittals, jobs) {
       submittals: topPerformer.submittals,
       interviews: topPerformer.interviews,
       conversion: topPerformer.interviewConversion,
-      reason: topPerformer.interviews > 0
-        ? 'Only recruiter to secure interviews this period'
-        : 'Highest submittal volume this period',
+      reason: (() => {
+        const recruitersWithInterviews = allRecruiters.filter(r => r.interviews > 0);
+        if (topPerformer.interviews > 0 && recruitersWithInterviews.length === 1) {
+          return 'Only recruiter to secure interviews this period';
+        } else if (topPerformer.interviews > 0) {
+          return `Top interview performer (${topPerformer.interviews} interviews, ${topPerformer.interviewConversion}% conversion)`;
+        }
+        return 'Highest submittal volume this period';
+      })(),
     } : null,
     ttsRanking,
     avgTTSOverall,

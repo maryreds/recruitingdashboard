@@ -118,6 +118,10 @@
         <span class="material-symbols-outlined text-xl">analytics</span>
         Analytics
       </a>
+      <a href="resources.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-low transition-colors text-sm">
+        <span class="material-symbols-outlined text-xl">school</span>
+        Recruiter Resources
+      </a>
       <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-on-surface-variant/50 cursor-default text-sm" onclick="return false">
         <span class="material-symbols-outlined text-xl">strategy</span>
         Team Strategy
@@ -136,10 +140,6 @@
         Cover Letters
       </a>
     </nav>
-    <button class="mt-auto w-full bg-primary text-on-primary rounded-2xl py-3 text-sm font-semibold hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
-      <span class="material-symbols-outlined text-lg">add</span>
-      New Report
-    </button>
   </aside>
 
   <!-- Main Content -->
@@ -153,19 +153,22 @@
           <h1 class="font-headline text-[2.5rem] sm:text-[3.5rem] font-extrabold text-primary leading-[1.1] mb-5">JSM Recruiting<br/>Dashboard</h1>
           <div class="h-1 w-24 bg-secondary rounded-full"></div>
         </div>
-        <div class="flex gap-6 sm:gap-10">
-          <div class="text-center">
-            <p class="text-5xl sm:text-6xl font-extrabold text-primary font-headline">52</p>
-            <p class="text-sm text-on-surface-variant mt-1">Submittals</p>
+        <div>
+          <div class="flex gap-6 sm:gap-10">
+            <div class="text-center">
+              <p class="text-5xl sm:text-6xl font-extrabold text-primary font-headline">52</p>
+              <p class="text-sm text-on-surface-variant mt-1">Submittals</p>
+            </div>
+            <div class="text-center">
+              <p class="text-5xl sm:text-6xl font-extrabold text-secondary font-headline">2</p>
+              <p class="text-sm text-on-surface-variant mt-1">Interviews</p>
+            </div>
+            <div class="text-center">
+              <p class="text-5xl sm:text-6xl font-extrabold text-slate-300 font-headline">0</p>
+              <p class="text-sm text-on-surface-variant mt-1">Hires</p>
+            </div>
           </div>
-          <div class="text-center">
-            <p class="text-5xl sm:text-6xl font-extrabold text-secondary font-headline">2</p>
-            <p class="text-sm text-on-surface-variant mt-1">Interviews</p>
-          </div>
-          <div class="text-center">
-            <p class="text-5xl sm:text-6xl font-extrabold text-slate-300 font-headline">0</p>
-            <p class="text-sm text-on-surface-variant mt-1">Hires</p>
-          </div>
+          <p id="hero-period" class="text-xs text-on-surface-variant mt-3 tracking-wide">Loading period...</p>
         </div>
       </div>
     </section>
@@ -266,19 +269,19 @@
           <p class="text-sm text-primary-fixed-dim mb-8">Only recruiter to secure interviews this period</p>
           <div class="grid grid-cols-3 gap-4 mb-8">
             <div class="bg-white/10 rounded-2xl p-4 text-center">
-              <p class="text-2xl font-bold font-headline">12</p>
+              <p id="tp-submittals" class="text-2xl font-bold font-headline">14</p>
               <p class="text-xs text-primary-fixed-dim mt-1">Submittals</p>
             </div>
             <div class="bg-white/10 rounded-2xl p-4 text-center">
-              <p class="text-2xl font-bold font-headline">2</p>
+              <p id="tp-interviews" class="text-2xl font-bold font-headline">2</p>
               <p class="text-xs text-primary-fixed-dim mt-1">Interviews</p>
             </div>
             <div class="bg-white/10 rounded-2xl p-4 text-center">
-              <p class="text-2xl font-bold font-headline">16.7%</p>
+              <p id="tp-conversion" class="text-2xl font-bold font-headline">14.3%</p>
               <p class="text-xs text-primary-fixed-dim mt-1">Conversion</p>
             </div>
           </div>
-          <a href="profile.html?name=Santoshi%20Hegde" class="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-primary-fixed transition-colors">
+          <a id="tp-link" href="profile.html?name=Santoshi%20Hegde" class="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-primary-fixed transition-colors">
             View Full Profile
             <span class="material-symbols-outlined text-lg">arrow_forward</span>
           </a>
@@ -426,55 +429,25 @@
     <!-- Observations & Red Flags -->
     <section class="mb-16">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Standout Observations -->
+        <!-- Standout Observations (dynamically populated) -->
         <div class="bg-white rounded-3xl p-4 sm:p-7 border-l-4 border-primary">
           <div class="flex items-center gap-2 mb-5">
             <span class="material-symbols-outlined text-primary">visibility</span>
             <h2 class="font-headline font-bold text-lg text-primary">Standout Observations</h2>
           </div>
-          <ul class="space-y-4 text-sm text-on-surface leading-relaxed">
-            <li class="flex gap-3">
-              <span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">stars</span>
-              <span>Santoshi Hegde is the only recruiter who secured interviews (2 of 2 total), accounting for 23% of all submittals.</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">bolt</span>
-              <span>Shaily's same-day response time (0.0 days avg) sets the benchmark for team agility.</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">explore</span>
-              <span>Rahul leads the core team with 11 submittals across 5 different companies, showing broad coverage.</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">trending_up</span>
-              <span>Sahithya targets higher-value roles (avg $73/hr bill rate).</span>
-            </li>
+          <ul id="standout-observations" class="space-y-4 text-sm text-on-surface leading-relaxed">
+            <li class="text-on-surface-variant">Loading observations...</li>
           </ul>
         </div>
 
-        <!-- Red Flags -->
+        <!-- Red Flags (dynamically populated) -->
         <div class="bg-white rounded-3xl p-4 sm:p-7 border-l-4 border-secondary">
           <div class="flex items-center gap-2 mb-5">
             <span class="material-symbols-outlined text-secondary">flag</span>
             <h2 class="font-headline font-bold text-lg text-secondary">Red Flags</h2>
           </div>
-          <ul class="space-y-4 text-sm text-on-surface leading-relaxed">
-            <li class="flex gap-3">
-              <span class="material-symbols-outlined text-secondary text-lg mt-0.5 shrink-0">error</span>
-              <span>Zero interview conversion for the entire JSM core team (23 submittals, 0 interviews).</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="material-symbols-outlined text-secondary text-lg mt-0.5 shrink-0">person_off</span>
-              <span>Vivek Shenoy and Shreerang Tarte show 0 submittal activity in 14 days.</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="material-symbols-outlined text-secondary text-lg mt-0.5 shrink-0">trending_down</span>
-              <span>Overall 3.8% interview rate (2/52) suggests candidate-job matching needs improvement.</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="material-symbols-outlined text-secondary text-lg mt-0.5 shrink-0">description</span>
-              <span>4 rejections cited: "client resume screening", "education level", "resume not a match" &mdash; review submission quality filters.</span>
-            </li>
+          <ul id="red-flags" class="space-y-4 text-sm text-on-surface leading-relaxed">
+            <li class="text-on-surface-variant">Loading red flags...</li>
           </ul>
         </div>
       </div>
@@ -750,6 +723,14 @@
         heroSub.textContent = `${data.totals.submittals} total submittals in the last ${data.meta.lookbackDays} days`;
       }
 
+      // Period label under the stats (visible on mobile)
+      const heroPeriod = document.getElementById('hero-period');
+      if (heroPeriod) {
+        heroPeriod.textContent = data.meta.dateRangeShort
+          ? `Last ${data.meta.lookbackDays} days — ${data.meta.dateRangeShort}`
+          : `Last ${data.meta.lookbackDays} days`;
+      }
+
       // Date range in header
       const dateEl = document.getElementById('date-range-label');
       if (dateEl && data.meta.dateRangeShort) {
@@ -795,12 +776,14 @@
         if (tpName) tpName.textContent = data.topPerformer.name;
         const tpReason = document.querySelector('.bg-primary.rounded-3xl .text-primary-fixed-dim.text-sm');
         if (tpReason) tpReason.textContent = data.topPerformer.reason;
-        const tpStats = document.querySelectorAll('.bg-primary.rounded-3xl .bg-white\\/10 .text-2xl');
-        if (tpStats.length >= 3) {
-          tpStats[0].textContent = data.topPerformer.submittals;
-          tpStats[1].textContent = data.topPerformer.interviews;
-          tpStats[2].textContent = data.topPerformer.conversion + '%';
-        }
+        const tpSub = document.getElementById('tp-submittals');
+        const tpInt = document.getElementById('tp-interviews');
+        const tpConv = document.getElementById('tp-conversion');
+        if (tpSub) tpSub.textContent = data.topPerformer.submittals;
+        if (tpInt) tpInt.textContent = data.topPerformer.interviews;
+        if (tpConv) tpConv.textContent = data.topPerformer.conversion + '%';
+        const tpLink = document.getElementById('tp-link');
+        if (tpLink) tpLink.href = 'profile.html?name=' + encodeURIComponent(data.topPerformer.name);
       }
 
       // Time-to-submittal
@@ -903,11 +886,105 @@
           </div>`).join('');
       }
 
-      // Update observations with live data
-      const interviewRate = data.totals.interviewRate;
-      const redFlagItems = document.querySelectorAll('.border-l-4.border-secondary li span:last-child');
-      if (redFlagItems.length >= 3) {
-        redFlagItems[2].textContent = `Overall ${interviewRate}% interview rate (${data.totals.interviews}/${data.totals.submittals}) suggests candidate-job matching needs improvement.`;
+      // Dynamically generate Standout Observations
+      const allRecruiters = [...(data.coreTeam?.recruiters || []), ...(data.extendedTeam?.recruiters || [])];
+      const observationsList = document.getElementById('standout-observations');
+      if (observationsList && allRecruiters.length > 0) {
+        const obs = [];
+        const icons = ['stars', 'bolt', 'explore', 'trending_up', 'emoji_events', 'workspace_premium'];
+        let iconIdx = 0;
+
+        // Who secured interviews?
+        const withInterviews = allRecruiters.filter(r => r.interviews > 0).sort((a, b) => b.interviews - a.interviews);
+        if (withInterviews.length === 1) {
+          const r = withInterviews[0];
+          const pct = data.totals.submittals > 0 ? Math.round((r.submittals / data.totals.submittals) * 100) : 0;
+          obs.push(`${r.name} is the only recruiter who secured interviews (${r.interviews} of ${data.totals.interviews} total), accounting for ${pct}% of all submittals.`);
+        } else if (withInterviews.length > 1) {
+          const names = withInterviews.map(r => `${r.name} (${r.interviews})`).join(', ');
+          obs.push(`${withInterviews.length} recruiters secured interviews this period: ${names} — total ${data.totals.interviews} interviews.`);
+        }
+
+        // Fastest TTS
+        if (data.ttsRanking && data.ttsRanking.length > 0) {
+          const fastest = data.ttsRanking[0];
+          if (fastest.avgDays === 0) {
+            obs.push(`${fastest.name}'s same-day response time (0.0 days avg) sets the benchmark for team agility.`);
+          } else if (fastest.avgDays <= 1) {
+            obs.push(`${fastest.name} leads with the fastest response time at ${fastest.avgDays} days avg.`);
+          }
+        }
+
+        // Broadest coverage (most unique companies)
+        const byCoverage = [...allRecruiters].filter(r => r.submittals > 0).sort((a, b) => b.uniqueCompanies - a.uniqueCompanies);
+        if (byCoverage.length > 0) {
+          const top = byCoverage[0];
+          obs.push(`${top.name} leads the team with ${top.submittals} submittals across ${top.uniqueCompanies} different companies, showing broad coverage.`);
+        }
+
+        // Highest bill rate
+        const withRates = allRecruiters.filter(r => r.avgBillRate && r.avgBillRate > 0).sort((a, b) => b.avgBillRate - a.avgBillRate);
+        if (withRates.length > 0) {
+          const top = withRates[0];
+          obs.push(`${top.name} targets higher-value roles (avg $${top.avgBillRate}/hr bill rate).`);
+        }
+
+        // Best conversion rate (min 3 submittals)
+        const withConversion = allRecruiters.filter(r => r.submittals >= 3 && r.interviewConversion > 0).sort((a, b) => b.interviewConversion - a.interviewConversion);
+        if (withConversion.length > 0 && withInterviews.length > 1) {
+          const top = withConversion[0];
+          obs.push(`${top.name} has the highest interview conversion rate at ${top.interviewConversion}%.`);
+        }
+
+        observationsList.innerHTML = obs.slice(0, 4).map(text => `<li class="flex gap-3">
+          <span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">${icons[iconIdx++ % icons.length]}</span>
+          <span>${text}</span>
+        </li>`).join('');
+      }
+
+      // Dynamically generate Red Flags
+      const redFlagsList = document.getElementById('red-flags');
+      if (redFlagsList && allRecruiters.length > 0) {
+        const flags = [];
+        const flagIcons = ['error', 'person_off', 'trending_down', 'description'];
+        let fIconIdx = 0;
+
+        // Core team with zero interviews
+        const coreWithZeroInt = (data.coreTeam?.recruiters || []).filter(r => r.submittals > 0 && r.interviews === 0);
+        const coreTotalSubs = (data.coreTeam?.recruiters || []).reduce((s, r) => s + r.submittals, 0);
+        const coreTotalInts = (data.coreTeam?.recruiters || []).reduce((s, r) => s + r.interviews, 0);
+        if (coreWithZeroInt.length > 0 && coreTotalInts === 0 && coreTotalSubs > 0) {
+          flags.push(`Zero interview conversion for the entire JSM core team (${coreTotalSubs} submittals, 0 interviews).`);
+        } else if (coreWithZeroInt.length > 0) {
+          const names = coreWithZeroInt.map(r => r.name).join(', ');
+          flags.push(`${coreWithZeroInt.length} core recruiter${coreWithZeroInt.length > 1 ? 's have' : ' has'} zero interview conversion: ${names}.`);
+        }
+
+        // Inactive recruiters
+        const inactive = allRecruiters.filter(r => r.submittals === 0 && r.interviews === 0 && r.hires === 0);
+        if (inactive.length > 0) {
+          const names = inactive.map(r => r.name).join(' and ');
+          flags.push(`${names} show${inactive.length === 1 ? 's' : ''} 0 submittal activity in ${data.meta?.lookbackDays || 14} days.`);
+        }
+
+        // Low interview rate
+        if (data.totals.submittals > 0 && data.totals.interviewRate < 15) {
+          flags.push(`Overall ${data.totals.interviewRate}% interview rate (${data.totals.interviews}/${data.totals.submittals}) suggests candidate-job matching needs improvement.`);
+        }
+
+        // Rejection reasons
+        if (data.rejections && data.rejections.length > 0) {
+          const reasons = data.rejections.map(r => r.reason).filter(r => r && r !== 'No reason given');
+          if (reasons.length > 0) {
+            const unique = [...new Set(reasons.map(r => `"${r.toLowerCase()}"`))].slice(0, 3).join(', ');
+            flags.push(`${data.rejections.length} rejection${data.rejections.length > 1 ? 's' : ''} cited: ${unique} — review submission quality filters.`);
+          }
+        }
+
+        redFlagsList.innerHTML = flags.length > 0 ? flags.slice(0, 4).map(text => `<li class="flex gap-3">
+          <span class="material-symbols-outlined text-secondary text-lg mt-0.5 shrink-0">${flagIcons[fIconIdx++ % flagIcons.length]}</span>
+          <span>${text}</span>
+        </li>`).join('') : '<li class="text-on-surface-variant">No red flags detected this period.</li>';
       }
     }
 
@@ -919,7 +996,7 @@
           const err = await resp.json().catch(() => ({ error: 'API error' }));
           throw new Error(err.error || `HTTP ${resp.status}`);
         }
-        const data = await resp.json();
+        const data = JSON.parse(JSON.stringify(await resp.json()));
         renderDashboard(data);
         if (data.activityFeed && window.renderNotifications) window.renderNotifications(data.activityFeed);
         const time = new Date(data.meta.lastUpdated).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
@@ -944,22 +1021,22 @@
   </script>
 
   <!-- Mobile Bottom Nav -->
-  <nav class="md:hidden fixed bottom-8 left-0 right-0 bg-white border-t border-outline-variant/30 z-50 flex items-center justify-around py-2">
-    <a href="index.html" class="flex flex-col items-center gap-0.5 text-primary">
+  <nav class="md:hidden fixed bottom-8 left-0 right-0 bg-primary z-50 flex items-center justify-around py-2.5">
+    <a href="index.html" class="flex flex-col items-center gap-0.5 text-white">
       <span class="material-symbols-outlined text-2xl">dashboard</span>
       <span class="text-[10px] font-medium">Dashboard</span>
     </a>
-    <a href="gallery.html" class="flex flex-col items-center gap-0.5 text-on-surface-variant">
+    <a href="gallery.html" class="flex flex-col items-center gap-0.5 text-white/70 hover:text-white">
       <span class="material-symbols-outlined text-2xl">groups</span>
       <span class="text-[10px] font-medium">Gallery</span>
     </a>
-    <a href="analytics.html" class="flex flex-col items-center gap-0.5 text-on-surface-variant">
+    <a href="analytics.html" class="flex flex-col items-center gap-0.5 text-white/70 hover:text-white">
       <span class="material-symbols-outlined text-2xl">analytics</span>
       <span class="text-[10px] font-medium">Analytics</span>
     </a>
-    <a href="#" class="flex flex-col items-center gap-0.5 text-on-surface-variant">
-      <span class="material-symbols-outlined text-2xl">settings</span>
-      <span class="text-[10px] font-medium">Settings</span>
+    <a href="resources.html" class="flex flex-col items-center gap-0.5 text-white/70 hover:text-white">
+      <span class="material-symbols-outlined text-2xl">school</span>
+      <span class="text-[10px] font-medium">Resources</span>
     </a>
   </nav>
 
