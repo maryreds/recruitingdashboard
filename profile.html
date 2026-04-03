@@ -597,9 +597,32 @@
           );
           if (comingSoonMatch) {
             renderComingSoon(comingSoonMatch, COMING_SOON[comingSoonMatch]);
-          } else {
-            renderNotFound(nameQuery);
+            return;
           }
+
+          // Check if this is a known team member with no recent API activity
+          const knownMatch = Object.keys(LINKEDIN).find(n =>
+            n.toLowerCase().includes(nameQuery) || nameQuery.includes(n.split(' ')[0].toLowerCase())
+          );
+          if (knownMatch) {
+            // Render a full profile with zero stats
+            const stub = {
+              name: knownMatch,
+              initials: knownMatch.split(' ').map(w => w[0]).join('').toUpperCase(),
+              isCore: true,
+              submittals: 0, interviews: 0, hires: 0, rejections: 0,
+              uniqueJobs: 0, uniqueCompanies: 0, uniqueCandidates: 0,
+              daysActive: 0, avgTTS: null, avgBillRate: null,
+              interviewConversion: 0,
+              rejectionDetails: [], interviewDetails: [],
+              timeline: [], clients: [],
+            };
+            document.title = `${knownMatch} \u2014 JSM Consulting`;
+            renderProfile(stub, allRecruiters, data.totals || {});
+            return;
+          }
+
+          renderNotFound(nameQuery);
           return;
         }
 
