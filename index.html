@@ -69,13 +69,29 @@
     .font-headline { font-family: 'Libre Baskerville', Georgia, serif; }
     @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
     .pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+
+    .logo-wrap { position: relative; display: inline-flex; align-items: center; }
+    .globe-video {
+      position: absolute; top: 50%; left: 0;
+      transform: translateY(-50%);
+      height: 52px; width: auto;
+      border-radius: 50%; object-fit: cover;
+      z-index: 10; pointer-events: none;
+      opacity: 1; transition: opacity 0.8s ease;
+    }
+    .globe-video.fade-out { opacity: 0; }
+    .logo-wrap .static-logo { transition: opacity 0.8s ease; }
+    .logo-wrap .static-logo.hidden-start { opacity: 0; }
   </style>
 </head>
 <body class="bg-background text-on-surface min-h-screen">
 
   <!-- Fixed Header -->
   <header class="fixed top-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-xl border-b border-outline-variant/30 z-50 flex items-center justify-between px-6 xl:px-10">
-    <a href="index.html" class="flex items-center"><img src="img/jsm-logo.svg" alt="JSM Consulting" class="h-12"/></a>
+    <a href="index.html" class="logo-wrap" id="logo-wrap">
+      <video id="globe-video" class="globe-video" muted playsinline preload="auto" src="img/globe-intro.mp4"></video>
+      <img src="img/jsm-logo.svg" alt="JSM Consulting" class="h-12 static-logo" id="static-logo"/>
+    </a>
     <nav class="hidden md:flex items-center gap-8">
       <a href="index.html" class="text-sm font-semibold text-primary border-b-2 border-secondary pb-1">Dashboard</a>
       <a href="gallery.html" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Team Gallery</a>
@@ -251,17 +267,17 @@
               <p class="text-xs text-on-surface-variant">Average days from job open to candidate submission</p>
             </div>
           </div>
-          <div class="space-y-5">
+          <div id="tts-bars" class="space-y-5">
             <p class="text-sm text-on-surface-variant">Loading time-to-submittal data...</p>
           </div>
           <div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center gap-2">
             <span class="material-symbols-outlined text-sm text-on-surface-variant">info</span>
-            <p class="text-xs text-on-surface-variant">Team average: <span class="font-semibold text-primary">-- days</span></p>
+            <p class="text-xs text-on-surface-variant">Team average: <span id="tts-avg" class="font-semibold text-primary">-- days</span></p>
           </div>
         </div>
 
         <!-- Daily Activity Heatmap -->
-        <div class="bg-surface-container-low rounded-3xl p-7">
+        <div id="heatmap-card" class="bg-surface-container-low rounded-3xl p-7">
           <div class="flex items-center gap-3 mb-7">
             <span class="material-symbols-outlined text-primary text-2xl">grid_view</span>
             <h2 class="font-headline font-bold text-lg text-primary">Daily Activity Pulse</h2>
@@ -281,7 +297,7 @@
             <p class="text-sm text-on-surface-variant">Loading activity data...</p>
           </div>
           <div class="mt-5 p-3 bg-white rounded-2xl">
-            <p class="text-xs text-on-surface-variant">
+            <p id="peak-day" class="text-xs text-on-surface-variant">
               <span class="font-semibold text-secondary">Peak:</span> Loading...
             </p>
           </div>
@@ -572,7 +588,7 @@
       }
 
       // Time-to-submittal
-      const ttsContainer = document.querySelector('[class*="speed"]')?.closest('.rounded-3xl')?.querySelector('.space-y-5');
+      const ttsContainer = document.getElementById('tts-bars');
       if (ttsContainer && data.ttsRanking.length > 0) {
         ttsContainer.innerHTML = data.ttsRanking.map(r => `<div>
           <div class="flex items-center justify-between mb-1.5">
@@ -590,13 +606,13 @@
       }
 
       // TTS average
-      const ttsAvg = document.querySelector('.border-t.border-outline-variant\\/20 .font-semibold.text-primary');
+      const ttsAvg = document.getElementById('tts-avg');
       if (ttsAvg && data.avgTTSOverall !== null) {
         ttsAvg.textContent = data.avgTTSOverall + ' days';
       }
 
       // Heatmap
-      const heatmapContainer = document.querySelector('[class*="grid_view"]')?.closest('.rounded-3xl');
+      const heatmapContainer = document.getElementById('heatmap-card');
       if (heatmapContainer && data.dailyActivity.length > 0) {
         const weekRows = data.dailyActivity.map(w => {
           const cells = w.days.map((c, i) => {
@@ -617,7 +633,7 @@
 
         // Peak day
         if (data.peakDay) {
-          const peakEl = heatmapContainer.querySelector('.bg-white.rounded-2xl p');
+          const peakEl = document.getElementById('peak-day');
           if (peakEl) {
             peakEl.innerHTML = `<span class="font-semibold text-secondary">Peak:</span> ${data.peakDay.date} &mdash; ${data.peakDay.count} submittals (${data.peakDay.detail})`;
           }
@@ -815,9 +831,14 @@
     }
 
     async function refreshData(isBackground) {
+      let slowTimer;
       try {
-        if (!isBackground) updateStatus('Refreshing...');
+        if (!isBackground) {
+          updateStatus('Refreshing...');
+          slowTimer = setTimeout(() => updateStatus('Connecting to JobDiva \u2022 This can take 15-20s on first load...'), 5000);
+        }
         const resp = await fetch(API_URL);
+        clearTimeout(slowTimer);
         if (!resp.ok) {
           const err = await resp.json().catch(() => ({ error: 'API error' }));
           throw new Error(err.error || `HTTP ${resp.status}`);
@@ -826,6 +847,7 @@
         setCachedData(data);
         applyData(data);
       } catch (err) {
+        clearTimeout(slowTimer);
         console.error('Refresh failed:', err);
         if (!isBackground) updateStatus('Live data unavailable \u2022 Showing cached snapshot', true);
       }
@@ -871,5 +893,35 @@
     </a>
   </nav>
 
+<script>
+(function() {
+  var video = document.getElementById('globe-video');
+  var logo = document.getElementById('static-logo');
+  if (!video || !logo) return;
+
+  // Only play animation on first visit this session
+  if (sessionStorage.getItem('jsm-intro-played')) {
+    video.style.display = 'none';
+    return;
+  }
+
+  // Hide static logo initially, show video
+  logo.classList.add('hidden-start');
+
+  video.play().catch(function() {
+    // Autoplay blocked — just show the logo
+    logo.classList.remove('hidden-start');
+    video.style.display = 'none';
+  });
+
+  video.addEventListener('ended', function() {
+    video.classList.add('fade-out');
+    logo.classList.remove('hidden-start');
+    sessionStorage.setItem('jsm-intro-played', '1');
+    // Remove video from DOM after fade
+    setTimeout(function() { video.remove(); }, 900);
+  });
+})();
+</script>
 </body>
 </html>
