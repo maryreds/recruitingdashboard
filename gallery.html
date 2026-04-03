@@ -185,10 +185,19 @@
         </p>
       </div>
       <div class="flex items-center gap-3 flex-shrink-0">
-        <button class="flex items-center gap-2 px-5 py-2.5 bg-surface-container-low border border-outline-variant rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container transition-colors">
-          <span class="material-symbols-outlined text-lg">filter_list</span>
-          Filter by Team
-        </button>
+        <div class="relative" id="team-filter-wrap">
+          <button id="team-filter-btn" class="flex items-center gap-2 px-5 py-2.5 bg-surface-container-low border border-outline-variant rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container transition-colors">
+            <span class="material-symbols-outlined text-lg">filter_list</span>
+            <span id="team-filter-label">All Teams</span>
+            <span class="material-symbols-outlined text-lg">expand_more</span>
+          </button>
+          <div id="team-filter-menu" class="hidden absolute right-0 top-full mt-2 w-52 bg-white rounded-xl shadow-xl border border-outline-variant/30 overflow-hidden z-50">
+            <button data-filter="all" class="team-filter-option w-full text-left px-4 py-3 text-sm font-medium hover:bg-surface-container-low transition-colors text-primary">All Teams</button>
+            <button data-filter="Vinod" class="team-filter-option w-full text-left px-4 py-3 text-sm font-medium hover:bg-surface-container-low transition-colors text-on-surface-variant">Team Vinod</button>
+            <button data-filter="Vivek" class="team-filter-option w-full text-left px-4 py-3 text-sm font-medium hover:bg-surface-container-low transition-colors text-on-surface-variant">Team Vivek</button>
+            <button data-filter="Shreerang" class="team-filter-option w-full text-left px-4 py-3 text-sm font-medium hover:bg-surface-container-low transition-colors text-on-surface-variant">Team Shreerang</button>
+          </div>
+        </div>
         <a href="index.html" class="flex items-center gap-2 px-5 py-2.5 primary-gradient text-white rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity">
           <span class="material-symbols-outlined text-lg">dashboard</span>
           View Dashboard
@@ -388,7 +397,7 @@
     'Shaily Juneja': { region: 'US Team', leader: 'Shreerang' },
     'Sahithya Mogalapu': { region: 'US Team', leader: 'Shreerang' },
     'Akash Nair': { region: 'US Team', leader: 'Shreerang' },
-    'Treesa Tijo': { region: 'US Team', leader: 'Shreerang' },
+    'Treesa Tijo': { region: 'US Team', leader: 'Vivek' },
     'Vishal Khatri': { region: 'India Team', leader: 'Vinod' },
     'Shubham Kenjale': { region: 'India Team', leader: 'Vinod' },
     'Rutuja Pande': { region: 'India Team', leader: 'Vinod' },
@@ -640,17 +649,76 @@
     '</div>';
   }
 
+  // --- Team Filter ---
+  var currentFilter = 'all';
+  var lastData = null;
+  var lastAllRecruiters = null;
+
+  var filterBtn = document.getElementById('team-filter-btn');
+  var filterMenu = document.getElementById('team-filter-menu');
+  var filterLabel = document.getElementById('team-filter-label');
+  var filterOptions = document.querySelectorAll('.team-filter-option');
+
+  filterBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    filterMenu.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', function() {
+    filterMenu.classList.add('hidden');
+  });
+
+  filterOptions.forEach(function(opt) {
+    opt.addEventListener('click', function(e) {
+      e.stopPropagation();
+      currentFilter = this.getAttribute('data-filter');
+      filterLabel.textContent = currentFilter === 'all' ? 'All Teams' : 'Team ' + currentFilter;
+
+      // Update active style
+      filterOptions.forEach(function(o) {
+        o.classList.remove('text-primary');
+        o.classList.add('text-on-surface-variant');
+      });
+      this.classList.add('text-primary');
+      this.classList.remove('text-on-surface-variant');
+
+      filterMenu.classList.add('hidden');
+      applyFilter();
+    });
+  });
+
+  function applyFilter() {
+    if (!lastAllRecruiters || !lastData) return;
+    var filtered = currentFilter === 'all'
+      ? lastAllRecruiters
+      : lastAllRecruiters.filter(function(r) {
+          var t = TEAMS[r.name];
+          return t && t.leader === currentFilter;
+        });
+    var tags = assignTags(filtered);
+    var grid = document.getElementById('recruiter-grid');
+    if (!grid) return;
+    if (filtered.length === 0) {
+      grid.innerHTML = '<div class="col-span-full text-center py-16 text-on-surface-variant">No recruiters in this team.</div>';
+      return;
+    }
+    var topInFilter = filtered.find(function(r) { return lastData.topPerformer && r.name === lastData.topPerformer.name; });
+    grid.innerHTML = filtered.map(function(r) {
+      return renderCard(r, tags, topInFilter ? lastData.topPerformer : null);
+    }).join('');
+  }
+
   async function refreshGallery() {
     try {
-      const resp = await fetch('/api/data');
+      var resp = await fetch('/api/data');
       if (!resp.ok) throw new Error('API returned ' + resp.status);
-      const data = JSON.parse(JSON.stringify(await resp.json()));
+      var data = JSON.parse(JSON.stringify(await resp.json()));
+      lastData = data;
 
-      const apiRecruiters = [...data.coreTeam.recruiters, ...data.extendedTeam.recruiters]
+      var apiRecruiters = [...data.coreTeam.recruiters, ...data.extendedTeam.recruiters]
         .filter(function(r) { return r.submittals > 0; });
-      const apiNames = new Set(apiRecruiters.map(function(r) { return r.name; }));
+      var apiNames = new Set(apiRecruiters.map(function(r) { return r.name; }));
 
-      // Add static members who have no API data yet
       STATIC_MEMBERS.forEach(function(name) {
         if (!apiNames.has(name)) {
           apiRecruiters.push({
@@ -664,21 +732,11 @@
         }
       });
 
-      const allRecruiters = apiRecruiters
-        .sort(function(a, b) { return b.submittals - a.submittals; });
-
-      const tags = assignTags(allRecruiters);
-      const grid = document.getElementById('recruiter-grid');
-      if (!grid) return;
-
-      grid.innerHTML = allRecruiters.map(function(r) {
-        return renderCard(r, tags, data.topPerformer);
-      }).join('');
-
+      lastAllRecruiters = apiRecruiters.sort(function(a, b) { return b.submittals - a.submittals; });
+      applyFilter();
       console.log('[Gallery] Data refreshed at', new Date().toLocaleTimeString());
     } catch (e) {
       console.error('Gallery refresh failed:', e);
-      // Fallback: show all known team members with static info
       var grid = document.getElementById('recruiter-grid');
       if (grid && grid.innerHTML.indexOf('Loading') !== -1) {
         var allNames = Object.keys(LINKEDIN);
@@ -695,7 +753,7 @@
         grid.innerHTML = fallback.join('');
       }
     }
-  }
+  };
 
   refreshGallery();
   setInterval(refreshGallery, REFRESH_INTERVAL);
