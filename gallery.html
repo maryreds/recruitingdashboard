@@ -79,6 +79,27 @@
     /* Hide scrollbar */
     .sidebar-scroll::-webkit-scrollbar { display: none; }
     .sidebar-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Tag tooltips */
+    .tag-badge { position: absolute; cursor: default; }
+    .tag-badge .tag-tooltip {
+      visibility: hidden; opacity: 0;
+      position: absolute; bottom: calc(100% + 10px); left: 50%;
+      transform: translateX(-50%);
+      width: 240px; padding: 10px 14px;
+      background: #001e52; color: #fff;
+      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500;
+      line-height: 1.5; text-transform: none; letter-spacing: 0;
+      border-radius: 12px; box-shadow: 0 8px 30px rgba(0,30,82,0.25);
+      pointer-events: none; transition: opacity 0.2s ease, visibility 0.2s ease;
+      z-index: 50;
+    }
+    .tag-badge .tag-tooltip::after {
+      content: ''; position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent; border-top-color: #001e52;
+    }
+    .tag-badge:hover .tag-tooltip { visibility: visible; opacity: 1; }
   </style>
 </head>
 <body class="bg-background text-on-surface min-h-screen">
@@ -198,7 +219,7 @@
             <div class="w-40 h-40 sm:w-32 sm:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
               <img src="img/vivek-vinod.png" alt="Vivek Vinod" class="w-full h-full object-cover object-top"/>
             </div>
-            <span class="absolute -top-2 -right-2 z-10 text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full shadow">Mentor</span>
+            <span class="tag-badge -top-2 -right-2 z-10"><span class="tag-tooltip">The Sensei. 🥋 You're not just winning; you're showing the rest of us how it's done. Respect.</span><span class="text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full shadow inline-block">Mentor</span></span>
           </div>
           <h3 class="text-xl font-bold text-on-surface font-headline">Vivek Vinod</h3>
           <p class="text-on-surface-variant text-sm mt-1 mb-5">Country Head, India Operations</p>
@@ -216,7 +237,7 @@
             <div class="w-40 h-40 sm:w-32 sm:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
               <img src="img/vivek.png" alt="Vivek Shenoy" class="w-full h-full object-cover object-top"/>
             </div>
-            <span class="absolute -top-2 -right-2 z-10 text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full shadow">Mentor</span>
+            <span class="tag-badge -top-2 -right-2 z-10"><span class="tag-tooltip">The Sensei. 🥋 You're not just winning; you're showing the rest of us how it's done. Respect.</span><span class="text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full shadow inline-block">Mentor</span></span>
           </div>
           <h3 class="text-xl font-bold text-on-surface font-headline">Vivek Shenoy</h3>
           <p class="text-on-surface-variant text-sm mt-1 mb-5">Sr. VP Operations</p>
@@ -234,7 +255,7 @@
             <div class="w-40 h-40 sm:w-32 sm:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
               <img src="img/shreerang.png" alt="Shreerang Tarte" class="w-full h-full object-cover object-top"/>
             </div>
-            <span class="absolute -top-2 -right-2 z-10 text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full shadow">Mentor</span>
+            <span class="tag-badge -top-2 -right-2 z-10"><span class="tag-tooltip">The Sensei. 🥋 You're not just winning; you're showing the rest of us how it's done. Respect.</span><span class="text-xs font-bold uppercase tracking-wider bg-primary text-white px-3 py-1 rounded-full shadow inline-block">Mentor</span></span>
           </div>
           <h3 class="text-xl font-bold text-on-surface font-headline">Shreerang Tarte</h3>
           <p class="text-on-surface-variant text-sm mt-1 mb-5">Head HR &amp; Strategy</p>
@@ -470,6 +491,42 @@
     return tags;
   }
 
+  var TAG_TOOLTIPS = {
+    'Most Submittals': 'Volume: CRANKED. 🔊 You\'re a one-person pipeline—keep those shots on goal coming!',
+    'Highest Conversion': 'The Sniper. 🎯 Every shot is a hit. You don\'t just find candidates; you find the right ones.',
+    'Runner Up': 'Objects in mirror are closer than they appear! 🏎️ You\'re one big week away from the throne.',
+    'Pipeline Builder': 'Future-proofing the leaderboard. 🏗️ You\'re building a fortress of talent—placements are incoming.',
+    'Consistency Award': 'The Internal Combustion Engine. ⚙️ No drama, no plateaus—just pure, relentless output.',
+    'Network Builder': 'Main character energy. 🌐 You\'re everywhere at once! More connections = more wins.',
+    'Quick Draw': 'Fastest hands in the West. 🤠 You beat the competition to the punch before they\'ve even finished their coffee.',
+    'Momentum Builder': 'Clear the tracks—the hype train is leaving the station! 🚂 You\'re hitting your stride big time.',
+    'Team Player': 'The ultimate wingman/wingwoman. 🤝 High tides raise all ships, and you\'re the tide.',
+    'Marathon Runner': 'The Grind-Master. 🧗 Placements are a marathon, not a sprint, and you\'ve got the lungs for it.',
+    'Dedicated': 'The JSM North Star. ⭐ When you say it\'s handled, we know it\'s handled. Pure reliability.',
+    'Niche Expert': 'The Gatekeeper. 🧠 You speak the language of the specialists. If they\'re out there, you\'ll find \'em.',
+    'Go-Getter': 'Hungry for it! ⚡ You don\'t wait for the door to open; you kick it down and bring the reqs home.',
+    'Sharp Eye': 'X-Ray Vision. 👁️ You see the \'it factor\' that everyone else scrolls past. Incredible scouting.',
+    'First to Submit': 'If you ain\'t first, you\'re last! 🏁 Your candidates get the VIP treatment because you\'re always at the front of the line.',
+    'Self-Starter': 'Full Autonomy Mode. 🚀 You\'re the CEO of your own desk. Keep that fire burning!',
+    'Reliable': 'The Safe Bet. 🏦 Your reputation is gold. Clients trust you, and trust is the ultimate currency.',
+    'Lightning Fast': 'Mach 5 speeds. ⚡ You\'re closing gaps while others are still reading the job description.',
+    'Mentor': 'The Sensei. 🥋 You\'re not just winning; you\'re showing the rest of us how it\'s done. Respect.',
+    'Interview Leader': 'Interview magnet! 🧲 Your candidates don\'t just get submitted—they get called back.',
+    'Client Reach': 'Wide net, big catches. 🎣 You\'re covering more ground than anyone. Diversity of clients is your superpower.',
+    'Quality Pick': 'Cherry-picker extraordinaire. 🍒 You know exactly which candidates will make clients say yes.',
+    'Hard Worker': 'Built different. 💪 You put in the reps when no one\'s watching. That\'s what separates good from great.',
+    'Rising Talent': 'Watch this space. 🌱 You\'re just getting started and already turning heads.',
+    'Grinder': 'No shortcuts, all substance. ⛏️ You do the work others skip. That\'s how legends are made.',
+    'Focused': 'Laser lock engaged. 🔒 Distractions don\'t stand a chance when you\'re in the zone.',
+    'Determined': 'Unstoppable force. 🦾 When you set your sights on a placement, it\'s only a matter of time.',
+    'Prospect Hunter': 'Talent tracker. 🔍 You don\'t wait for candidates to apply—you go out and find them.',
+    'Detail Oriented': 'The Fine Print Reader. 📋 Nothing slips past you. Your submissions are always buttoned up.',
+    'Adaptable': 'The Chameleon. 🦎 New role? New client? No problem. You adjust and deliver every time.',
+    'Resourceful': 'MacGyver energy. 🛠️ You find a way when there isn\'t one. Creative problem-solving at its finest.',
+    'Tenacious': 'The Bulldog. 🐕 You don\'t let go until the placement is made. Persistence is your middle name.',
+    'Versatile': 'Swiss Army Knife. 🔧 IT, HR, finance—you can recruit across the board. Range is your edge.'
+  };
+
   function isTopPerformer(r, topPerformer) {
     return topPerformer && r.name === topPerformer.name;
   }
@@ -488,13 +545,22 @@
     if (r.interviews > 0) stats.push(conv + ' Conversion');
     if (r.uniqueCompanies > 1) stats.push(r.uniqueCompanies + ' Clients');
 
-    // Tag HTML
-    const tagTop = myTags[0] ? '<span class="absolute -top-2 -right-2 z-10 text-xs font-bold uppercase tracking-wider ' +
-      (isTop ? 'bg-white text-primary' : (myTags[0].style === 'secondary' ? 'bg-secondary text-white' : 'bg-primary text-white')) +
-      ' px-3 py-1 rounded-full shadow">' + myTags[0].text + '</span>' : '';
-    const tagBottom = myTags[1] ? '<span class="absolute -bottom-2 left-0 z-10 text-xs font-bold uppercase tracking-wider ' +
-      (isTop ? 'bg-white/20 text-white backdrop-blur' : (myTags[1].style === 'secondary' ? 'bg-secondary text-white' : 'bg-primary text-white')) +
-      ' px-3 py-1 rounded-full shadow">' + myTags[1].text + '</span>' : '';
+    // Tag HTML with hover tooltips
+    function tagHtml(tag, posClass, isTopCard) {
+      if (!tag) return '';
+      var colorCls = isTopCard
+        ? (posClass === 'top' ? 'bg-white text-primary' : 'bg-white/20 text-white backdrop-blur')
+        : (tag.style === 'secondary' ? 'bg-secondary text-white' : 'bg-primary text-white');
+      var posCls = posClass === 'top' ? '-top-2 -right-2' : '-bottom-2 left-0';
+      var tip = TAG_TOOLTIPS[tag.text] || '';
+      var tooltipEl = tip ? '<span class="tag-tooltip">' + tip + '</span>' : '';
+      return '<span class="tag-badge ' + posCls + ' z-10">' +
+        tooltipEl +
+        '<span class="text-xs font-bold uppercase tracking-wider ' + colorCls + ' px-3 py-1 rounded-full shadow inline-block">' + tag.text + '</span>' +
+      '</span>';
+    }
+    const tagTop = tagHtml(myTags[0], 'top', isTop);
+    const tagBottom = tagHtml(myTags[1], 'bottom', isTop);
 
     if (isTop) {
       return '<a href="profile.html?name=' + encodeURIComponent(r.name) + '" class="card-hover primary-gradient rounded-[2rem] p-8 pt-14 flex flex-col items-center text-center relative group cursor-pointer">' +
