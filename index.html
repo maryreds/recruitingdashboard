@@ -900,13 +900,7 @@
   var logo = document.getElementById('static-logo');
   if (!video || !logo) return;
 
-  // Only play animation on first visit this session
-  if (sessionStorage.getItem('jsm-intro-played')) {
-    video.style.display = 'none';
-    return;
-  }
-
-  // Hide static logo initially, show video
+  // Play animation every time the landing page loads
   logo.classList.add('hidden-start');
 
   video.play().catch(function() {
@@ -918,9 +912,8 @@
   video.addEventListener('ended', function() {
     video.classList.add('fade-out');
     logo.classList.remove('hidden-start');
-    sessionStorage.setItem('jsm-intro-played', '1');
-    // Remove video from DOM after fade
-    setTimeout(function() { video.remove(); }, 900);
+    // Hide video after fade (keep in DOM for replays on next visit)
+    setTimeout(function() { video.style.display = 'none'; }, 900);
   });
 })();
 </script>
